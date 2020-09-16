@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding: 0;
 }
-* {
-  font-family: Open Sans;
+body {
+  font-family: 'Open Sans';
 }
 </style>

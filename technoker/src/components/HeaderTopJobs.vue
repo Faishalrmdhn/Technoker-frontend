@@ -7,3 +7,9 @@
     </b-col>
   </div>
 </template>
+
+<style scoped>
+h3 {
+  font-weight: bold;
+}
+</style>
