@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-<<<<<<< HEAD
 import Landing from '../views/Landing.vue'
-=======
 import LoginC from '../views/auth/Login-Candidate.vue'
 import LoginR from '../views/auth/Login-Recruiter.vue'
 import RegisterC from '../views/auth/Register-Candidate.vue'
@@ -11,7 +9,6 @@ import RegisterR from '../views/auth/Register-Recruiter.vue'
 import ResetPass from '../views/auth/Reset-Password.vue'
 import ConfirmPass from '../views/auth/Confirm-Password.vue'
 import LoginConfirmPass from '../views/auth/Login-Confirm-Password.vue'
->>>>>>> 55c016cfef3076082134bae6ad2045c64ba3d725
 
 Vue.use(VueRouter)
 
@@ -22,11 +19,11 @@ const routes = [
     component: Home
   },
   {
-<<<<<<< HEAD
     path: '/landing',
     name: 'Landing',
     component: Landing
-=======
+  },
+  {
     path: '/login-candidate',
     name: 'LoginC',
     component: LoginC
@@ -60,7 +57,6 @@ const routes = [
     path: '/login-confirm-password',
     name: 'LoginConfirmPass',
     component: LoginConfirmPass
->>>>>>> 55c016cfef3076082134bae6ad2045c64ba3d725
   }
 ]
 

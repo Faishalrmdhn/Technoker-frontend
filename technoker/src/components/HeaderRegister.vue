@@ -1,17 +1,13 @@
 <template>
-  <div>
-    <b-col cols="12">
-      <b-container class="nav-grid">
-        <div>
-          <img src="../assets/img/logo.png" alt />
-        </div>
-        <div class="button-login-register">
-          <b-button class="login-btn">Login</b-button>
-          <b-button class="register-btn">Register</b-button>
-        </div>
-      </b-container>
-    </b-col>
-  </div>
+  <b-container class="nav-grid py-4">
+    <div>
+      <img src="../assets/img/logo.png" alt />
+    </div>
+    <div class="button-login-register text-right">
+      <b-button class="login-btn mx-4">Login</b-button>
+      <b-button class="register-btn">Register</b-button>
+    </div>
+  </b-container>
 </template>
 
 <script>
@@ -32,7 +28,6 @@ export default {
 
 .button-login-register {
   display: flex;
-  width: 200px;
   justify-content: space-evenly;
 }
 
