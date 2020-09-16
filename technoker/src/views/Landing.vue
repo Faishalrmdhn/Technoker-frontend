@@ -137,16 +137,15 @@
     </b-jumbotron>
     <b-container>
       <b-jumbotron class="card-bottom my-5">
-        <b-row class="pt-2 align-items-center">
-          <b-col cols="1"></b-col>
-          <b-col cols="3" class="pl-0">
-            <h2 class="text-white">Lorem ipsum dolor sit amet.</h2>
-          </b-col>
-          <b-col cols="5"></b-col>
-          <b-col cols="3">
-            <b-button href="#" class="bg-white py-3 px-4" style="color: #5E50A1">Mulai Dari Sekarang</b-button>
-          </b-col>
-        </b-row>
+        <div>
+          <h2 class="text-white m-0">
+            Lorem ipsum
+            <br />dolor sit amet.
+          </h2>
+        </div>
+        <div class="align-self-center">
+          <b-button href="#" class="bg-white py-2 px-3" style="color: #5E50A1">Mulai Dari Sekarang</b-button>
+        </div>
       </b-jumbotron>
     </b-container>
     <Footer />
@@ -193,5 +192,7 @@ export default {
 .card-bottom {
   background-color: #5e50a1;
   border-radius: 40px 8px;
+  display: flex;
+  justify-content: space-between;
 }
 </style>
