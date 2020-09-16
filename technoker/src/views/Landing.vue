@@ -138,7 +138,7 @@
       </b-container>
     </b-jumbotron>
     <b-container>
-      <b-jumbotron class="card-bottom my-5 px-3">
+      <b-jumbotron class="card-bottom my-5 px-5">
         <div>
           <h2 class="text-white m-0">
             Lorem ipsum

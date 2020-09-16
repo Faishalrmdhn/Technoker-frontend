@@ -8,6 +8,7 @@ import RegisterR from '../views/auth/Register-Recruiter.vue'
 import ResetPass from '../views/auth/Reset-Password.vue'
 import ConfirmPass from '../views/auth/Confirm-Password.vue'
 import LoginConfirmPass from '../views/auth/Login-Confirm-Password.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,11 @@ const routes = [
     path: '/login-confirm-password',
     name: 'LoginConfirmPass',
     component: LoginConfirmPass
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   }
 ]
 
