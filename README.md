@@ -1,1 +1,0 @@
-# Technoker-frontend
