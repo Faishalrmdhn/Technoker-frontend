@@ -1,5 +1,6 @@
 <template>
   <div>
+    <HeaderRegister />
     <b-container>
       <b-jumbotron class="mb-0 bg-white py-5">
         <b-row class="align-items-center">
@@ -152,11 +153,13 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import HeaderRegister from '@/components/HeaderRegister'
 
 export default {
   name: 'Landing',
-  components: {}
+  components: {
+    HeaderRegister
+  }
 }
 </script>
 
