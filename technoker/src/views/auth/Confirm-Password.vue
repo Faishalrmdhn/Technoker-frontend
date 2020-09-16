@@ -1,52 +1,55 @@
 <template>
-  <b-row class="login mx-0" align-h="center">
-    <b-col sm="6" class="left">
-      <b-row align-v="center" class="content-left">
-        <b-col>
-          <h2>Temukan developer berbakat &#38; terbaik di berbagai bidang keahlian</h2>
-        </b-col>
-      </b-row>
-    </b-col>
-    <b-col sm="6" class="right">
-      <b-row class="content-right" align-v="center">
-        <b-col>
-          <div class="text-left p-3">
-            <h3>
-              <strong>Reset Password</strong>
-            </h3>
-            <h5>You need to change your password to activate your account</h5>
-            <b-form>
-              Kata Sandi
-              <b-row class="my-3" align-h="center">
-                <b-col>
+  <div style="width:100%">
+    <b-row class="confirmPass" align-h="center">
+      <b-col sm="6" class="left">
+        <b-row align-v="center" class="content-left">
+          <b-col>
+            <h2>Temukan developer berbakat &#38; terbaik di berbagai bidang keahlian</h2>
+          </b-col>
+        </b-row>
+      </b-col>
+      <b-col sm="6" class="right">
+        <b-row class="content-right" align-v="center">
+          <b-col>
+            <div class="text-left p-3">
+              <h3>
+                <strong>Reset Password</strong>
+              </h3>
+              <p>You need to change your password to activate your account</p>
+              <b-form style="color:grey;">
+                <b-form-group label="Kata Sandi">
                   <b-input
                     type="password"
-                    v-model="form.user_email"
-                    placeholder="Masukkan alamat email"
+                    v-model="form.user_password"
+                    placeholder="Masukkan kata sandi"
                   />
-                </b-col>
-              </b-row>Confirmation new password
-              <b-row class="my-3" align-h="center">
-                <b-col>
+                </b-form-group>
+                <b-form-group label="Confirmation new password">
                   <b-input
                     type="password"
-                    v-model="form.user_email"
+                    v-model="form.user_confirmPass"
                     placeholder="Masukkan konfirmasi kata sandi"
                   />
-                </b-col>
-              </b-row>
+                </b-form-group>
 
-              <b-row>
-                <b-col>
-                  <b-button block variant="warning" type="submit" class="my-3">Reset password</b-button>
-                </b-col>
-              </b-row>
-            </b-form>
-          </div>
-        </b-col>
-      </b-row>
-    </b-col>
-  </b-row>
+                <b-row>
+                  <b-col>
+                    <b-button
+                      style="color:white"
+                      block
+                      variant="warning"
+                      type="submit"
+                      class="my-3"
+                    >Reset password</b-button>
+                  </b-col>
+                </b-row>
+              </b-form>
+            </div>
+          </b-col>
+        </b-row>
+      </b-col>
+    </b-row>
+  </div>
 </template>
 
 <script>
@@ -55,8 +58,8 @@ export default {
   data() {
     return {
       form: {
-        user_email: '',
-        user_password: ''
+        user_password: '',
+        user_confirmPass: ''
       }
     }
   },
@@ -66,9 +69,10 @@ export default {
 </script>
 
 <style scoped>
-.login {
+.confirmPass {
   text-align: center;
-  width: 100%;
+  width: 90%;
+  margin: 30px 50px;
   height: 100vh;
   background-color: #f6f7f8;
 }
