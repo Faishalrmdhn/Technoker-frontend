@@ -104,7 +104,7 @@
               <b-card-title class="mb-0">Harry Styles</b-card-title>
               <small class="text-muted">Web Developer</small>
               <b-card-text
-                class="mt-2 px-5"
+                class="mt-2 px-4"
               >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
             </b-card>
           </b-col>
@@ -116,7 +116,7 @@
               <b-card-title class="mb-0">Harry Styles</b-card-title>
               <small class="text-muted">Web Developer</small>
               <b-card-text
-                class="mt-2 px-5"
+                class="mt-2 px-4"
               >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
             </b-card>
           </b-col>
@@ -128,7 +128,7 @@
               <b-card-title class="mb-0">Harry Styles</b-card-title>
               <small class="text-muted">Web Developer</small>
               <b-card-text
-                class="mt-2 px-5"
+                class="mt-2 px-4"
               >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
             </b-card>
           </b-col>
@@ -136,7 +136,7 @@
       </b-container>
     </b-jumbotron>
     <b-container>
-      <b-jumbotron class="card-bottom my-5">
+      <b-jumbotron class="card-bottom my-5 px-3">
         <div>
           <h2 class="text-white m-0">
             Lorem ipsum
@@ -172,7 +172,6 @@ export default {
 }
 .title-banner {
   line-height: 55px;
-  letter-spacing: 3px;
 }
 .btn-secondary {
   background-color: #5e50a1;
