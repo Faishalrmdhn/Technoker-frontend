@@ -9,7 +9,9 @@
             <p
               class="my-4"
             >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro delectus inventore, necessitatibus cupiditate odit doloremque.</p>
-            <b-button href="#" class="py-3">Mulai Dari Sekarang</b-button>
+            <router-link to="/login">
+              <b-button class="py-3">Mulai Dari Sekarang</b-button>
+            </router-link>
           </b-col>
           <b-col cols="12" xl="6" class="text-center">
             <img src="@/assets/img1.png" class="landing-img" />

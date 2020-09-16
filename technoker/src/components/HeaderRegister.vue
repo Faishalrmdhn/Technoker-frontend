@@ -4,8 +4,12 @@
       <img src="../assets/img/logo.png" alt />
     </div>
     <div class="button-login-register text-right">
-      <b-button class="login-btn mx-4">Login</b-button>
-      <b-button class="register-btn">Register</b-button>
+      <router-link to="/login">
+        <b-button class="login-btn mx-4">Login</b-button>
+      </router-link>
+      <router-link to="/login">
+        <b-button class="register-btn">Register</b-button>
+      </router-link>
     </div>
   </b-container>
 </template>

@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Login from '../views/auth/Login.vue'
 import Landing from '../views/Landing.vue'
-import LoginC from '../views/auth/Login-Candidate.vue'
-import LoginR from '../views/auth/Login-Recruiter.vue'
 import RegisterC from '../views/auth/Register-Candidate.vue'
 import RegisterR from '../views/auth/Register-Recruiter.vue'
 import ResetPass from '../views/auth/Reset-Password.vue'
@@ -19,19 +18,14 @@ const routes = [
     component: Home
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
     path: '/',
     name: 'Landing',
     component: Landing
-  },
-  {
-    path: '/login-candidate',
-    name: 'LoginC',
-    component: LoginC
-  },
-  {
-    path: '/login-recruiter',
-    name: 'LoginR',
-    component: LoginR
   },
   {
     path: '/register-candidate',
