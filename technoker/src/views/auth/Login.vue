@@ -15,31 +15,29 @@
               <h3>
                 <strong>Halo, Pewpeople</strong>
               </h3>
-              <h5>
+              <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio,
                 tempore.
-              </h5>
-              <b-form>
-                Email
-                <b-row class="my-3" align-h="center">
+              </p>
+
+              <b-form @submit.prevent="onSubmit">
+                <b-form-group label="Email">
+                  <b-form-input
+                    type="email"
+                    v-model="form.user_email"
+                    placeholder="Masukkan alamat email"
+                  />
+                </b-form-group>
+                <b-form-group label="Password">
+                  <b-input
+                    type="password"
+                    v-model="form.user_password"
+                    placeholder="Masukkan kata sandi"
+                  />
+                </b-form-group>
+                <b-row align-h="center" class="text-right">
                   <b-col>
-                    <b-input
-                      type="email"
-                      v-model="form.user_email"
-                      placeholder="Masukkan alamat email"
-                    />
-                  </b-col>
-                </b-row>Kata Sandi
-                <b-row align-h="center">
-                  <b-col>
-                    <b-input
-                      type="password"
-                      v-model="form.user_password"
-                      placeholder="Masukkan kata sandi"
-                    />
-                    <b-row class="text-right">
-                      <b-col>Lupa kata sandi?</b-col>
-                    </b-row>
+                    <router-link to="/reset-password">Lupa kata sandi?</router-link>
                   </b-col>
                 </b-row>
                 <br />
@@ -50,7 +48,7 @@
                       variant="warning"
                       type="submit"
                       class="my-3"
-                      @click="fungsimasuk()"
+                      style="color:white;"
                     >Masuk</b-button>
                   </b-col>
                 </b-row>
@@ -77,6 +75,7 @@
                           <b-col @click="$bvModal.hide('modalRegister')">
                             <b-button
                               variant="warning"
+                              style="color:white;"
                               class="mt-3"
                               block
                               @click="registerRecruiterPage()"
@@ -97,6 +96,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Login',
   data() {
@@ -109,7 +109,22 @@ export default {
   },
   computed: {},
   methods: {
-    fungsimasuk() {},
+    ...mapActions(['loginUser']),
+    onSubmit() {
+      this.login(this.form)
+        .then((result) => {
+          console.log(result)
+          this.$router.push('/')
+        })
+        .catch((error) => {
+          console.log(error.data.msg)
+          if (error.data.msg === 'Wrong Pasword') {
+            alert('Wrong Password!')
+          } else if (error.data.msg === 'Email Not Registered') {
+            alert('Your email is not registered')
+          }
+        })
+    },
     registerCandidatePage() {
       this.$router.push('/register-candidate')
     },

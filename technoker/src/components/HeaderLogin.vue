@@ -1,18 +1,14 @@
 <template>
-  <div>
-    <b-col cols="12">
-      <b-container class="nav-grid">
-        <div>
-          <img src="../assets/img/logo.png" alt />
-        </div>
-        <div class="button-after-login">
-          <img style="width:25px;height:25px;" src="../assets/img/notif.png" alt />
-          <img style="width:25px;height:25px;" src="../assets/img/mail.png" alt />
-          <div class="user-img"></div>
-        </div>
-      </b-container>
-    </b-col>
-  </div>
+  <b-container class="nav-grid py-3">
+    <div>
+      <img src="../assets/img/logo.png" alt />
+    </div>
+    <div class="button-after-login">
+      <img style="width:25px;height:25px;" src="../assets/img/notif.png" alt />
+      <img style="width:25px;height:25px;" src="../assets/img/mail.png" alt />
+      <div class="user-img"></div>
+    </div>
+  </b-container>
 </template>
 
 <script>

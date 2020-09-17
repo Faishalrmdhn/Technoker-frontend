@@ -7,7 +7,9 @@ import RegisterC from '../views/auth/Register-Candidate.vue'
 import RegisterR from '../views/auth/Register-Recruiter.vue'
 import ResetPass from '../views/auth/Reset-Password.vue'
 import ConfirmPass from '../views/auth/Confirm-Password.vue'
-import LoginConfirmPass from '../views/auth/Login-Confirm-Password.vue'
+import Hire from '../views/Hire.vue'
+import EditProfileC from '../views/Edit-Profile-C.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -48,9 +50,19 @@ const routes = [
     component: ConfirmPass
   },
   {
-    path: '/login-confirm-password',
-    name: 'LoginConfirmPass',
-    component: LoginConfirmPass
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
+  },
+  {
+    path: '/hire',
+    name: 'Hire',
+    component: Hire
+  },
+  {
+    path: '/edit-profile-c',
+    name: 'EditProfileR',
+    component: EditProfileC
   }
 ]
 
