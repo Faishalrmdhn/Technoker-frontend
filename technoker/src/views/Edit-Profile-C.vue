@@ -271,7 +271,7 @@ export default {
 .hire-info {
   /* background-color: white; */
   border-radius: 8px;
-  width: 100%;
+  width: 700px;
   margin-bottom: -250px;
   position: relative;
   z-index: 2;
