@@ -78,21 +78,23 @@
         <!-- ========================================================= -->
         <div class="mt-3">
           <b-card header="Skill">
-            <b-card-text>
-              <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="color:grey;">
-                <b-form-group id="input-group-2" label="Nama Lengkap" label-for="input-2">
-                  <b-form-input
+            <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="color:grey;">
+              <b-row align-h="between">
+                <b-col sm="9">
+                  <b-input
                     type="text"
                     id="input-2"
-                    v-model="form.user_name"
+                    v-model="form.user_skill"
                     required
-                    placeholder="Enter name"
-                  ></b-form-input>
-                </b-form-group>
-
-                <b-button block class="mt-5 btn-hire">Hire</b-button>
-              </b-form>
-            </b-card-text>
+                    placeholder="java"
+                  />
+                </b-col>
+                <b-col sm="3">
+                  <b-button block variant="warning" style="color:white">Simpan</b-button>
+                </b-col>
+              </b-row>
+            </b-form>
+            <div></div>
           </b-card>
         </div>
         <!-- =================================================================== -->
@@ -100,52 +102,54 @@
           <b-card header="Pengalaman Kerja">
             <b-card-text>
               <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="color:grey;">
-                <b-form-group id="input-group-2" label="Nama Lengkap" label-for="input-2">
+                <b-form-group id="input-group-2" label="Posisi" label-for="input-2">
                   <b-form-input
                     type="text"
                     id="input-2"
-                    v-model="form.user_name"
+                    v-model="form.user_exp_position"
                     required
-                    placeholder="Enter name"
+                    placeholder="web developer"
                   ></b-form-input>
                 </b-form-group>
-                <b-form-group id="input-group-1" label="Job Desk" label-for="input-1">
-                  <b-form-input
-                    id="input-1"
-                    v-model="form.user_jobdesk"
-                    type="text"
-                    required
-                    placeholder="Masukkan Job desk"
-                  ></b-form-input>
-                </b-form-group>
-                <b-form-group id="input-group-2" label="Domisili" label-for="input-2">
-                  <b-form-input
-                    type="text"
-                    id="input-2"
-                    v-model="form.user_domisili"
-                    required
-                    placeholder="Masukkan Domisili"
-                  ></b-form-input>
-                </b-form-group>
-                <b-form-group label="Tempat Kerja">
-                  <b-form-input
-                    type="text"
-                    id="input-2"
-                    v-model="form.user_jobPlace"
-                    required
-                    placeholder="Masukkan Tempat Kerja"
-                  ></b-form-input>
-                </b-form-group>
+                <b-row>
+                  <b-col>
+                    <b-form-group id="input-group-1" label="Nama Perusahaan" label-for="input-1">
+                      <b-form-input
+                        id="input-1"
+                        v-model="form.user_exp_company"
+                        type="text"
+                        required
+                        placeholder="PT Maju Mundur"
+                      ></b-form-input>
+                    </b-form-group>
+                  </b-col>
+                  <b-col>
+                    <b-form-group id="input-group-2" label="Bulan / Tahun" label-for="input-2">
+                      <b-form-input
+                        type="text"
+                        id="input-2"
+                        v-model="form.user_exp_month"
+                        required
+                        placeholder="Januari 2018"
+                      ></b-form-input>
+                    </b-form-group>
+                  </b-col>
+                </b-row>
+
                 <b-form-group id="input-group-2" label="Deskripsi Singkat" label-for="textarea">
                   <b-form-textarea
                     id="textarea"
                     v-model="text"
-                    placeholder="Jelaskan lebih detail"
+                    placeholder="Deskripsikan pekerjaan anda"
                     rows="3"
                     max-rows="6"
                   ></b-form-textarea>
                 </b-form-group>
-                <b-button block class="mt-5 btn-hire">Hire</b-button>
+                <b-button
+                  block
+                  variant="outline-warning"
+                  class="mt-5 btn-hire"
+                >Tambah pengalaman kerja</b-button>
               </b-form>
             </b-card-text>
           </b-card>
@@ -155,52 +159,51 @@
           <b-card header="Portofolio">
             <b-card-text>
               <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="color:grey;">
-                <b-form-group id="input-group-2" label="Nama Lengkap" label-for="input-2">
+                <b-form-group id="input-group-2" label="Nama Aplikasi" label-for="input-2">
                   <b-form-input
                     type="text"
                     id="input-2"
-                    v-model="form.user_name"
+                    v-model="form.user_porto_app"
                     required
-                    placeholder="Enter name"
+                    placeholder="Masukkan nama aplikasi"
                   ></b-form-input>
                 </b-form-group>
-                <b-form-group id="input-group-1" label="Job Desk" label-for="input-1">
+                <b-form-group id="input-group-1" label="Link Repository" label-for="input-1">
                   <b-form-input
                     id="input-1"
-                    v-model="form.user_jobdesk"
+                    v-model="form.user_porto_repo"
                     type="text"
                     required
-                    placeholder="Masukkan Job desk"
+                    placeholder="Masukkan link repository"
                   ></b-form-input>
                 </b-form-group>
-                <b-form-group id="input-group-2" label="Domisili" label-for="input-2">
-                  <b-form-input
-                    type="text"
-                    id="input-2"
-                    v-model="form.user_domisili"
-                    required
-                    placeholder="Masukkan Domisili"
-                  ></b-form-input>
+                <b-form-group label="Type Portofolio">
+                  <b-form-checkbox
+                    id="checkbox-1"
+                    v-model="status"
+                    name="checkbox-1"
+                    value="accepted"
+                    unchecked-value="aplikasi mobile"
+                  >Aplikasi Mobile</b-form-checkbox>
+                  <b-form-checkbox
+                    id="checkbox-2"
+                    v-model="status"
+                    name="checkbox-2"
+                    value="accepted"
+                    unchecked-value="aplikasi web"
+                  >Aplikasi Web</b-form-checkbox>
                 </b-form-group>
-                <b-form-group label="Tempat Kerja">
-                  <b-form-input
-                    type="text"
-                    id="input-2"
-                    v-model="form.user_jobPlace"
-                    required
-                    placeholder="Masukkan Tempat Kerja"
-                  ></b-form-input>
+
+                <b-form-group label="Upload Gambar">
+                  <b-form-file
+                    v-model="file1"
+                    :state="Boolean(file1)"
+                    placeholder="Choose a file or drop it here..."
+                    drop-placeholder="Drop file here..."
+                  ></b-form-file>
                 </b-form-group>
-                <b-form-group id="input-group-2" label="Deskripsi Singkat" label-for="textarea">
-                  <b-form-textarea
-                    id="textarea"
-                    v-model="text"
-                    placeholder="Jelaskan lebih detail"
-                    rows="3"
-                    max-rows="6"
-                  ></b-form-textarea>
-                </b-form-group>
-                <b-button block class="mt-5 btn-hire">Hire</b-button>
+
+                <b-button variant="outline-warning" block class="mt-5 btn-hire">Tambah Portofolio</b-button>
               </b-form>
             </b-card-text>
           </b-card>
@@ -223,6 +226,7 @@ export default {
   name: 'EditProfileR',
   data() {
     return {
+      status: '',
       form: {
         email: '',
         name: '',

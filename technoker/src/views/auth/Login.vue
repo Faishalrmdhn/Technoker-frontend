@@ -111,7 +111,7 @@ export default {
   methods: {
     ...mapActions(['loginUser']),
     onSubmit() {
-      this.login(this.form)
+      this.loginUser(this.form)
         .then((result) => {
           console.log(result)
           this.$router.push('/')

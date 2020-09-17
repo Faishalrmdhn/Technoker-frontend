@@ -45,6 +45,18 @@ export default {
           })
       })
     },
+    registerRecruiter(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post('localhost', payload)
+          .then(response => {
+            resolve(response)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
+    },
     interceptorRequest(context) {
       console.log('interceptor works!')
       axios.interceptors.request.use(
