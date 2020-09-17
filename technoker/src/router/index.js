@@ -9,6 +9,7 @@ import ResetPass from '../views/auth/Reset-Password.vue'
 import ConfirmPass from '../views/auth/Confirm-Password.vue'
 import Hire from '../views/Hire.vue'
 import EditProfileC from '../views/Edit-Profile-C.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -47,6 +48,11 @@ const routes = [
     path: '/confirm-password',
     name: 'ConfirmPass',
     component: ConfirmPass
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   },
   {
     path: '/hire',
