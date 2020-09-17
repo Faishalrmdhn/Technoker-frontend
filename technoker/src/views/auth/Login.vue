@@ -15,11 +15,12 @@
               <h3>
                 <strong>Halo, Pewpeople</strong>
               </h3>
-              <h5>
+              <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio,
                 tempore.
-              </h5>
-              <b-form>
+              </p>
+
+              <b-form @submit.prevent="onSubmit">
                 <b-form-group label="Email">
                   <b-form-input
                     type="email"
@@ -47,7 +48,6 @@
                       variant="warning"
                       type="submit"
                       class="my-3"
-                      @click="fungsimasuk()"
                       style="color:white;"
                     >Masuk</b-button>
                   </b-col>
@@ -75,6 +75,7 @@
                           <b-col @click="$bvModal.hide('modalRegister')">
                             <b-button
                               variant="warning"
+                              style="color:white;"
                               class="mt-3"
                               block
                               @click="registerRecruiterPage()"
@@ -95,6 +96,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Login',
   data() {
@@ -107,7 +109,22 @@ export default {
   },
   computed: {},
   methods: {
-    fungsimasuk() {},
+    ...mapActions(['loginUser']),
+    onSubmit() {
+      this.login(this.form)
+        .then((result) => {
+          console.log(result)
+          this.$router.push('/')
+        })
+        .catch((error) => {
+          console.log(error.data.msg)
+          if (error.data.msg === 'Wrong Pasword') {
+            alert('Wrong Password!')
+          } else if (error.data.msg === 'Email Not Registered') {
+            alert('Your email is not registered')
+          }
+        })
+    },
     registerCandidatePage() {
       this.$router.push('/register-candidate')
     },
