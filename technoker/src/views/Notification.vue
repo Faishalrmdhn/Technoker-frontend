@@ -1,0 +1,12 @@
+<template>
+  <h1>Notification</h1>
+</template>
+
+<script>
+export default {
+  name: 'Notification'
+}
+</script>
+
+<style scoped>
+</style>

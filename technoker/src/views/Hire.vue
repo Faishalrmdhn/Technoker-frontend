@@ -131,7 +131,7 @@ export default {
 }
 
 .hire-info {
-  width: 600px;
+  width: 700px;
   height: 1000px;
   border-radius: 8px;
 }

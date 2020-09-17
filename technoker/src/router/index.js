@@ -11,6 +11,7 @@ import Hire from '../views/Hire.vue'
 import EditProfileC from '../views/Edit-Profile-C.vue'
 import ProfileCandidate from '../views/ProfileCandidate.vue'
 import ProfileCompany from '@/views/ProfileCompany.vue'
+import Notification from '@/views/Notification.vue'
 
 Vue.use(VueRouter)
 
@@ -69,6 +70,11 @@ const routes = [
     path: '/profile-company',
     name: 'ProfileCompany',
     component: ProfileCompany
+  },
+  {
+    path: '/notification',
+    name: 'Notification',
+    component: Notification
   }
 ]
 

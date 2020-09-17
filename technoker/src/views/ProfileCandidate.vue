@@ -1,9 +1,9 @@
 <template>
   <div>
-    <HeaderLogin />
+    <HeaderLogin style="padding:20px 0" />
     <div class="gray">
       <div class="purple"></div>
-      <div style="position: relative; top: -275px">
+      <div style="position: relative; top: -312px">
         <b-container>
           <b-row class="card-profile pt-5 mx-auto">
             <b-col xl="4" cols="12" class="text-center mb-2">
@@ -169,6 +169,6 @@ export default {
   margin: 0 5px 5px 0px;
 }
 .footer {
-  margin-top: -225px;
+  margin-top: -250px;
 }
 </style>
