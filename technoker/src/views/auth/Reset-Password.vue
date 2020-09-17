@@ -1,51 +1,51 @@
 <template>
-  <b-row class="login mx-0" align-h="center">
-    <b-col sm="6" class="left">
-      <b-row align-v="center" class="content-left">
-        <b-col>
-          <h2>Temukan developer berbakat &#38; terbaik di berbagai bidang keahlian</h2>
-        </b-col>
-      </b-row>
-    </b-col>
-    <b-col sm="6" class="right">
-      <b-row class="content-right" align-v="center">
-        <b-col>
-          <div class="text-left p-3">
-            <h3>
-              <strong>Reset Password</strong>
-            </h3>
-            <h5>
-              Enter your user account's verified email address and we will send
-              you a password reset link.
-            </h5>
-            <b-form>
-              Email
-              <b-row class="my-3" align-h="center">
-                <b-col>
+  <div style="width:100%">
+    <b-row class="resetPass" align-h="center">
+      <b-col sm="6" class="left">
+        <b-row align-v="center" class="content-left">
+          <b-col>
+            <h2>Temukan developer berbakat &#38; terbaik di berbagai bidang keahlian</h2>
+          </b-col>
+        </b-row>
+      </b-col>
+      <b-col sm="6" class="right">
+        <b-row class="content-right" align-v="center">
+          <b-col>
+            <div class="text-left p-3">
+              <h3>
+                <strong>Reset Password</strong>
+              </h3>
+              <p>
+                Enter your user account's verified email address and we will send
+                you a password reset link.
+              </p>
+              <b-form style="color:grey;">
+                <b-form-group label="Email">
                   <b-input
                     type="email"
                     v-model="form.user_email"
                     placeholder="Masukkan alamat email"
                   />
-                </b-col>
-              </b-row>
+                </b-form-group>
 
-              <b-row>
-                <b-col>
-                  <b-button
-                    block
-                    variant="warning"
-                    type="submit"
-                    class="my-3"
-                  >Send password reset email</b-button>
-                </b-col>
-              </b-row>
-            </b-form>
-          </div>
-        </b-col>
-      </b-row>
-    </b-col>
-  </b-row>
+                <b-row>
+                  <b-col>
+                    <b-button
+                      style="color:white;"
+                      block
+                      variant="warning"
+                      type="submit"
+                      class="my-3"
+                    >Send password reset email</b-button>
+                  </b-col>
+                </b-row>
+              </b-form>
+            </div>
+          </b-col>
+        </b-row>
+      </b-col>
+    </b-row>
+  </div>
 </template>
 
 <script>
@@ -54,8 +54,7 @@ export default {
   data() {
     return {
       form: {
-        user_email: '',
-        user_password: ''
+        user_email: ''
       }
     }
   },
@@ -65,9 +64,10 @@ export default {
 </script>
 
 <style scoped>
-.login {
+.resetPass {
   text-align: center;
-  width: 100%;
+  width: 90%;
+  margin: 30px 50px;
   height: 100vh;
   background-color: #f6f7f8;
 }

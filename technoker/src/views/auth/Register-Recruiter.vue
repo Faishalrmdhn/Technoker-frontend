@@ -1,109 +1,100 @@
 <template>
-  <b-row class="login mx-0" align-h="center">
-    <b-col sm="6" class="left">
-      <b-row align-v="center" class="content-left">
-        <b-col>
-          <h2>Temukan developer berbakat &#38; terbaik di berbagai bidang keahlian</h2>
-        </b-col>
-      </b-row>
-    </b-col>
-    <b-col sm="6" class="right">
-      <b-row class="content-right" align-v="center">
-        <b-col>
-          <div class="text-left p-3">
-            <h3>
-              <strong>Halo, Pewpeople</strong>
-            </h3>
-            <h5>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio,
-              tempore.
-            </h5>
-            <b-form>
-              Nama
-              <b-row class="my-3" align-h="center">
-                <b-col>
+  <div style="width:100%">
+    <b-row class="registerR" align-h="center">
+      <b-col sm="6" class="left">
+        <b-row align-v="center" class="content-left">
+          <b-col>
+            <h2>Temukan developer berbakat &#38; terbaik di berbagai bidang keahlian</h2>
+          </b-col>
+        </b-row>
+      </b-col>
+      <b-col sm="6" class="right">
+        <b-row class="content-right" align-v="center">
+          <b-col>
+            <div class="text-left p-3">
+              <h3>
+                <strong>Halo, Pewpeople</strong>
+              </h3>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio,
+                tempore.
+              </p>
+              <b-form style="color:grey;">
+                <b-form-group label="Nama">
                   <b-input
                     type="text"
-                    v-model="form.user_email"
+                    v-model="form.user_name"
                     placeholder="Masukkan nama panjang"
                   />
-                </b-col>
-              </b-row>Email
-              <b-row class="my-3" align-h="center">
-                <b-col>
+                </b-form-group>
+                <b-form-group label="Email">
                   <b-input
                     type="email"
                     v-model="form.user_email"
                     placeholder="Masukkan alamat email"
                   />
-                </b-col>
-              </b-row>Perusahaan
-              <b-row class="my-3" align-h="center">
-                <b-col>
+                </b-form-group>
+                <b-form-group label="Perusahaan">
                   <b-input
                     type="text"
-                    v-model="form.user_email"
+                    v-model="form.user_company"
                     placeholder="Masukkan nama perusahaan"
                   />
-                </b-col>
-              </b-row>Jabatan
-              <b-row class="my-3" align-h="center">
-                <b-col>
+                </b-form-group>
+                <b-form-group label="Jabatan">
                   <b-input
                     type="text"
-                    v-model="form.user_email"
+                    v-model="form.user_position"
                     placeholder="Posisi di perusahaan anda"
                   />
-                </b-col>
-              </b-row>No Handphone
-              <b-row class="my-3" align-h="center">
-                <b-col>
+                </b-form-group>
+                <b-form-group label="No. Handphone">
                   <b-input
-                    type="text"
-                    v-model="form.user_email"
+                    type="number"
+                    v-model="form.user_phone"
                     placeholder="Masukkan nomer handphone"
                   />
-                </b-col>
-              </b-row>Kata Sandi
-              <b-row align-h="center">
-                <b-col>
+                </b-form-group>
+                <b-form-group label="Password">
                   <b-input
                     type="password"
                     v-model="form.user_password"
                     placeholder="Masukkan kata sandi"
                   />
-                </b-col>
-              </b-row>Konfirmasi kata sandi
-              <b-row align-h="center">
-                <b-col>
+                </b-form-group>
+                <b-form-group label="Konfirmasi kata sandi">
                   <b-input
                     type="password"
-                    v-model="form.user_password"
+                    v-model="form.user_confirmPassword"
                     placeholder="Masukkan konfirmasi kata sandi"
                   />
-                </b-col>
-              </b-row>
-              <b-row class="text-right">
-                <b-col>Lupa kata sandi?</b-col>
-              </b-row>
-
-              <b-row>
-                <b-col>
-                  <b-button block variant="warning" type="submit" class="my-3">Masuk</b-button>
-                </b-col>
-              </b-row>
-              <b-row class="text-center">
-                <b-col>
-                  Anda sudah punya akun?
-                  <span>Masuk disini</span>
-                </b-col>
-              </b-row>
-            </b-form>
-          </div>
-        </b-col>
-      </b-row>
-    </b-col>
-  </b-row>
+                </b-form-group>
+                <b-row>
+                  <b-col>
+                    <b-button
+                      block
+                      style="color:white;"
+                      variant="warning"
+                      type="submit"
+                      class="my-3"
+                    >Masuk</b-button>
+                  </b-col>
+                </b-row>
+                <b-row class="text-center">
+                  <b-col>
+                    Anda sudah punya akun?
+                    <router-link to="/login">
+                      <span>Masuk disini</span>
+                    </router-link>
+                  </b-col>
+                </b-row>
+              </b-form>
+            </div>
+          </b-col>
+        </b-row>
+      </b-col>
+    </b-row>
+  </div>
 </template>
 
 <script>
@@ -112,8 +103,13 @@ export default {
   data() {
     return {
       form: {
+        user_name: '',
         user_email: '',
-        user_password: ''
+        user_password: '',
+        user_phone: '',
+        user_confirmPassword: '',
+        user_position: '',
+        user_company: ''
       }
     }
   },
@@ -123,9 +119,10 @@ export default {
 </script>
 
 <style scoped>
-.login {
+.registerR {
   text-align: center;
-  width: 100%;
+  width: 90%;
+  margin: 30px 50px;
   height: 100vh;
   background-color: #f6f7f8;
 }

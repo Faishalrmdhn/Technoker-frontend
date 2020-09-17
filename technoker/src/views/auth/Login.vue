@@ -20,26 +20,23 @@
                 tempore.
               </h5>
               <b-form>
-                Email
-                <b-row class="my-3" align-h="center">
+                <b-form-group label="Email">
+                  <b-form-input
+                    type="email"
+                    v-model="form.user_email"
+                    placeholder="Masukkan alamat email"
+                  />
+                </b-form-group>
+                <b-form-group label="Password">
+                  <b-input
+                    type="password"
+                    v-model="form.user_password"
+                    placeholder="Masukkan kata sandi"
+                  />
+                </b-form-group>
+                <b-row align-h="center" class="text-right">
                   <b-col>
-                    <b-input
-                      type="email"
-                      v-model="form.user_email"
-                      placeholder="Masukkan alamat email"
-                    />
-                  </b-col>
-                </b-row>Kata Sandi
-                <b-row align-h="center">
-                  <b-col>
-                    <b-input
-                      type="password"
-                      v-model="form.user_password"
-                      placeholder="Masukkan kata sandi"
-                    />
-                    <b-row class="text-right">
-                      <b-col>Lupa kata sandi?</b-col>
-                    </b-row>
+                    <router-link to="/reset-password">Lupa kata sandi?</router-link>
                   </b-col>
                 </b-row>
                 <br />
@@ -51,6 +48,7 @@
                       type="submit"
                       class="my-3"
                       @click="fungsimasuk()"
+                      style="color:white;"
                     >Masuk</b-button>
                   </b-col>
                 </b-row>
