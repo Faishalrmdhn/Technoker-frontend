@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeaderLogin />
+    <HeaderLogin style="padding:20px 0" />
     <div class="purple">
       <b-container class="pt-5">
         <b-row class="card-profile pt-5 mx-auto">
