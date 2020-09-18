@@ -10,7 +10,7 @@
     <Header class="py-3" style="background-color: white; " />
     <TopJobs />
     <b-container>
-      <div class="form pt-3 my-5">
+      <form @submit.prevent="onSearch" class="form pt-3 my-5">
         <div class="search-name">
           <b-form-input id="input-1" v-model="search" required placeholder="Search for any skill"></b-form-input>
         </div>
@@ -24,81 +24,42 @@
           </b-form-group>
         </div>
         <div>
-          <b-button class="btn-search">Search</b-button>
+          <b-button class="btn-search" @click="onSearch">Search</b-button>
         </div>
-      </div>
+      </form>
     </b-container>
     <b-container>
       <div class="worker mt-5">
-        <div class="workers">
+        <div v-for="(value, index) in users" :key="index" class="workers">
           <div class="profile">
             <div class="profile-img"></div>
             <div class="profile-details">
-              <h4>Tommy Shelby</h4>
-              <p style="color: #9EA0A5;">Web Developer</p>
-              <p style="color: #9EA0A5; margin-top: -10px">Location</p>
-              <div class="skills">
-                <div class="skill">Javascript</div>
-                <div class="skill">Vue</div>
-                <div class="skill">Express</div>
-                <div class="skill">Javascript</div>
-                <div class="skill">Javascript</div>
-                <div class="skill">Javascript</div>
+              <h4>{{ value.user_name}}</h4>
+              <p style="color: #9EA0A5;">{{value.user_job_desk}}</p>
+              <p style="color: #9EA0A5; margin-top: -10px">{{value.user_location}}</p>
+              <div class="skills-grid">
+                <div class="skills" v-for="(value, index) in value.skills" :key="index">
+                  <div class="skill">{{value.skill_name}}</div>
+                </div>
               </div>
             </div>
           </div>
           <div style="position: relative">
-            <b-button class="btn-profile">See Profile</b-button>
+            <b-button class="btn-profile" @click="getUserId(value.user_id)">See Profile</b-button>
           </div>
-        </div>
-        <hr style="color:#9ea0a5" />
-        <div class="workers">
-          <div class="profile">
-            <div class="profile-img"></div>
-            <div class="profile-details">
-              <h4>Rick Sanchez</h4>
-              <p style="color: #9EA0A5;">Web Developer</p>
-              <p style="color: #9EA0A5; margin-top: -10px">Location</p>
-              <div class="skills">
-                <div class="skill">Javascript</div>
-                <div class="skill">Vue</div>
-                <div class="skill">Express</div>
-                <div class="skill">Javascript</div>
-                <div class="skill">Javascript</div>
-                <div class="skill">Javascript</div>
-              </div>
-            </div>
-          </div>
-          <div style="position: relative">
-            <b-button class="btn-profile">See Profile</b-button>
-          </div>
-        </div>
-        <hr style="color:#9ea0a5" />
-        <div class="workers">
-          <div class="profile">
-            <div class="profile-img"></div>
-            <div class="profile-details">
-              <h4>Muhammad Naldi</h4>
-              <p style="color: #9EA0A5;">Web Developer</p>
-              <p style="color: #9EA0A5; margin-top: -10px">Location</p>
-              <div class="skills">
-                <div class="skill">Javascript</div>
-                <div class="skill">Vue</div>
-                <div class="skill">Express</div>
-                <div class="skill">Javascript</div>
-                <div class="skill">Javascript</div>
-                <div class="skill">Javascript</div>
-              </div>
-            </div>
-          </div>
-          <div style="position: relative">
-            <b-button class="btn-profile">See Profile</b-button>
-          </div>
+          <hr style="color:#9ea0a5" />
         </div>
       </div>
     </b-container>
     <div class="my-5">
-      <b-pagination class="pagination-btn" align="center" v-model="currentPage" :total-rows="rows"></b-pagination>
+      <b-pagination
+        class="pagination-btn"
+        align="center"
+        v-model="currentPage"
+        :total-rows="rows"
+        :per-page="limit"
+        @change="pageChange"
+      ></b-pagination>
     </div>
     <b-container></b-container>
     <Footer />
@@ -123,6 +84,7 @@
 import Header from '../components/HeaderLogin.vue'
 import TopJobs from '../components/HeaderTopJobs.vue'
 import Footer from '../components/Footer'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   components: {
     Header,
@@ -131,24 +93,45 @@ export default {
   },
   data() {
     return {
-      search: '',
       sort: null,
       sortBy: [
         { text: 'Category', value: null },
-        'Category',
+        'Name',
         'Skills',
-        'Tomatoes',
+        'Free',
         'Corn'
       ],
       show: true,
-      rows: 100,
-      currentPage: 3
+      currentPage: 1,
+      getText: '',
+      search: '',
+      limit: 3,
+      workerId: ''
     }
   },
+  created() {
+    this.getAllUser()
+  },
   methods: {
-    event(event) {
-      console.log(event)
+    ...mapActions(['getAllUser', 'searchUser', 'getUserById']),
+    ...mapMutations(['setPagination', 'setSearch']),
+    pageChange(event) {
+      this.setPagination(event)
+      this.getAllUser()
+    },
+    onSearch() {
+      this.getText = this.search
+      this.setSearch(this.getText)
+      this.searchUser()
+    },
+    getUserId(data) {
+      // this.workerId = data
+      this.getUserById(data)
+      this.$router.push('/profile')
     }
+  },
+  computed: {
+    ...mapGetters({ users: 'allUsers', rows: 'totalData' })
   }
 }
 </script>
@@ -247,11 +230,12 @@ export default {
   margin: 30px 0;
 }
 
-.skills {
+.skills-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   /* margin-right: 0 5px 10px 5px; */
   width: 300px;
+  font-size: 12px;
 }
 
 .skill {
