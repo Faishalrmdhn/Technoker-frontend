@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'RegisterC',
   data() {
@@ -101,7 +101,9 @@ export default {
       }
     }
   },
-  computed: {},
+  computed: {
+    ...mapGetters(['user'])
+  },
   methods: {
     ...mapActions(['registerUser']),
     onSubmit() {

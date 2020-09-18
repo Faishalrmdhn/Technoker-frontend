@@ -3,13 +3,14 @@ import router from '../../router/index'
 export default {
   state: {
     user: {},
-    token: localStorage.getItem('token') || null
+    token: localStorage.getItem('token') || null,
+    user_id: null
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload
       state.token = payload.token
-      //   console.log(payLoad)
+      state.user_id = payload.user_id
     },
     delUser(state) {
       state.user = {}
@@ -140,6 +141,9 @@ export default {
     },
     getUser(state) {
       return state.user
+    },
+    getUserId(state) {
+      return state.user_id
     }
   }
 }

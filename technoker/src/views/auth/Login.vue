@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations, mapGetters } from 'vuex'
 export default {
   name: 'Login',
   data() {
@@ -115,20 +115,30 @@ export default {
       isMsg: ''
     }
   },
-  computed: {},
+  computed: {
+    ...mapGetters({ user_id: 'getUserId' })
+  },
   methods: {
-    ...mapActions(['loginUser', 'loginRecruiter']),
+    ...mapActions(['loginUser', 'loginRecruiter', 'getUserById']),
+    ...mapMutations(['setUser']),
     onSubmit() {
+      // const formA = {
+      //   user_email: this.form.user_email,
+      //   user_password: this.form.user_password,
+      //   user_id: this.user_id
+      // }
       this.loginUser(this.form)
         .then((result) => {
           this.$bvToast.toast('Anda berhasil login', {
-            title: 'BootstrapVue Toast',
+            title: 'Status :',
             autoHideDelay: 5000,
             appendToast: true
           })
           setTimeout(() => {
-            this.$router.push('/home')
+            this.$router.push('/profile')
           }, 2000)
+          console.log(result.data.user_id)
+          this.getUserById(result.data.user_id)
         })
         .catch((error) => {
           if (error) {
@@ -139,7 +149,7 @@ export default {
             this.loginRecruiter(newForm)
               .then((result) => {
                 this.$bvToast.toast('Anda berhasil login', {
-                  title: 'BootstrapVue Toast',
+                  title: 'Status :',
                   autoHideDelay: 5000,
                   appendToast: true
                 })
@@ -155,25 +165,6 @@ export default {
                 }, 2000)
               })
           }
-
-          //   if (error) {
-
-          //
-          //   }
-          // } else if (error.data.msg === 'Wrong Password') {
-          //   this.alert = true
-          //   this.isMsg = error.data.msg
-          //   setTimeout(() => {
-          //     this.alert = false
-          //   }, 2000)
-          // }
-          // else if (error.data.msg === 'Email / account is not registered') {
-          //   this.alert = true
-          //   this.isMsg = error.data.msg
-          //   setTimeout(() => {
-          //     this.alert = false
-          //   }, 2000)
-          // }
         })
     },
     registerCandidatePage() {
