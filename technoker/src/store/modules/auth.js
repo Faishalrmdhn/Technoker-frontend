@@ -32,6 +32,21 @@ export default {
           })
       })
     },
+    loginRecruiter(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post('http://127.0.0.1:4000/recruiter/login', payload)
+          .then(response => {
+            console.log(response)
+            context.commit('setUser', response.data.data)
+            localStorage.setItem('token', response.data.data.token)
+            resolve(response.data)
+          })
+          .catch(error => {
+            reject(error.response)
+          })
+      })
+    },
     registerUser(context, payload) {
       return new Promise((resolve, reject) => {
         axios
@@ -42,6 +57,18 @@ export default {
           })
           .catch(error => {
             reject(error.response)
+          })
+      })
+    },
+    registerRecruiter(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post('http://127.0.0.1:4000/recruiter/register', payload)
+          .then(response => {
+            resolve(response)
+          })
+          .catch(error => {
+            reject(error)
           })
       })
     },
