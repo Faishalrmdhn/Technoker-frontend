@@ -32,8 +32,7 @@ const routes = [
   {
     path: '/',
     name: 'Landing',
-    component: Landing,
-    meta: { requiresVisitor: true }
+    component: Landing
   },
   {
     path: '/register-candidate',
@@ -60,11 +59,6 @@ const routes = [
     meta: { requiresVisitor: true }
   },
   {
-    path: '/profile-candidate',
-    name: 'ProfileCandidate',
-    component: ProfileCandidate
-  },
-  {
     path: '/hire',
     name: 'Hire',
     component: Hire,
@@ -77,14 +71,22 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/profile-candidate',
+    name: 'ProfileCandidate',
+    component: ProfileCandidate,
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/profile-company',
     name: 'ProfileCompany',
-    component: ProfileCompany
+    component: ProfileCompany,
+    meta: { requiresAuth: true }
   },
   {
     path: '/notification',
     name: 'Notification',
-    component: Notification
+    component: Notification,
+    meta: { requiresAuth: true }
   }
 ]
 
@@ -96,8 +98,6 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
     if (!store.getters.isLogin) {
       next({
         path: '/login'
