@@ -24,6 +24,7 @@ export default {
       state.search = payload
     },
     setUserById(state, payload) {
+      console.log('DDDDDDDDDDD')
       state.user = payload.data.data[0]
     }
   },
