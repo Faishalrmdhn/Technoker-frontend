@@ -16,7 +16,7 @@
                 <strong>Reset Password</strong>
               </h3>
               <p>You need to change your password to activate your account</p>
-              <b-form style="color:grey;">
+              <b-form style="color:grey;" @submit.prevent="onSubmit">
                 <b-form-group label="Kata Sandi">
                   <b-input
                     type="password"
@@ -27,7 +27,7 @@
                 <b-form-group label="Confirmation new password">
                   <b-input
                     type="password"
-                    v-model="form.user_confirmPass"
+                    v-model="form.user_confirm_password"
                     placeholder="Masukkan konfirmasi kata sandi"
                   />
                 </b-form-group>
@@ -59,12 +59,14 @@ export default {
     return {
       form: {
         user_password: '',
-        user_confirmPass: ''
+        user_confirm_pass: ''
       }
     }
   },
   computed: {},
-  methods: {}
+  methods: {
+    onSubmit() {}
+  }
 }
 </script>
 
