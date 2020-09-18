@@ -117,28 +117,64 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapActions(['loginUser']),
+    ...mapActions(['loginUser', 'loginRecruiter']),
     onSubmit() {
       this.loginUser(this.form)
         .then((result) => {
-          console.log(result)
-          this.$router.push('/home')
+          this.$bvToast.toast('Anda berhasil login', {
+            title: 'BootstrapVue Toast',
+            autoHideDelay: 5000,
+            appendToast: true
+          })
+          setTimeout(() => {
+            this.$router.push('/home')
+          }, 2000)
         })
         .catch((error) => {
-          console.log(error.data.msg)
-          if (error.data.msg === 'Wrong Password') {
-            this.alert = true
-            this.isMsg = error.data.msg
-            setTimeout(() => {
-              this.alert = false
-            }, 2000)
-          } else if (error.data.msg === 'Email / account is not registered') {
-            this.alert = true
-            this.isMsg = error.data.msg
-            setTimeout(() => {
-              this.alert = false
-            }, 2000)
+          if (error) {
+            const newForm = {
+              recruiter_email: this.form.user_email,
+              recruiter_password: this.form.user_password
+            }
+            console.log(newForm)
+            this.loginRecruiter(newForm)
+              .then((result) => {
+                this.$bvToast.toast('Anda berhasil login', {
+                  title: 'BootstrapVue Toast',
+                  autoHideDelay: 5000,
+                  appendToast: true
+                })
+                setTimeout(() => {
+                  this.$router.push('/home')
+                }, 2000)
+              })
+              .catch((error) => {
+                this.alert = true
+                this.isMsg = error.data.msg
+                setTimeout(() => {
+                  this.alert = false
+                }, 2000)
+              })
           }
+
+          //   if (error) {
+
+          //
+          //   }
+          // } else if (error.data.msg === 'Wrong Password') {
+          //   this.alert = true
+          //   this.isMsg = error.data.msg
+          //   setTimeout(() => {
+          //     this.alert = false
+          //   }, 2000)
+          // }
+          // else if (error.data.msg === 'Email / account is not registered') {
+          //   this.alert = true
+          //   this.isMsg = error.data.msg
+          //   setTimeout(() => {
+          //     this.alert = false
+          //   }, 2000)
+          // }
         })
     },
     registerCandidatePage() {

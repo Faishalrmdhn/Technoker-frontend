@@ -3,7 +3,7 @@ import router from '../../router/index'
 export default {
   state: {
     user: {},
-    tokern: localStorage.getItem('token') || null
+    token: localStorage.getItem('token') || null
   },
   mutations: {
     setUser(state, payload) {
@@ -116,6 +116,22 @@ export default {
           return Promise.reject(error)
         }
       )
+    },
+    forgotPassword(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post('http://127.0.0.1:4000/user/forgot', payload)
+          .then(response => {
+            console.log(response)
+            console.log('FORGOT')
+            // context.commit('setUser', response.data.data)
+            // localStorage.setItem('token', response.data.data.token)
+            // resolve(response.data)
+          })
+          .catch(error => {
+            reject(error.response)
+          })
+      })
     }
   },
   getters: {

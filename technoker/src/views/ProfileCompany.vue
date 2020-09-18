@@ -13,7 +13,7 @@
                 <img src="@/assets/opinion3.jpg" style="width: 11rem" class="mt-4" />
               </b-avatar>
               <div>
-                <h3 class="my-1">PT. Martabat Jaya Abadi</h3>
+                <h3 class="my-1">{{data.recruiter_company}}</h3>
                 <p>Financial</p>
                 <p class="mt-3 text-muted">Purwokerto, Jawa Tengah</p>
                 <b-card-text
@@ -45,12 +45,22 @@
 <script>
 import HeaderLogin from '@/components/HeaderLogin.vue'
 import Footer from '@/components/Footer.vue'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'ProfileCompany',
   components: {
     HeaderLogin,
     Footer
+  },
+  created() {
+    this.getRecruiterById()
+  },
+  computed: {
+    ...mapGetters({ data: 'recruiter' })
+  },
+  methods: {
+    ...mapActions(['getRecruiterById'])
   }
 }
 </script>

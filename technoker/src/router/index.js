@@ -11,6 +11,7 @@ import Hire from '../views/Hire.vue'
 import EditProfileC from '../views/Edit-Profile-C.vue'
 import ProfileCandidate from '../views/ProfileCandidate.vue'
 import ProfileCompany from '@/views/ProfileCompany.vue'
+import Profile from '@/views/Profile.vue'
 import Notification from '@/views/Notification.vue'
 import store from '../store/index'
 
@@ -87,6 +88,11 @@ const routes = [
     name: 'Notification',
     component: Notification,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   }
 ]
 
