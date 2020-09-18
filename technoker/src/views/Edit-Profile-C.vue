@@ -9,7 +9,7 @@
       <div class="profile-info">
         <div class="image"></div>
         <div style="padding:0 30px">
-          <h4>Muhammad Naldi</h4>
+          <h4>{{user.user_name}}</h4>
           <h6>Web Developer</h6>
           <p style="color:grey;">
             <span>
@@ -213,6 +213,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Header from '../components/HeaderLogin'
 import Footer from '../components/Footer'
 export default {
@@ -230,6 +231,9 @@ export default {
       },
       show: true
     }
+  },
+  computed: {
+    ...mapGetters(['user'])
   }
 }
 </script>

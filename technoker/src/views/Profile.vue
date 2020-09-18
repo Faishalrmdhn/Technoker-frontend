@@ -10,27 +10,24 @@
                 <img src="@/assets/opinion3.jpg" style="width: 7rem" class="mt-4" />
               </b-avatar>
               <div class="text-left">
-                <b-card-title class="my-1">Louis Tomlinson</b-card-title>
-                <small>Web Developer</small>
-                <p class="mt-4 text-muted">Purwokerto, Jawa Tengah</p>
+                <b-card-title class="my-1">{{data.user_name}}</b-card-title>
+                <small>{{data.user_job_desk}}</small>
+                <p class="mt-4 text-muted">{{data.user_location}}</p>
                 <small class="text-muted">Freelancer</small>
                 <b-card-text
                   class="mt-2 text-muted"
                 >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
               </div>
               <div class="my-5">
-                <b-button class="py-2 btn-hire-edit" style="width: 100%">Edit</b-button>
+                <b-button class="py-2 btn-hire-edit" style="width: 100%" @click="editPage">Edit</b-button>
                 <b-button class="py-2 btn-hire-edit" style="width: 100%">Hire</b-button>
               </div>
               <h4 class="text-left my-3">Skill</h4>
               <div>
-                <div class="skills">
-                  <div class="skill">Javascript</div>
-                  <div class="skill">Vue</div>
-                  <div class="skill">Express</div>
-                  <div class="skill">Javascript</div>
-                  <div class="skill">Javascript</div>
-                  <div class="skill">Javascript</div>
+                <div class="skills-grid">
+                  <div class="skills" v-for="(value, index) in data.skills" :key="index">
+                    <div class="skill">{{value.skill_name}}</div>
+                  </div>
                 </div>
               </div>
               <div class="contact text-muted text-left mt-5">
@@ -121,11 +118,21 @@
 
 <script>
 import HeaderLogin from '@/components/HeaderLogin.vue'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Profile',
   components: {
     HeaderLogin
+  },
+  methods: {
+    ...mapActions(['getUserById']),
+    editPage() {
+      this.$router.push('/edit-profile-c')
+    }
+  },
+  computed: {
+    ...mapGetters({ data: 'user' })
   }
 }
 </script>
@@ -146,7 +153,7 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.skills {
+.skills-grid {
   margin: 20px 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
