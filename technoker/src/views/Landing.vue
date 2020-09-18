@@ -92,49 +92,65 @@
         </b-row>
       </b-jumbotron>
     </b-container>
-    <b-jumbotron bg-variant="light">
+    <b-jumbotron class="gray">
       <b-container>
-        <b-row>
-          <b-col cols="12" class="text-center mb-4">
-            <h2>Their Opinion About Peworld</h2>
-          </b-col>
-          <b-col cols="12" xl="4" class="text-center my-2">
-            <b-card class="landing-card border-light mx-auto" style="max-width: 19rem;">
-              <b-avatar size="6rem" class="mb-1 opinion-people">
-                <img src="@/assets/opinion1.jpg" style="width: 5.5rem" class="mt-4" />
-              </b-avatar>
-              <b-card-title class="mb-0">Harry Styles</b-card-title>
-              <small class="text-muted">Web Developer</small>
-              <b-card-text
-                class="mt-2 px-4"
-              >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
-            </b-card>
-          </b-col>
-          <b-col cols="12" xl="4" class="text-center my-2">
-            <b-card class="landing-card border-light mx-auto" style="max-width: 19rem;">
-              <b-avatar size="6rem" class="mb-1 opinion-people">
-                <img src="@/assets/opinion2.jpg" style="width: 5.5rem" class="mt-4" />
-              </b-avatar>
-              <b-card-title class="mb-0">Harry Styles</b-card-title>
-              <small class="text-muted">Web Developer</small>
-              <b-card-text
-                class="mt-2 px-4"
-              >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
-            </b-card>
-          </b-col>
-          <b-col cols="12" xl="4" class="text-center my-2">
-            <b-card class="landing-card border-light mx-auto" style="max-width: 19rem;">
-              <b-avatar size="6rem" class="mb-1 opinion-people">
-                <img src="@/assets/opinion3.jpg" style="width: 5.5rem" class="mt-4" />
-              </b-avatar>
-              <b-card-title class="mb-0">Harry Styles</b-card-title>
-              <small class="text-muted">Web Developer</small>
-              <b-card-text
-                class="mt-2 px-4"
-              >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
-            </b-card>
-          </b-col>
-        </b-row>
+        <div cols="12" class="text-center mb-4">
+          <h2>Their Opinion About Peworld</h2>
+        </div>
+        <!-- CAROUSEL -->
+        <b-carousel
+          id="carousel-1"
+          v-model="slide"
+          controls
+          indicators
+          background="#e5e5e5"
+          img-width="1024"
+          img-height="480"
+          @sliding-start="onSlideStart"
+          @sliding-end="onSlideEnd"
+        >
+          <b-carousel-slide img-blank>
+            <b-row class="text-dark">
+              <b-col cols="12" xl="4" class="text-center my-2">
+                <b-card class="landing-card mx-auto" style="max-width: 19rem;">
+                  <b-avatar size="6rem" class="mb-1 opinion-people">
+                    <img src="@/assets/opinion1.jpg" style="width: 5.5rem" class="mt-4" />
+                  </b-avatar>
+                  <h4 class="mb-0">Harry Styles</h4>
+                  <small class="text-muted">Web Developer</small>
+                  <b-card-text
+                    class="mt-2 px-4"
+                  >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
+                </b-card>
+              </b-col>
+              <b-col cols="12" xl="4" class="text-center my-2">
+                <b-card class="landing-card border-light mx-auto" style="max-width: 19rem;">
+                  <b-avatar size="6rem" class="mb-1 opinion-people">
+                    <img src="@/assets/opinion2.jpg" style="width: 5.5rem" class="mt-4" />
+                  </b-avatar>
+                  <b-card-title class="mb-0">Harry Styles</b-card-title>
+                  <small class="text-muted">Web Developer</small>
+                  <b-card-text
+                    class="mt-2 px-4"
+                  >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
+                </b-card>
+              </b-col>
+              <b-col cols="12" xl="4" class="text-center my-2">
+                <b-card class="landing-card border-light mx-auto" style="max-width: 19rem;">
+                  <b-avatar size="6rem" class="mb-1 opinion-people">
+                    <img src="@/assets/opinion3.jpg" style="width: 5.5rem" class="mt-4" />
+                  </b-avatar>
+                  <b-card-title class="mb-0">Harry Styles</b-card-title>
+                  <small class="text-muted">Web Developer</small>
+                  <b-card-text
+                    class="mt-2 px-4"
+                  >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
+                </b-card>
+              </b-col>
+            </b-row>
+          </b-carousel-slide>
+          <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
+        </b-carousel>
       </b-container>
     </b-jumbotron>
     <b-container>
@@ -163,6 +179,20 @@ export default {
   components: {
     HeaderRegister,
     Footer
+  },
+  data() {
+    return {
+      slide: 0,
+      sliding: null
+    }
+  },
+  methods: {
+    onSlideStart(slide) {
+      this.sliding = true
+    },
+    onSlideEnd(slide) {
+      this.sliding = false
+    }
   }
 }
 </script>
@@ -195,5 +225,8 @@ export default {
   border-radius: 40px 8px;
   display: flex;
   justify-content: space-between;
+}
+.gray {
+  background-color: #e5e5e5;
 }
 </style>
