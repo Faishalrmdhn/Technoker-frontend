@@ -9,6 +9,7 @@
         </b-row>
       </b-col>
       <b-col sm="6" class="right">
+        <b-alert :show="alert" class="m-3" variant="danger">{{ isMsg }}</b-alert>
         <b-row class="content-right" align-v="center">
           <b-col>
             <div class="text-left p-3">
@@ -19,53 +20,53 @@
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio,
                 tempore.
               </p>
-              <b-form style="color:grey;">
+              <b-form @submit.prevent="onSubmit" style="color:grey;">
                 <b-form-group label="Nama">
                   <b-input
                     type="text"
-                    v-model="form.user_name"
+                    v-model="form.recruiter_name"
                     placeholder="Masukkan nama panjang"
                   />
                 </b-form-group>
                 <b-form-group label="Email">
                   <b-input
                     type="email"
-                    v-model="form.user_email"
+                    v-model="form.recruiter_email"
                     placeholder="Masukkan alamat email"
                   />
                 </b-form-group>
                 <b-form-group label="Perusahaan">
                   <b-input
                     type="text"
-                    v-model="form.user_company"
+                    v-model="form.recruiter_company"
                     placeholder="Masukkan nama perusahaan"
                   />
                 </b-form-group>
                 <b-form-group label="Jabatan">
                   <b-input
                     type="text"
-                    v-model="form.user_position"
+                    v-model="form.recruiter_position"
                     placeholder="Posisi di perusahaan anda"
                   />
                 </b-form-group>
                 <b-form-group label="No. Handphone">
                   <b-input
                     type="number"
-                    v-model="form.user_phone"
+                    v-model="form.recruiter_phone"
                     placeholder="Masukkan nomer handphone"
                   />
                 </b-form-group>
                 <b-form-group label="Password">
                   <b-input
                     type="password"
-                    v-model="form.user_password"
+                    v-model="form.recruiter_password"
                     placeholder="Masukkan kata sandi"
                   />
                 </b-form-group>
                 <b-form-group label="Konfirmasi kata sandi">
                   <b-input
                     type="password"
-                    v-model="form.user_confirmPassword"
+                    v-model="form.recruiter_password_confirmation"
                     placeholder="Masukkan konfirmasi kata sandi"
                   />
                 </b-form-group>
@@ -98,23 +99,68 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'RegisterR',
   data() {
     return {
+      alert: false,
+      isMsg: '',
       form: {
-        user_name: '',
-        user_email: '',
-        user_password: '',
-        user_phone: '',
-        user_confirmPassword: '',
-        user_position: '',
-        user_company: ''
+        recruiter_name: '',
+        recruiter_email: '',
+        recruiter_password: '',
+        recruiter_phone: '',
+        recruiter_password_confirmation: '',
+        recruiter_position: '',
+        recruiter_company: ''
       }
     }
   },
   computed: {},
-  methods: {}
+  methods: {
+    ...mapActions(['registerRecruiter']),
+    onSubmit() {
+      if (
+        this.form.recruiter_name === '' ||
+        this.form.recruiter_name === undefined ||
+        this.form.recruiter_email === '' ||
+        this.form.recruiter_email === undefined ||
+        this.form.recruiter_company === '' ||
+        this.form.recruiter_company === undefined ||
+        this.form.recruiter_position === '' ||
+        this.form.recruiter_position === undefined ||
+        this.form.recruiter_phone === '' ||
+        this.form.recruiter_phone === undefined ||
+        this.form.recruiter_password === '' ||
+        this.form.recruiter_password === undefined ||
+        this.form.recruiter_password_confirmation === '' ||
+        this.form.recruiter_password_confirmation === undefined
+      ) {
+        this.alert = true
+        this.isMsg = "The data you've entered is not complete!"
+        setTimeout(() => {
+          this.alert = false
+        }, 2000)
+      } else {
+        this.registerRecruiter(this.form)
+          .then((result) => {
+            console.log(result)
+            this.$router.push('/login')
+          })
+          .catch((error) => {
+            console.log(error.data.msg)
+            if (error.data.msg === 'Email has been registered') {
+              this.alert = true
+              this.isMsg = error.data.msg
+              setTimeout(() => {
+                this.alert = false
+              }, 2000)
+            }
+          })
+      }
+    }
+  }
 }
 </script>
 

@@ -4,11 +4,19 @@
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
           <b-col>
-            <h2>Temukan developer berbakat &#38; terbaik di berbagai bidang keahlian</h2>
+            <h2>
+              Temukan developer berbakat &#38; terbaik di berbagai bidang
+              keahlian
+            </h2>
           </b-col>
         </b-row>
       </b-col>
       <b-col sm="6" class="right">
+        <b-alert :show="alert" class="m-3" variant="danger">
+          {{
+          isMsg
+          }}
+        </b-alert>
         <b-row class="content-right" align-v="center">
           <b-col>
             <div class="text-left p-3">
@@ -20,7 +28,7 @@
                 tempore.
               </p>
 
-              <b-form @submit.prevent="onSubmit">
+              <b-form @submit.prevent="onSubmit" @reset.prevent="onReset">
                 <b-form-group label="Email">
                   <b-form-input
                     type="email"
@@ -52,41 +60,39 @@
                     >Masuk</b-button>
                   </b-col>
                 </b-row>
-                <b-row class="text-center">
-                  <b-col>
-                    Anda belum punya akun?
-                    <span
-                      @click="$bvModal.show('modalRegister')"
-                    >Daftar disini</span>
-                    <b-modal id="modalRegister" hide-footer hide-header>
-                      <template>
-                        <strong>Select your role:</strong>
-                      </template>
-                      <div class="d-block text-center">
-                        <b-row>
-                          <b-col @click="$bvModal.hide('modalRegister')">
-                            <b-button
-                              variant="info"
-                              class="mt-3"
-                              block
-                              @click="registerCandidatePage()"
-                            >Candidate</b-button>
-                          </b-col>
-                          <b-col @click="$bvModal.hide('modalRegister')">
-                            <b-button
-                              variant="warning"
-                              style="color:white;"
-                              class="mt-3"
-                              block
-                              @click="registerRecruiterPage()"
-                            >Recruiter</b-button>
-                          </b-col>
-                        </b-row>
-                      </div>
-                    </b-modal>
-                  </b-col>
-                </b-row>
               </b-form>
+              <b-row class="text-center">
+                <b-col>
+                  Anda belum punya akun?
+                  <span @click="$bvModal.show('modalRegister')">Daftar disini</span>
+                  <b-modal id="modalRegister" hide-footer hide-header>
+                    <template>
+                      <strong>Select your role:</strong>
+                    </template>
+                    <div class="d-block text-center">
+                      <b-row>
+                        <b-col @click="$bvModal.hide('modalRegister')">
+                          <b-button
+                            variant="info"
+                            class="mt-3"
+                            block
+                            @click="registerCandidatePage()"
+                          >Candidate</b-button>
+                        </b-col>
+                        <b-col @click="$bvModal.hide('modalRegister')">
+                          <b-button
+                            variant="warning"
+                            style="color:white;"
+                            class="mt-3"
+                            block
+                            @click="registerRecruiterPage()"
+                          >Recruiter</b-button>
+                        </b-col>
+                      </b-row>
+                    </div>
+                  </b-modal>
+                </b-col>
+              </b-row>
             </div>
           </b-col>
         </b-row>
@@ -104,24 +110,34 @@ export default {
       form: {
         user_email: '',
         user_password: ''
-      }
+      },
+      alert: false,
+      isMsg: ''
     }
   },
   computed: {},
   methods: {
     ...mapActions(['loginUser']),
     onSubmit() {
-      this.login(this.form)
+      this.loginUser(this.form)
         .then((result) => {
           console.log(result)
-          this.$router.push('/')
+          this.$router.push('/home')
         })
         .catch((error) => {
           console.log(error.data.msg)
-          if (error.data.msg === 'Wrong Pasword') {
-            alert('Wrong Password!')
-          } else if (error.data.msg === 'Email Not Registered') {
-            alert('Your email is not registered')
+          if (error.data.msg === 'Wrong Password') {
+            this.alert = true
+            this.isMsg = error.data.msg
+            setTimeout(() => {
+              this.alert = false
+            }, 2000)
+          } else if (error.data.msg === 'Email / account is not registered') {
+            this.alert = true
+            this.isMsg = error.data.msg
+            setTimeout(() => {
+              this.alert = false
+            }, 2000)
           }
         })
     },
