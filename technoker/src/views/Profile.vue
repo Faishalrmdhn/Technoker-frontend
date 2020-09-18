@@ -19,8 +19,13 @@
                 >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
               </div>
               <div class="my-5">
-                <b-button class="py-2 btn-hire-edit" style="width: 100%" @click="editPage">Edit</b-button>
-                <b-button class="py-2 btn-hire-edit" style="width: 100%">Hire</b-button>
+                <b-button
+                  class="py-2 btn-hire-edit"
+                  style="width: 100%"
+                  v-show="showBtnEdit"
+                  @click="editPage"
+                >Edit</b-button>
+                <b-button class="py-2 btn-hire-edit" v-show="showBtnHire" style="width: 100%">Hire</b-button>
               </div>
               <h4 class="text-left my-3">Skill</h4>
               <div>
@@ -125,10 +130,33 @@ export default {
   components: {
     HeaderLogin
   },
+  data() {
+    return {
+      showBtnEdit: false,
+      showBtnHire: false
+    }
+  },
+  created() {
+    this.showButton()
+  },
   methods: {
     ...mapActions(['getUserById']),
     editPage() {
       this.$router.push('/edit-profile-c')
+    },
+    showButton() {
+      console.log(this.data.role)
+      if (this.data.role === 2) {
+        this.showBtnEdit = true
+      } else {
+        this.showBtnEdit = false
+      }
+
+      if (this.data.role === 1) {
+        this.showBtnHire = true
+      } else {
+        this.showBtnHire = false
+      }
     }
   },
   computed: {
