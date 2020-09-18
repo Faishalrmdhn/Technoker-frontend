@@ -19,7 +19,7 @@
                 Enter your user account's verified email address and we will send
                 you a password reset link.
               </p>
-              <b-form style="color:grey;">
+              <b-form @submit.prevent="onSubmit" style="color:grey;">
                 <b-form-group label="Email">
                   <b-input
                     type="email"
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'ResetPass',
   data() {
@@ -59,7 +60,18 @@ export default {
     }
   },
   computed: {},
-  methods: {}
+  methods: {
+    ...mapActions(['forgotPassword']),
+    onSubmit() {
+      this.forgotPassword(this.form)
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }
 }
 </script>
 
