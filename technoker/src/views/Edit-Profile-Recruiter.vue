@@ -121,18 +121,17 @@ export default {
     Footer
   },
   computed: {
-    ...mapGetters(['recruiter']),
-    ...mapGetters({ recruiter_id: 'getRecruiterId' })
+    ...mapGetters(['recruiter'])
   },
   methods: {
-    ...mapActions(['getRecruiterById', 'pacthRecruiter']),
+    ...mapActions(['getRecruiterById', 'patchRecruiter']),
     onUpdate() {
       const setData = {
-        recruiter_id: this.recruiter_id,
+        recruiter_id: 5,
         form: this.form
       }
-      console.log(setData)
-      // this.patchRecruiter(this.form)
+      // console.log(setData)
+      this.patchRecruiter(setData)
     }
   }
 }

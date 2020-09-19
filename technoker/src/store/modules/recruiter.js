@@ -23,7 +23,10 @@ export default {
     patchRecruiter(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .patch(`http://127.0.0.1:4000/recruiter/${payload}`, payload)
+          .patch(
+            `http://127.0.0.1:4000/recruiter/${payload.recruiter_id}`,
+            payload.form
+          )
           .then(response => {
             resolve(response.data)
           })
