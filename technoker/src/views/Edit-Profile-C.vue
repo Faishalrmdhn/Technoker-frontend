@@ -7,17 +7,19 @@
     <div class="magenta"></div>
     <div class="page-container">
       <div class="profile-info">
-        <div class="image"></div>
-        <div style="padding:0 30px">
-          <h4>Tempat Nama :{{ user.user_name }}</h4>
-          <h6>Web Developer</h6>
+        <div class="image">
+          <img class="image" :src="port + user.user_image" alt />
+        </div>
+        <div style="padding:0 30px" class="mt-5">
+          <h4>{{ user.user_name }}</h4>
+          <h6>{{ user.user_job_desk }}</h6>
           <p style="color:grey;">
             <span>
               <img src="../assets/img/location.png" alt />
             </span>
-            Medan, North Sumatera
+            {{ user.user_location }}
           </p>
-          <p style="color:grey;">freelancer</p>
+          <p style="color:grey;">{{ user.user_job_type }}</p>
         </div>
         <button class="btn1" @click="onSubmit()" block>
           Simpan
@@ -298,7 +300,8 @@ export default {
         experience_desc: ''
       },
       checked: [],
-      show: true
+      show: true,
+      port: 'http://127.0.0.1:4000/profile/'
     }
   },
 
@@ -356,7 +359,7 @@ export default {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background: black;
+  /* background: black; */
   margin: 30px auto;
 }
 
@@ -401,7 +404,7 @@ export default {
   }
 
   .hire-info {
-    margin-top: 50px;
+    margin-top: 100px;
     width: 375px;
     margin-bottom: -250px;
   }

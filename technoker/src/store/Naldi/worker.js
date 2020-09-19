@@ -8,7 +8,8 @@ export default {
     pagination: {},
     totalData: 0,
     skills: [],
-    search: ''
+    search: '',
+    sort: null
   },
   mutations: {
     setAllUser(state, payload) {
@@ -25,6 +26,9 @@ export default {
     },
     setUserById(state, payload) {
       state.user = payload.data.data[0]
+    },
+    setSort(state, payload) {
+      state.sort = payload
     }
   },
   actions: {
@@ -32,9 +36,10 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .get(
-            `http://127.0.0.1:4000/user?limit=${context.state.limit}&page=${context.state.page}`
+            `http://127.0.0.1:4000/user?orderBy=${context.state.sort}&limit=${context.state.limit}&page=${context.state.page}`
           )
           .then(res => {
+            console.log(res.data.data)
             context.commit('setAllUser', res)
           })
           .catch(err => {

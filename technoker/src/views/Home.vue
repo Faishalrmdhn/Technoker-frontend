@@ -20,7 +20,7 @@
         <div class="slash"></div>
         <div class="form-sort">
           <b-form-group id="input-group-3">
-            <b-form-select id="input-3" v-model="sort" :options="sortBy" required></b-form-select>
+            <b-form-select v-model="selected" :options="options" @change="sort"></b-form-select>
           </b-form-group>
         </div>
         <div>
@@ -32,9 +32,11 @@
       <div class="worker mt-5">
         <div v-for="(value, index) in users" :key="index" class="workers">
           <div class="profile">
-            <div class="profile-img"></div>
+            <div>
+              <img class="profile-img" :src="port + value.user_image" alt />
+            </div>
             <div class="profile-details">
-              <h4>{{ value.user_name}}</h4>
+              <h4 @click="getUserId(value.user_id)" style="cursor: pointer">{{ value.user_name}}</h4>
               <p style="color: #9EA0A5;">{{value.user_job_desk}}</p>
               <p style="color: #9EA0A5; margin-top: -10px">{{value.user_location}}</p>
               <div class="skills-grid">
@@ -93,28 +95,32 @@ export default {
   },
   data() {
     return {
-      sort: null,
-      sortBy: [
-        { text: 'Category', value: null },
-        'Name',
-        'Skills',
-        'Free',
-        'Corn'
+      selected: null,
+      options: [
+        { value: null, text: 'SORT' },
+        { value: 'user_name ASC', text: 'Name' },
+        { value: 'freelance', text: 'Freelance' },
+        { value: 'fulltime', text: 'Fulltime' }
       ],
       show: true,
       currentPage: 1,
       getText: '',
       search: '',
       limit: 3,
-      workerId: ''
+      workerId: '',
+      port: 'http://127.0.0.1:4000/profile/'
     }
   },
   created() {
     this.getAllUser()
   },
   methods: {
+    sort() {
+      this.setSort(this.selected)
+      this.getAllUser()
+    },
     ...mapActions(['getAllUser', 'searchUser', 'getUserById']),
-    ...mapMutations(['setPagination', 'setSearch']),
+    ...mapMutations(['setPagination', 'setSearch', 'setSort']),
     pageChange(event) {
       this.setPagination(event)
       this.getAllUser()
@@ -223,7 +229,7 @@ export default {
   height: 130px;
   margin: 60px 40px;
   border-radius: 50%;
-  background-color: #000;
+  /* background-color: #000; */
 }
 
 .profile-details {
@@ -234,7 +240,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   /* margin-right: 0 5px 10px 5px; */
-  width: 300px;
+  width: 310px;
   font-size: 12px;
 }
 
@@ -313,12 +319,9 @@ export default {
   }
 
   .profile-details {
-    margin: 20px 0;
+    margin-top: -140px;
   }
   .profile-img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: -50px;
     display: none;
   }
 
