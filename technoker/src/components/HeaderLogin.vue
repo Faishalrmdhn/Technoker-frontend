@@ -21,7 +21,9 @@
           <b-img fluid :src="require('@/assets/inbox.png')" alt="Image 1" class="px-5 pt-5"></b-img>
           <p class="text-center pb-5" style="font-size:15px">No New Inbox</p>
         </b-popover>
-        <div class="user-img"></div>
+        <div class="user-img">
+          <b-img fluid :src="require('@/assets/inbox.png')" alt="Image 1" class></b-img>
+        </div>
       </div>
     </b-container>
   </div>
@@ -54,6 +56,5 @@ export default {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background-color: #5e50a1;
 }
 </style>

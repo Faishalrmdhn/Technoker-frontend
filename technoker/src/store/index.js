@@ -23,7 +23,7 @@ export default new Vuex.Store({
   getters: {},
   plugins: [
     createPersistedState({
-      paths: ['Auth.user'],
+      paths: ['Auth.user', 'recruiter.recruiter'],
       storage: window.sessionStorage
     })
   ]

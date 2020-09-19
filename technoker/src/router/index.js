@@ -9,6 +9,7 @@ import ResetPass from '../views/auth/Reset-Password.vue'
 import ConfirmPass from '../views/auth/Confirm-Password.vue'
 import Hire from '../views/Hire.vue'
 import EditProfileC from '../views/Edit-Profile-C.vue'
+import EditProfileR from '../views/Edit-Profile-Recruiter.vue'
 import ProfileCandidate from '../views/ProfileCandidate.vue'
 import ProfileCompany from '@/views/ProfileCompany.vue'
 import Profile from '@/views/Profile.vue'
@@ -67,8 +68,14 @@ const routes = [
   },
   {
     path: '/edit-profile-c',
-    name: 'EditProfileR',
+    name: 'EditProfileC',
     component: EditProfileC,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/edit-profile-r',
+    name: 'EditProfileR',
+    component: EditProfileR,
     meta: { requiresAuth: true }
   },
   {
@@ -92,7 +99,8 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
+    meta: { requiresAuth: true }
   }
 ]
 

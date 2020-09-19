@@ -116,10 +116,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ user_id: 'getUserId' })
+    ...mapGetters({ user_id: 'getUserId', recruiter_id: 'getRecruiterId' })
   },
   methods: {
-    ...mapActions(['loginUser', 'loginRecruiter', 'getUserById']),
+    ...mapActions([
+      'loginUser',
+      'loginRecruiter',
+      'getUserById',
+      'getRecruiterById'
+    ]),
     ...mapMutations(['setUser']),
     onSubmit() {
       // const formA = {
@@ -137,7 +142,6 @@ export default {
           setTimeout(() => {
             this.$router.push('/profile')
           }, 2000)
-          console.log(result.data.user_id)
           this.getUserById(result.data.user_id)
         })
         .catch((error) => {
@@ -146,7 +150,6 @@ export default {
               recruiter_email: this.form.user_email,
               recruiter_password: this.form.user_password
             }
-            console.log(newForm)
             this.loginRecruiter(newForm)
               .then((result) => {
                 this.$bvToast.toast('Anda berhasil login', {
@@ -157,6 +160,7 @@ export default {
                 setTimeout(() => {
                   this.$router.push('/home')
                 }, 2000)
+                this.getRecruiterById(result.data.recruiter_id)
               })
               .catch((error) => {
                 this.alert = true

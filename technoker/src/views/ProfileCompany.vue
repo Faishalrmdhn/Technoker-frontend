@@ -13,9 +13,9 @@
                 <img src="@/assets/opinion3.jpg" style="width: 11rem" class="mt-4" />
               </b-avatar>
               <div>
-                <h3 class="my-1">{{data.recruiter_company}}</h3>
-                <p>Financial</p>
-                <p class="mt-3 text-muted">Purwokerto, Jawa Tengah</p>
+                <h3 class="my-1">{{recruiter.recruiter_company}}</h3>
+                <p>{{recruiter.recruiter_position}}</p>
+                <p class="mt-3 text-muted">{{recruiter.recruiter_location}}</p>
                 <b-card-text
                   class="mt-2 text-muted"
                 >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus!</b-card-text>
@@ -23,6 +23,7 @@
               <b-button
                 class="py-2 my-4 btn-hire-edit"
                 style="width: 50%; background-color: #5e50a1"
+                @click="editDataCompany(item)"
               >Edit</b-button>
               <div
                 class="text-muted text-left mt-3 mx-auto"
@@ -53,14 +54,15 @@ export default {
     HeaderLogin,
     Footer
   },
-  created() {
-    this.getRecruiterById()
-  },
+  created() {},
   computed: {
-    ...mapGetters({ data: 'recruiter' })
+    ...mapGetters(['recruiter'])
   },
   methods: {
-    ...mapActions(['getRecruiterById'])
+    ...mapActions(['getRecruiterById']),
+    editDataCompany(data) {
+      this.$router.push('/edit-profile-r')
+    }
   }
 }
 </script>

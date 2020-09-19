@@ -19,6 +19,18 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    patchRecruiter(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(`http://127.0.0.1:4000/recruiter/${payload}`, payload)
+          .then(response => {
+            resolve(response.data)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
     }
   },
   getters: {
