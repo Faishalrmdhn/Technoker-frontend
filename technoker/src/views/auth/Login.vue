@@ -4,6 +4,7 @@
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
           <b-col>
+            <img class="logo" src="../../assets/img/logo-footer.png" alt="" />
             <h2>
               Temukan developer berbakat &#38; terbaik di berbagai bidang
               keahlian
@@ -13,9 +14,7 @@
       </b-col>
       <b-col sm="6" class="right">
         <b-alert :show="alert" class="m-3" variant="danger">
-          {{
-          isMsg
-          }}
+          {{ isMsg }}
         </b-alert>
         <b-row class="content-right" align-v="center">
           <b-col>
@@ -45,7 +44,9 @@
                 </b-form-group>
                 <b-row align-h="center" class="text-right">
                   <b-col>
-                    <router-link to="/reset-password">Lupa kata sandi?</router-link>
+                    <router-link to="/reset-password"
+                      >Lupa kata sandi?</router-link
+                    >
                   </b-col>
                 </b-row>
                 <br />
@@ -57,14 +58,17 @@
                       type="submit"
                       class="my-3"
                       style="color:white;"
-                    >Masuk</b-button>
+                      >Masuk</b-button
+                    >
                   </b-col>
                 </b-row>
               </b-form>
               <b-row class="text-center">
                 <b-col>
                   Anda belum punya akun?
-                  <span @click="$bvModal.show('modalRegister')">Daftar disini</span>
+                  <span @click="$bvModal.show('modalRegister')"
+                    >Daftar disini</span
+                  >
                   <b-modal id="modalRegister" hide-footer hide-header>
                     <template>
                       <strong>Select your role:</strong>
@@ -77,7 +81,8 @@
                             class="mt-3"
                             block
                             @click="registerCandidatePage()"
-                          >Candidate</b-button>
+                            >Candidate</b-button
+                          >
                         </b-col>
                         <b-col @click="$bvModal.hide('modalRegister')">
                           <b-button
@@ -86,7 +91,8 @@
                             class="mt-3"
                             block
                             @click="registerRecruiterPage()"
-                          >Recruiter</b-button>
+                            >Recruiter</b-button
+                          >
                         </b-col>
                       </b-row>
                     </div>
@@ -122,42 +128,37 @@ export default {
     ...mapActions(['loginUser', 'loginRecruiter', 'getUserById']),
     ...mapMutations(['setUser']),
     onSubmit() {
-      // const formA = {
-      //   user_email: this.form.user_email,
-      //   user_password: this.form.user_password,
-      //   user_id: this.user_id
-      // }
       this.loginUser(this.form)
-        .then((result) => {
+        .then(result => {
           this.$bvToast.toast('Anda berhasil login', {
             title: 'Status :',
-            autoHideDelay: 5000,
+            autoHideDelay: 500,
             appendToast: true
           })
           setTimeout(() => {
             this.$router.push('/profile')
-          }, 2000)
+          }, 1500)
           console.log(result.data.user_id)
           this.getUserById(result.data.user_id)
         })
-        .catch((error) => {
+        .catch(error => {
           if (error) {
             const newForm = {
               recruiter_email: this.form.user_email,
               recruiter_password: this.form.user_password
             }
             this.loginRecruiter(newForm)
-              .then((result) => {
+              .then(result => {
                 this.$bvToast.toast('Anda berhasil login', {
                   title: 'Status :',
-                  autoHideDelay: 5000,
+                  autoHideDelay: 1500,
                   appendToast: true
                 })
                 setTimeout(() => {
                   this.$router.push('/home')
                 }, 2000)
               })
-              .catch((error) => {
+              .catch(error => {
                 this.alert = true
                 this.isMsg = error.data.msg
                 setTimeout(() => {
@@ -178,6 +179,13 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  position: relative;
+  width: 86px;
+  top: -230px;
+  left: -240px;
+  z-index: 2;
+}
 .login {
   text-align: center;
   width: 90%;

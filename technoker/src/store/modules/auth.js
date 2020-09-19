@@ -118,22 +118,75 @@ export default {
         }
       )
     },
-    forgotPassword(context, payload) {
+    forgotPasswordUser(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://127.0.0.1:4000/user/forgot', payload)
+          .post('http://127.0.0.1:4000/user/forgot-password', payload)
           .then(response => {
+            console.log('dibawah ini')
             console.log(response)
-            console.log('FORGOT')
-            // context.commit('setUser', response.data.data)
-            // localStorage.setItem('token', response.data.data.token)
-            // resolve(response.data)
+            resolve(response.data)
           })
           .catch(error => {
             reject(error.response)
           })
       })
+    },
+    forgotPasswordRecruiter(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post('http://127.0.0.1:4000/recruiter/forgot-password', payload)
+          .then(response => {
+            console.log(response)
+            resolve(response.data)
+          })
+          .catch(error => {
+            reject(error.response)
+          })
+      })
+    },
+    updatePasswordUser(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch('http://127.0.0.1:4000/user/update-password', payload)
+          .then(response => {
+            console.log(payload)
+            resolve(response.data)
+          })
+          .catch(error => {
+            reject(error.response)
+            console.log('error di auth')
+          })
+      })
+    },
+    updatePasswordRecruiter(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch('http://127.0.0.1:4000/recruiter/update-password', payload)
+          .then(response => {
+            console.log(payload)
+            resolve(response.data)
+          })
+          .catch(error => {
+            reject(error.response)
+            console.log('error di auth')
+          })
+      })
     }
+    // patchDataUser(context, payload) {
+    //   return new Promise((resolve, reject) => {
+    //     axios
+    //       .patch(`http://127.0.0.1:4000/user/${payload}`, payload)
+    //       .then(response => {
+    //         console.log(payload)
+    //         resolve(response.data)
+    //       })
+    //       .catch(error => {
+    //         reject(error.response)
+    //         console.log('error di auth')
+    //       })
+    //   })
+    // },
   },
   getters: {
     isLogin(state) {

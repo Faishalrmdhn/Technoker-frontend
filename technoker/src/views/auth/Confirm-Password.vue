@@ -4,7 +4,11 @@
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
           <b-col>
-            <h2>Temukan developer berbakat &#38; terbaik di berbagai bidang keahlian</h2>
+            <img class="logo" src="../../assets/img/logo-footer.png" alt="" />
+            <h2>
+              Temukan developer berbakat &#38; terbaik di berbagai bidang
+              keahlian
+            </h2>
           </b-col>
         </b-row>
       </b-col>
@@ -17,6 +21,13 @@
               </h3>
               <p>You need to change your password to activate your account</p>
               <b-form style="color:grey;" @submit.prevent="onSubmit">
+                <b-form-group label="Key (from the email we have sent to you)">
+                  <b-input
+                    type="number"
+                    v-model="form.user_key"
+                    placeholder="Masukkan key"
+                  />
+                </b-form-group>
                 <b-form-group label="Kata Sandi">
                   <b-input
                     type="password"
@@ -40,7 +51,8 @@
                       variant="warning"
                       type="submit"
                       class="my-3"
-                    >Reset password</b-button>
+                      >Reset password</b-button
+                    >
                   </b-col>
                 </b-row>
               </b-form>
@@ -53,24 +65,79 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'ConfirmPass',
   data() {
     return {
       form: {
+        user_key: null,
         user_password: '',
-        user_confirm_pass: ''
+        user_confirm_password: ''
       }
     }
   },
   computed: {},
   methods: {
-    onSubmit() {}
+    ...mapActions(['updatePasswordUser', 'updatePasswordRecruiter']),
+    onSubmit() {
+      console.log(this.form)
+      this.updatePasswordUser(this.form)
+        .then(result => {
+          console.log(result)
+          this.$bvToast.toast('Password telah berhasil direset', {
+            title: 'Status :',
+            autoHideDelay: 1000,
+            appendToast: true
+          })
+          setTimeout(() => {
+            this.$router.push('/profile')
+          }, 2000)
+          console.log(result.data.user_id)
+          this.$router.push('/login')
+        })
+        .catch(error => {
+          if (error) {
+            const newForm = {
+              recruiter_key: this.form.user_key,
+              recruiter_password: this.form.user_password,
+              recruiter_password_confirmation: this.form.user_confirm_password
+            }
+
+            this.updatePasswordRecruiter(newForm)
+              .then(result => {
+                this.$bvToast.toast('Password telah berhasil direset', {
+                  title: 'Status :',
+                  autoHideDelay: 2000,
+                  appendToast: true
+                })
+                setTimeout(() => {
+                  this.$router.push('/login')
+                }, 2000)
+              })
+              .catch(error => {
+                this.alert = true
+                this.isMsg = error.data.msg
+                setTimeout(() => {
+                  this.alert = false
+                }, 2000)
+              })
+            console.log('error di halaman vue')
+          }
+        })
+    }
   }
 }
 </script>
 
 <style scoped>
+.logo {
+  position: relative;
+  width: 86px;
+  top: -230px;
+  left: -240px;
+  z-index: 2;
+}
 .confirmPass {
   text-align: center;
   width: 90%;
