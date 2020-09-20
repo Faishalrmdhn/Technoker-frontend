@@ -57,13 +57,6 @@ export default {
         name: '',
         checked: []
       },
-      foods: [
-        { text: 'Project', value: null },
-        'Carrots',
-        'Beans',
-        'Tomatoes',
-        'Corn'
-      ],
       show: true,
       port: 'http://127.0.0.1:4000/profile/'
     }
@@ -130,6 +123,7 @@ export default {
   border: 1px solid #fbb017;
   border-radius: 4px;
   text-align: center;
+  font-size: 12px;
   padding: 3px 15px;
   color: white;
   margin: 0 5px 5px 0px;
