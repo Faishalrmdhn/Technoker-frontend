@@ -60,7 +60,7 @@
                   <b-form-input
                     type="text"
                     id="input-2"
-                    v-model="user_workplace"
+                    v-model="formUser.user_workplace"
                     required
                     placeholder="Masukkan Tempat Kerja"
                   ></b-form-input>
@@ -341,6 +341,7 @@ export default {
         user_id: this.userId.user_id,
         FormData: data
       }
+      console.log(this.formUser)
       this.patchUser(setData)
         .then((res) => {
           alert(res)
