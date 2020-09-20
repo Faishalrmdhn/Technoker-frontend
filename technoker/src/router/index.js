@@ -9,6 +9,7 @@ import ResetPass from '../views/auth/Reset-Password.vue'
 import ConfirmPass from '../views/auth/Confirm-Password.vue'
 import Hire from '../views/Hire.vue'
 import EditProfileC from '../views/Edit-Profile-C.vue'
+import EditProfileR from '../views/Edit-Profile-Recruiter.vue'
 import Profile from '../views/Profile.vue'
 import store from '../store/index'
 
@@ -73,6 +74,12 @@ const routes = [
     path: '/edit-profile-c',
     name: 'EditProfileC',
     component: EditProfileC,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/edit-profile-r',
+    name: 'EditProfileR',
+    component: EditProfileR,
     meta: { requiresAuth: true }
   }
 ]
