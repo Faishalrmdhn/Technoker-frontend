@@ -4,6 +4,7 @@
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
           <b-col>
+            <img class="logo" src="../../assets/img/logo-footer.png" alt />
             <h2>
               Temukan developer berbakat &#38; terbaik di berbagai bidang
               keahlian
@@ -12,11 +13,7 @@
         </b-row>
       </b-col>
       <b-col sm="6" class="right">
-        <b-alert :show="alert" class="m-3" variant="danger">
-          {{
-          isMsg
-          }}
-        </b-alert>
+        <b-alert :show="alert" class="m-3" variant="danger">{{ isMsg }}</b-alert>
         <b-row class="content-right" align-v="center">
           <b-col>
             <div class="text-left p-3">
@@ -127,21 +124,17 @@ export default {
     ]),
     ...mapMutations(['setUser']),
     onSubmit() {
-      // const formA = {
-      //   user_email: this.form.user_email,
-      //   user_password: this.form.user_password,
-      //   user_id: this.user_id
-      // }
       this.loginUser(this.form)
         .then((result) => {
           this.$bvToast.toast('Anda berhasil login', {
             title: 'Status :',
-            autoHideDelay: 5000,
+            autoHideDelay: 500,
             appendToast: true
           })
           setTimeout(() => {
             this.$router.push('/profile')
-          }, 2000)
+          }, 1500)
+          console.log(result.data.user_id)
           this.getUserById(result.data.user_id)
         })
         .catch((error) => {
@@ -154,7 +147,7 @@ export default {
               .then((result) => {
                 this.$bvToast.toast('Anda berhasil login', {
                   title: 'Status :',
-                  autoHideDelay: 5000,
+                  autoHideDelay: 1500,
                   appendToast: true
                 })
                 setTimeout(() => {
@@ -183,6 +176,13 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  position: relative;
+  width: 86px;
+  top: -230px;
+  left: -240px;
+  z-index: 2;
+}
 .login {
   text-align: center;
   width: 90%;

@@ -23,7 +23,6 @@
               <b-button
                 class="py-2 my-4 btn-hire-edit"
                 style="width: 50%; background-color: #5e50a1"
-                @click="editDataCompany(item)"
               >Edit</b-button>
               <div
                 class="text-muted text-left mt-3 mx-auto"
@@ -35,6 +34,11 @@
                 <p>@louistommo91</p>
               </div>
             </div>
+            <b-button
+              class="py-2 my-4 btn-hire-edit"
+              style="width: 10%; background-color: #5e50a1"
+              @click="logout"
+            >Logout</b-button>
           </div>
         </b-container>
       </b-jumbotron>
@@ -60,8 +64,23 @@ export default {
   },
   methods: {
     ...mapActions(['getRecruiterById']),
+    ...mapActions({ handleLogout: 'logout' }),
     editDataCompany(data) {
       this.$router.push('/edit-profile-r')
+    },
+    logout() {
+      this.$bvModal
+        .msgBoxConfirm('logout account?', {
+          cancelVariant: 'danger',
+          okVariant: 'success',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true
+        })
+        .then((value) => {
+          this.isLogout = value
+          this.isLogout ? this.handleLogout() : console.log(value)
+        })
     }
   }
 }

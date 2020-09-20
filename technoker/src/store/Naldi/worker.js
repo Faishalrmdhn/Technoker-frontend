@@ -25,7 +25,6 @@ export default {
       state.search = payload
     },
     setUserById(state, payload) {
-      console.log('DDDDDDDDDDD')
       state.user = payload.data.data[0]
     },
     setSort(state, payload) {
@@ -54,6 +53,7 @@ export default {
           .get(`http://127.0.0.1:4000/user/${payload}`)
           .then(res => {
             context.commit('setUserById', res)
+            console.log('ASEASDASDASDASD')
           })
           .catch(err => {
             console.log(err)

@@ -120,9 +120,7 @@ export default {
     Header,
     Footer
   },
-  created() {
-    this.recruiter()
-  },
+  created() {},
   computed: {
     ...mapGetters(['recruiter'])
   },
