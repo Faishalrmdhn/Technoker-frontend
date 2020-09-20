@@ -3,8 +3,10 @@ import router from '../../router/index'
 export default {
   state: {
     user: {},
+    recruiter: {},
     token: localStorage.getItem('token') || null,
     user_id: null,
+    recruiter_id: null,
     portfolio: [],
     experience: [],
     role: ''
@@ -19,6 +21,11 @@ export default {
     delUser(state) {
       state.user = {}
       state.token = null
+    },
+    setRecruiter(state, payload) {
+      state.recruiter = payload
+      state.token = payload.token
+      state.recruiter_id = payload.recruiter_id
     }
   },
   actions: {
@@ -187,6 +194,9 @@ export default {
     },
     getUserId(state) {
       return state.user_id
+    },
+    gerRecruiterId(state) {
+      return state.recruiter_id
     },
     getPortfolio(state) {
       return state.portfolio

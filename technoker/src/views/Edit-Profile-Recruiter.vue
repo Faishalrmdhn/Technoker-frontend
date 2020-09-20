@@ -9,8 +9,8 @@
       <div class="profile-info">
         <div class="image"></div>
         <div style="padding:0 30px">
-          <h4>Shelby Company. LTD</h4>
-          <p>Financial</p>
+          <h4>{{recruiter.recruiter_company}}</h4>
+          <p>{{recruiter.recruiter_position}}</p>
           <p>Birmingham, Small Heath</p>
         </div>
         <b-button block class="mt-4 btn-save">Simpan</b-button>
@@ -20,11 +20,11 @@
         <h3>Data diri</h3>
         <hr />
         <div>
-          <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+          <b-form @submit.prevent="onUpdate">
             <b-form-group id="input-group-2" label="Nama Perusahaan" label-for="input-2">
               <b-form-input
                 id="input-2"
-                v-model="form.name"
+                v-model="form.recruiter_company"
                 required
                 placeholder="Masukkan nama perusahaan"
               ></b-form-input>
@@ -32,36 +32,41 @@
             <b-form-group id="input-group-2" label="Bidang" label-for="input-2">
               <b-form-input
                 id="input-2"
-                v-model="form.name"
+                v-model="form.recruiter_field"
                 required
                 placeholder="Masukkan nama bidang perusahaan ex: Financial"
               ></b-form-input>
             </b-form-group>
             <b-form-group id="input-group-2" label="Kota" label-for="input-2">
-              <b-form-input id="input-2" v-model="form.name" required placeholder="Masukkan kota"></b-form-input>
+              <b-form-input
+                id="input-2"
+                v-model="form.recruiter_location"
+                required
+                placeholder="Masukkan kota"
+              ></b-form-input>
             </b-form-group>
             <b-form-group id="input-group-2" label="Deskripsi:" label-for="textarea">
               <b-form-textarea
                 id="textarea"
-                v-model="text"
+                v-model="form.recruiter_about"
                 placeholder="Jelaskan lebih detail"
                 rows="3"
                 max-rows="6"
               ></b-form-textarea>
             </b-form-group>
-            <b-form-group id="input-group-1" label="Email" label-for="input-1">
+            <!-- <b-form-group id="input-group-1" label="Email" label-for="input-1">
               <b-form-input
                 id="input-1"
-                v-model="form.email"
+                v-model="form.recruiter_email"
                 type="email"
                 required
                 placeholder="Masukkan email"
               ></b-form-input>
-            </b-form-group>
+            </b-form-group>-->
             <b-form-group id="input-group-2" label="Instagram" label-for="input-2">
               <b-form-input
                 id="input-2"
-                v-model="form.name"
+                v-model="form.recruiter_instagram"
                 required
                 placeholder="Masukkan nama instagram"
               ></b-form-input>
@@ -69,7 +74,7 @@
             <b-form-group id="input-group-2" label="Nomor Telepon" label-for="input-2">
               <b-form-input
                 id="input-2"
-                v-model="form.name"
+                v-model="form.recruiter_phone"
                 required
                 placeholder="Masukkan no telepon"
               ></b-form-input>
@@ -77,12 +82,12 @@
             <b-form-group id="input-group-2" label="LinkedIn" label-for="input-2">
               <b-form-input
                 id="input-2"
-                v-model="form.name"
+                v-model="form.recruiter_linkedin"
                 required
                 placeholder="Masukkan LinkedIn"
               ></b-form-input>
             </b-form-group>
-            <b-button block class="mt-5 btn-hire">Hire</b-button>
+            <b-button block class="mt-4 btn-save" type="submit">Simpan</b-button>
           </b-form>
         </div>
       </div>
@@ -94,21 +99,42 @@
 <script>
 import Header from '../components/HeaderLogin'
 import Footer from '../components/Footer'
+import { mapActions, mapGetters } from 'vuex'
 export default {
+  name: 'EditProfileRecruiter',
   data() {
     return {
       form: {
-        email: '',
-        name: '',
-        checked: []
-      },
-
-      show: true
+        recruiter_company: '',
+        recruiter_field: '',
+        recruiter_location: '',
+        recruiter_about: '',
+        recruiter_instagram: '',
+        recruiter_phone: '',
+        recruiter_linkedin: ''
+      }
     }
   },
   components: {
     Header,
     Footer
+  },
+  created() {},
+  computed: {
+    ...mapGetters(['recruiter'])
+  },
+  methods: {
+    ...mapActions(['getRecruiterById', 'patchRecruiter']),
+    onUpdate() {
+      const setData = {
+        recruiter_id: this.recruiter.recruiter_id,
+        form: this.form
+      }
+      // console.log(setData)
+      this.patchRecruiter(setData)
+        .then((result) => this.$router.push('/profile-company'))
+        .catch((error) => error)
+    }
   }
 }
 </script>
