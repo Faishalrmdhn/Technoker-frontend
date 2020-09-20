@@ -8,7 +8,8 @@
     <div class="page-container">
       <div class="profile-info">
         <div class="image">
-          <img class="image" :src="port + user.user_image" alt />
+          <img v-if="user.user_image !== null" class="image" :src="port + user.user_image" alt />
+          <img v-if="user.user_image === null" class="image" src="../assets/img/default.png" alt />
         </div>
         <div style="padding:0 30px" class="mt-5">
           <h4>{{ user.user_name }}</h4>
@@ -21,8 +22,8 @@
           </p>
           <p style="color:grey;">{{ user.user_job_type }}</p>
         </div>
-        <button class="btn1" @click="onSubmit()" block>Simpan</button>
-        <button class="btn2" block>Batal</button>
+        <button class="btn1" @click="getEditUser" block>Simpan</button>
+        <button class="btn2" block @click="back">Kembali</button>
       </div>
       <div class="hire-info">
         <div>
@@ -30,26 +31,54 @@
             <b-card-text>
               <b-form v-if="show" style="color:grey;">
                 <b-form-group id="input-group-2" label="Nama Lengkap" label-for="input-2">
-                  <b-form-input type="text" id="input-2" required placeholder="Enter name"></b-form-input>
+                  <b-form-input
+                    type="text"
+                    id="input-2"
+                    v-model="formUser.user_name"
+                    required
+                    placeholder="Enter name"
+                  ></b-form-input>
                 </b-form-group>
                 <b-form-group id="input-group-1" label="Job Desk" label-for="input-1">
-                  <b-form-input id="input-1" type="text" required placeholder="Masukkan Job desk"></b-form-input>
+                  <b-form-input
+                    id="input-1"
+                    type="text"
+                    v-model="formUser.user_job_desk"
+                    required
+                    placeholder="Masukkan Job desk"
+                  ></b-form-input>
                 </b-form-group>
                 <b-form-group id="input-group-2" label="Domisili" label-for="input-2">
-                  <b-form-input type="text" id="input-2" required placeholder="Masukkan Domisili"></b-form-input>
+                  <b-form-input
+                    type="text"
+                    v-model="formUser.user_location"
+                    id="input-2"
+                    required
+                    placeholder="Masukkan Domisili"
+                  ></b-form-input>
                 </b-form-group>
                 <b-form-group label="Tempat Kerja">
                   <b-form-input
                     type="text"
                     id="input-2"
+                    v-model="formUser.user_workplace"
                     required
                     placeholder="Masukkan Tempat Kerja"
                   ></b-form-input>
+                </b-form-group>
+                <b-form-group label="Upload Gambar">
+                  <b-form-file
+                    v-model="formUser.user_image"
+                    @change="handleFile"
+                    placeholder="Choose a file or drop it here..."
+                    drop-placeholder="Drop file here..."
+                  ></b-form-file>
                 </b-form-group>
                 <b-form-group id="input-group-2" label="Deskripsi Singkat" label-for="textarea">
                   <b-form-textarea
                     id="textarea"
                     placeholder="Jelaskan lebih detail"
+                    v-model="formUser.user_about"
                     rows="3"
                     max-rows="6"
                   ></b-form-textarea>
@@ -67,7 +96,13 @@
                   <b-input type="text" id="input-2" v-model="skill" required placeholder="java" />
                 </b-col>
                 <b-col sm="3">
-                  <b-button block variant="warning" style="color:white" @click="getSkill">Simpan</b-button>
+                  <b-button
+                    block
+                    variant="warning"
+                    style="color:white"
+                    class="btn-save-skill"
+                    @click="getSkill"
+                  >Simpan</b-button>
                 </b-col>
               </b-row>
             </b-form>
@@ -80,38 +115,43 @@
             <b-card-text>
               <b-form v-if="show" style="color:grey;">
                 <b-form-group id="input-group-2" label="Posisi" label-for="input-2">
-                  <b-form-input type="text" id="input-2" required placeholder="web developer"></b-form-input>
+                  <b-form-input
+                    type="text"
+                    id="input-2"
+                    required
+                    v-model="formExperience.experience_position"
+                    placeholder="web developer"
+                  ></b-form-input>
                 </b-form-group>
                 <b-row>
                   <b-col>
                     <b-form-group id="input-group-1" label="Nama Perusahaan" label-for="input-1">
-                      <b-form-input id="input-1" type="text" required placeholder="PT Maju Mundur"></b-form-input>
-                    </b-form-group>
-                  </b-col>
-                  <b-col>
-                    <b-form-group id="input-group-2" label="Bulan / Tahun" label-for="input-2">
-                      <b-form-input type="text" id="input-2" required placeholder="Januari 2018"></b-form-input>
+                      <b-form-input
+                        id="input-1"
+                        type="text"
+                        required
+                        v-model="formExperience.experience_company"
+                        placeholder="PT Maju Mundur"
+                      ></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
               </b-form>
-              <b-form @submit="onSubmitExp" v-if="show" style="color:grey;">
-                <b-form-group id="input-group-2" label="Posisi" label-for="input-2">
-                  <b-form-input type="text" id="input-2" required placeholder="web developer"></b-form-input>
-                </b-form-group>
+              <b-form v-if="show" style="color:grey;">
                 <b-row>
-                  <b-col>
-                    <b-form-group id="input-group-1" label="Nama Perusahaan" label-for="input-1">
-                      <b-form-input id="input-1" type="text" required placeholder="PT Maju Mundur"></b-form-input>
-                    </b-form-group>
-                  </b-col>
                   <b-col>
                     <b-form-group
                       id="input-group-2"
                       label="Bulan / Tahun Masuk"
                       label-for="input-2"
                     >
-                      <b-form-input type="text" id="input-2" required placeholder="Januari 2018"></b-form-input>
+                      <b-form-input
+                        type="text"
+                        id="input-2"
+                        required
+                        v-model="formExperience.experience_date_in"
+                        placeholder="Januari 2018"
+                      ></b-form-input>
                     </b-form-group>
                   </b-col>
                   <!-- =================== -->
@@ -121,7 +161,13 @@
                       label="Bulan / Tahun Keluar"
                       label-for="input-2"
                     >
-                      <b-form-input type="text" id="input-2" required placeholder="Januari 2018"></b-form-input>
+                      <b-form-input
+                        type="text"
+                        id="input-2"
+                        required
+                        v-model="formExperience.experience_date_out"
+                        placeholder="Januari 2018"
+                      ></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -131,6 +177,7 @@
                     id="textarea"
                     placeholder="Deskripsikan pekerjaan anda"
                     rows="3"
+                    v-model="formExperience.experience_desc"
                     max-rows="6"
                   ></b-form-textarea>
                 </b-form-group>
@@ -138,7 +185,7 @@
                   block
                   variant="outline-warning"
                   class="mt-5 btn-hire"
-                  type="submit"
+                  @click="addExperience"
                 >Tambah pengalaman kerja</b-button>
               </b-form>
             </b-card-text>
@@ -171,14 +218,16 @@
                   <b-form-checkbox
                     id="checkbox-1"
                     name="checkbox-1"
-                    value="accepted"
-                    unchecked-value="aplikasi mobile"
+                    v-model="portofolio_type"
+                    value="1"
+                    unchecked-value="null"
                   >Aplikasi Mobile</b-form-checkbox>
                   <b-form-checkbox
                     id="checkbox-2"
                     name="checkbox-2"
-                    value="accepted"
-                    unchecked-value="aplikasi web"
+                    v-model="portofolio_type"
+                    value="2"
+                    unchecked-value="null"
                   >Aplikasi Web</b-form-checkbox>
                 </b-form-group>
                 <!-- IMAGE -->
@@ -199,7 +248,7 @@
                 >Tambah Portofolio</b-button>
               </b-form>
             </b-card-text>
-          </b-card>-->
+          </b-card>
         </div>
       </div>
     </div>
@@ -221,23 +270,50 @@ export default {
   data() {
     return {
       status: '',
+      formUser: {
+        user_name: '',
+        user_job_desk: '',
+        user_location: '',
+        user_image: {},
+        user_about: '',
+        user_workplace: ''
+      },
+      formExperience: {
+        experience_position: '',
+        experience_company: '',
+        experience_date_in: '',
+        experience_date_out: '',
+        experience_desc: ''
+      },
       formPortfolio: {
         portofolio_image: {},
         portofolio_name: '',
-        portofolio_type: '',
-        portofolio_repository: '',
-        user_id: ''
+        portofolio_repository: ''
       },
+      portofolio_type: '',
       show: true,
       skill: '',
-      port: 'http://127.0.0.1:4000/profile/'
+      port: 'http://127.0.0.1:4000/profile/',
+      userId: ''
     }
   },
   computed: {
     ...mapGetters({ user: 'user' })
   },
+  created() {
+    this.userId = {
+      user_id: this.user.user_id
+    }
+  },
   methods: {
-    ...mapActions(['postSkill', 'postPortfolio']),
+    ...mapActions([
+      'postSkill',
+      'postPortfolio',
+      'patchUser',
+      'getUserById',
+      'postExperience',
+      'getUserById'
+    ]),
     getSkill() {
       const setData = {
         skill_name: this.skill,
@@ -245,31 +321,106 @@ export default {
       }
       this.postSkill(setData)
         .then((res) => {
-          alert(res)
+          this.$bvToast.toast(res, {
+            title: 'Status :',
+            autoHideDelay: 500,
+            appendToast: true
+          })
         })
         .catch((err) => {
-          alert(err)
+          this.$bvToast.toast(err, {
+            title: 'Status :',
+            autoHideDelay: 500,
+            appendToast: true
+          })
         })
     },
     handleFile(event) {
       this.formPortfolio.portofolio_image = event.target.files[0]
     },
+    getEditUser() {
+      const data = new FormData()
+      data.append('user_name', this.formUser.user_name)
+      data.append('user_job_desk', this.formUser.user_job_desk)
+      data.append('user_location', this.formUser.user_location)
+      data.append('user_image', this.formUser.user_image)
+      data.append('user_about', this.formUser.user_about)
+      data.append('user_workplace', this.formUser.user_workplace)
+      const setData = {
+        user_id: this.userId.user_id,
+        FormData: data
+      }
+      console.log(this.formUser)
+      this.patchUser(setData)
+        .then((res) => {
+          this.$bvToast.toast(res, {
+            title: 'Status :',
+            autoHideDelay: 1000,
+            appendToast: true
+          })
+        })
+        .catch((err) => {
+          this.$bvToast.toast(err, {
+            title: 'Status :',
+            autoHideDelay: 1000,
+            appendToast: true
+          })
+        })
+    },
+    addExperience() {
+      const setData = {
+        experience_position: this.formExperience.experience_position,
+        experience_company: this.formExperience.experience_company,
+        experience_date_in: this.formExperience.experience_date_in,
+        experience_date_out: this.formExperience.experience_date_out,
+        experience_desc: this.formExperience.experience_desc,
+        user_id: this.user.user_id
+      }
+      this.postExperience(setData)
+        .then((res) => {
+          this.$bvToast.toast(res, {
+            title: 'Status :',
+            autoHideDelay: 500,
+            appendToast: true
+          })
+        })
+        .catch((err) => {
+          this.$bvToast.toast(err, {
+            title: 'Status :',
+            autoHideDelay: 500,
+            appendToast: true
+          })
+        })
+    },
     getPortfolio() {
-      // const data = new FormData()
-      // data.append('portofolio_name', this.formPortfolio.portofolio_name)
-      // data.append('portofolio_image', this.formPortfolio.portofolio_image)
-      // data.append('user_id', this.user.user_id)
-      // console.log(data)
-      // this.postPortfolio(data)
-      // console.log(this.formPortfolio)
-      // const setData = {
-      //   portofolio_image: this.formPortfolio.portofolio_image,
-      //   portofolio_name: this.formPortfolio.portofolio_name,
-      //   portofolio_repository: this.formPortfolio.portofolio_repository,
-      //   user_id: this.user.user_id
-      // }
-      // console.log(setData)
-      // console.log(setData)
+      const data = new FormData()
+      data.append('portofolio_name', this.formPortfolio.portofolio_name)
+      data.append('portofolio_image', this.formPortfolio.portofolio_image)
+      data.append('portofolio_type', this.portofolio_type)
+      data.append(
+        'portofolio_repository',
+        this.formPortfolio.portofolio_repository
+      )
+      data.append('user_id', this.userId.user_id)
+      this.postPortfolio(data)
+        .then((res) => {
+          this.$bvToast.toast(res, {
+            title: 'Status :',
+            autoHideDelay: 1000,
+            appendToast: true
+          })
+        })
+        .catch((err) => {
+          this.$bvToast.toast(err, {
+            title: 'Status :',
+            autoHideDelay: 1000,
+            appendToast: true
+          })
+        })
+    },
+    back() {
+      this.$router.push('/profile')
+      this.getUserById()
     }
   }
 }
@@ -366,6 +517,10 @@ export default {
     margin-top: 100px;
     width: 375px;
     margin-bottom: -250px;
+  }
+
+  .btn-save-skill {
+    margin-top: 20px;
   }
 }
 </style>

@@ -144,6 +144,7 @@ export default {
   border: 1px solid #fbb017;
   border-radius: 4px;
   text-align: center;
+  font-size: 12px;
   padding: 3px 15px;
   color: white;
   margin: 0 5px 5px 0px;

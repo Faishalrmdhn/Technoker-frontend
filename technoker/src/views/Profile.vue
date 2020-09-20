@@ -7,12 +7,23 @@
           <b-col xl="4" cols="12" class="text-center mb-2">
             <b-card class="border-light">
               <b-avatar size="7rem" class="my-3">
-                <img :src="port + data.user_image" style="width: 7rem" class="mt-4" />
+                <img
+                  v-if="data.user_image !== null"
+                  :src="port + data.user_image"
+                  style="width: 7rem"
+                  class="mt-4"
+                />
+                <img v-if="data.user_image === null" src="../assets/img/default.png" alt />
               </b-avatar>
               <div class="text-left">
                 <b-card-title class="my-1">{{ data.user_name }}</b-card-title>
                 <small>{{ data.user_job_desk }}</small>
-                <p class="mt-4 text-muted">{{ data.user_location }}</p>
+                <p class="mt-3 text-muted">
+                  <span>
+                    <img src="../assets/img/location.png" alt />
+                  </span>
+                  {{ data.user_location }}
+                </p>
                 <small class="text-muted">{{ data.user_job_type }}</small>
                 <b-card-text class="mt-2 text-muted">
                   {{
@@ -24,15 +35,23 @@
                 <b-button
                   class="py-2 btn-hire-edit"
                   style="width: 100%"
-                  v-show="true"
+                  v-show="showBtnEdit"
                   @click="editPage"
                 >Edit</b-button>
+
                 <b-button
                   @click="redirectHire"
-                  class="py-2 btn-hire-edit"
-                  v-show="true"
+                  class="py-2 my-2 mb-2 btn-hire-edit"
+                  v-show="showBtnHire"
                   style="width: 100%"
                 >Hire</b-button>
+
+                <b-button
+                  class="mt-2 btn-hire-edit"
+                  style="width: 100%"
+                  v-show="showBtnEdit"
+                  @click="getLogout"
+                >Logout</b-button>
               </div>
               <h4 class="text-left my-3">Skill</h4>
               <div>
@@ -43,9 +62,24 @@
                 </div>
               </div>
               <div class="contact text-muted text-left mt-5">
-                <p>{{ data.user_email }}</p>
-                <p>{{ data.user_instagram }}</p>
-                <p>@{{ data.user_github }}</p>
+                <p>
+                  <span>
+                    <img src="../assets/img/mail.png" alt />
+                  </span>
+                  {{ data.user_email }}
+                </p>
+                <p>
+                  <span>
+                    <img src="../assets/img/instagram.png" alt />
+                  </span>
+                  {{ data.user_instagram }}
+                </p>
+                <p>
+                  <span>
+                    <img src="../assets/img/github.png" alt />
+                  </span>
+                  {{ data.user_github }}
+                </p>
               </div>
             </b-card>
           </b-col>
@@ -57,73 +91,33 @@
                 content-class="mt-3 ml-0"
                 active-nav-item-class="font-weight-bold text-dark"
               >
-                <b-tab title="Portofolio" class="p-3" active>
+                <b-tab title="Portofolio" class="p-3" active @click="getPorto()">
                   <b-row>
-                    <b-col xl="4" cols="6">
-                      <b-img fluid :src="require('@/assets/porto1.jpg')" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">Reminder App</p>
-                    </b-col>
-                    <b-col xl="4" cols="6">
-                      <b-img fluid :src="require('@/assets/porto2.png')" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">Social Media App</p>
-                    </b-col>
-                    <b-col xl="4" cols="6">
-                      <b-img fluid :src="require('@/assets/porto3.jpg')" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">Project Management App</p>
-                    </b-col>
-                    <b-col xl="4" cols="6">
-                      <b-img fluid :src="require('@/assets/porto4.jpg')" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">Reminder App</p>
-                    </b-col>
-                    <b-col xl="4" cols="6">
-                      <b-img fluid :src="require('@/assets/porto5.png')" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">Social Media App</p>
-                    </b-col>
-                    <b-col xl="4" cols="6">
-                      <b-img fluid :src="require('@/assets/porto6.png')" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">Project Management App</p>
+                    <b-col xl="4" cols="6" v-for="(value, index) in portfolio" :key="index">
+                      <b-img fluid :src="portfolioImg + value.portofolio_image" alt="Image 1"></b-img>
+                      <p class="text-center" style="font-size:15px">{{ value.portofolio_name }}</p>
                     </b-col>
                   </b-row>
                 </b-tab>
 
                 <b-tab title="Pengalaman Pekerjaan" class="p-3">
-                  <b-row>
+                  <b-row v-for="(value, index) in experience" :key="index">
                     <b-col cols="2">
                       <b-img fluid :src="require('@/assets/tokped.jpg')" alt="Image 1"></b-img>
                     </b-col>
                     <b-col cols="10">
                       <p class="my-0">
-                        <strong>Enginerr</strong>
+                        <strong>{{ value.experience_position }}</strong>
                       </p>
-                      <p class="my-0">Tokopedia</p>
-                      <small class="text-muted">July 2019 - January 2020 6 months</small>
+                      <p class="my-0">{{ value.experience_company }}</p>
+                      <small class="text-muted">
+                        {{ value.experience_date_in }} -
+                        {{ value.experience_date_out }}
+                      </small>
                       <br />
                       <br />
-                      <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Reprehenderit quos qui nam, corrupti adipisci
-                        facere veritatis amet possimus explicabo magnam optio
-                        distinctio, officiis minus blanditiis.
-                      </p>
+                      <p>{{ value.experience_desc }}</p>
                       <hr />
-                    </b-col>
-                    <b-col cols="2">
-                      <b-img fluid :src="require('@/assets/tokped.jpg')" alt="Image 1"></b-img>
-                    </b-col>
-                    <b-col cols="10">
-                      <p class="my-0">
-                        <strong>Enginerr</strong>
-                      </p>
-                      <p class="my-0">Tokopedia</p>
-                      <small class="text-muted">July 2019 - January 2020 6 months</small>
-                      <br />
-                      <br />
-                      <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Reprehenderit quos qui nam, corrupti adipisci
-                        facere veritatis amet possimus explicabo magnam optio
-                        distinctio, officiis minus blanditiis.
-                      </p>
                     </b-col>
                   </b-row>
                 </b-tab>
@@ -139,7 +133,7 @@
 
 <script>
 import HeaderLogin from '@/components/HeaderLogin.vue'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Profile',
@@ -150,14 +144,19 @@ export default {
     return {
       showBtnEdit: false,
       showBtnHire: false,
-      port: 'http://127.0.0.1:4000/profile/'
+      port: 'http://127.0.0.1:4000/profile/',
+      portfolioImg: 'http://127.0.0.1:4000/portofolio/'
     }
   },
   created() {
     this.showButton()
   },
+  updated() {
+    this.getUserById()
+  },
   methods: {
-    ...mapActions(['getUserById']),
+    ...mapActions(['getUserById', 'logout']),
+    ...mapMutations(['setUserById']),
     editPage() {
       this.$router.push('/edit-profile-c')
     },
@@ -165,22 +164,32 @@ export default {
       this.$router.push('/hire')
     },
     showButton() {
-      console.log(this.data.role)
-      if (this.data.role === 2) {
+      if (this.role.role === 2) {
         this.showBtnEdit = true
       } else {
         this.showBtnEdit = false
       }
-
-      if (this.data.role === 1) {
+      if (this.role.role === 1) {
         this.showBtnHire = true
       } else {
         this.showBtnHire = false
       }
+      console.log(this.role)
+    },
+    getLogout() {
+      this.logout()
+    },
+    getPorto() {
+      this.getUserById()
     }
   },
   computed: {
-    ...mapGetters({ data: 'user' })
+    ...mapGetters({
+      data: 'user',
+      portfolio: 'portfolio',
+      experience: 'experience',
+      role: 'getUser'
+    })
   }
 }
 </script>
@@ -194,9 +203,16 @@ export default {
   height: auto;
   background-color: #e5e5ee;
 }
+
 .btn-hire-edit {
   background-color: #5e50a1;
+  border-color: #5e50a1;
 }
+.btn-hire-edit:hover {
+  background-color: #fbb017;
+  border-color: #fbb017;
+}
+
 .portofolio {
   display: flex;
   justify-content: space-between;

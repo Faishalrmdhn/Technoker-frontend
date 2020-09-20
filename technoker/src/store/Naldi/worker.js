@@ -4,12 +4,14 @@ export default {
     page: 1,
     limit: 3,
     allUsers: [],
-    user: [],
+    user: {},
     pagination: {},
     totalData: 0,
     skills: [],
     search: '',
-    sort: null
+    sort: null,
+    portfolio: [],
+    experience: []
   },
   mutations: {
     setAllUser(state, payload) {
@@ -26,6 +28,9 @@ export default {
     },
     setUserById(state, payload) {
       state.user = payload.data.data[0]
+      state.portfolio = payload.data.data[0].portofolio
+      state.experience = payload.data.data[0].experience
+      state.skills = payload.data.data[0].skills
     },
     setSort(state, payload) {
       state.sort = payload
@@ -51,8 +56,8 @@ export default {
         axios
           .get(`http://127.0.0.1:4000/user/${payload}`)
           .then(res => {
+            console.log(res)
             context.commit('setUserById', res)
-            console.log('ASEASDASDASDASD')
           })
           .catch(err => {
             console.log(err)
@@ -84,7 +89,43 @@ export default {
       })
     },
     postPortfolio(context, payload) {
-      console.log(payload)
+      return new Promise((resolve, reject) => {
+        axios
+          .post('http://127.0.0.1:4000/portofolio', payload)
+          .then(res => {
+            resolve(res.data.msg)
+          })
+          .catch(err => {
+            reject(err.response)
+          })
+      })
+    },
+    postExperience(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post('http://127.0.0.1:4000/experience', payload)
+          .then(res => {
+            resolve(res.data.msg)
+          })
+          .catch(err => {
+            reject(err.response)
+          })
+      })
+    },
+    patchUser(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(
+            `http://127.0.0.1:4000/user/${payload.user_id}`,
+            payload.FormData
+          )
+          .then(res => {
+            resolve(res.data.msg)
+          })
+          .catch(err => {
+            reject(err.response)
+          })
+      })
     }
   },
   getters: {
@@ -96,6 +137,12 @@ export default {
     },
     user(state) {
       return state.user // DATA USER BY ID
+    },
+    portfolio(state) {
+      return state.portfolio
+    },
+    experience(state) {
+      return state.experience
     }
   }
 }

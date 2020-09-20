@@ -4,25 +4,21 @@
       <div>
         <img src="../assets/img/logo.png" alt />
       </div>
+      <!-- <div>{{ user }}</div> -->
       <div class="button-after-login">
-        <!-- NOTIFY -->
-        <a id="notify" tabindex="0">
-          <img style="width:25px;height:25px;" src="../assets/img/notif.png" alt />
-        </a>
-        <b-popover placement="bottom" target="notify" triggers="focus">
-          <b-img fluid :src="require('@/assets/notify.png')" alt="Image 1" class="px-5 pt-5"></b-img>
-          <p class="text-center pb-5" style="font-size:15px">No New Notification</p>
-        </b-popover>
-        <!-- INBOX -->
-        <a id="inbox" tabindex="0">
-          <img style="width:25px;height:25px;" src="../assets/img/mail.png" alt />
-        </a>
-        <b-popover placement="bottom" target="inbox" triggers="focus">
-          <b-img fluid :src="require('@/assets/inbox.png')" alt="Image 1" class="px-5 pt-5"></b-img>
-          <p class="text-center pb-5" style="font-size:15px">No New Inbox</p>
-        </b-popover>
-        <div class="user-img">
-          <b-img fluid :src="require('@/assets/inbox.png')" alt="Image 1" class></b-img>
+        <img style="width:25px;height:25px;" src="../assets/img/notif.png" alt />
+        <img style="width:25px;height:25px;" src="../assets/img/mail.png" alt />
+        <div v-if="user.role === 1" class="user-img" @click="homePage()">
+          <!-- <route-link to="/home"> -->
+          <img v-if="user.user_image !== null" class="user-img" :src="port + user.user_image" alt />
+          <img v-if="user.user_image === null" class="user-img" src="../assets/img/default.png" alt />
+          <!-- </route-link> -->
+        </div>
+        <div v-if="user.role === 2 " class="user-img" @click="profilePage()">
+          <!-- <route-link to="/profile"> -->
+          <img v-if="user.user_image !== null" class="user-img" :src="port + user.user_image" alt />
+          <img v-if="user.user_image === null" class="user-img" src="../assets/img/default.png" alt />
+          <!-- </route-link> -->
         </div>
       </div>
     </b-container>
@@ -30,12 +26,24 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
-    return {}
+    return {
+      port: 'http://127.0.0.1:4000/profile/'
+    }
   },
-  methods: {},
-  computed: {}
+  computed: {
+    ...mapGetters({ user: 'getUser' })
+  },
+  methods: {
+    homePage() {
+      this.$router.push('/home')
+    },
+    profilePage() {
+      this.$router.push('/profile')
+    }
+  }
 }
 </script>
 
@@ -55,6 +63,9 @@ export default {
 .user-img {
   width: 25px;
   height: 25px;
+  margin-top: -1.5px;
   border-radius: 50%;
+  cursor: pointer;
+  /* background-color: #5e50a1; */
 }
 </style>

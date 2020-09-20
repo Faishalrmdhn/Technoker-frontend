@@ -6,13 +6,17 @@ export default {
     recruiter: {},
     token: localStorage.getItem('token') || null,
     user_id: null,
-    recruiter_id: null
+    recruiter_id: null,
+    portfolio: [],
+    experience: [],
+    role: ''
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload
       state.token = payload.token
       state.user_id = payload.user_id
+      state.role = payload.role
     },
     delUser(state) {
       state.user = {}
@@ -30,7 +34,7 @@ export default {
         axios
           .post('http://127.0.0.1:4000/user/login', payload)
           .then(response => {
-            console.log(response)
+            // console.log(response)
             context.commit('setUser', response.data.data)
             localStorage.setItem('token', response.data.data.token)
             resolve(response.data)
@@ -45,7 +49,7 @@ export default {
         axios
           .post('http://127.0.0.1:4000/recruiter/login', payload)
           .then(response => {
-            console.log(response)
+            // console.log(response)
             context.commit('setUser', response.data.data)
             localStorage.setItem('token', response.data.data.token)
             resolve(response.data)
@@ -60,7 +64,7 @@ export default {
         axios
           .post('http://127.0.0.1:4000/user/register', payload)
           .then(response => {
-            console.log(response.data)
+            // console.log(response.data)
             resolve(response.data)
           })
           .catch(error => {
@@ -180,20 +184,6 @@ export default {
           })
       })
     }
-    // patchDataUser(context, payload) {
-    //   return new Promise((resolve, reject) => {
-    //     axios
-    //       .patch(`http://127.0.0.1:4000/user/${payload}`, payload)
-    //       .then(response => {
-    //         console.log(payload)
-    //         resolve(response.data)
-    //       })
-    //       .catch(error => {
-    //         reject(error.response)
-    //         console.log('error di auth')
-    //       })
-    //   })
-    // },
   },
   getters: {
     isLogin(state) {
@@ -207,6 +197,15 @@ export default {
     },
     gerRecruiterId(state) {
       return state.recruiter_id
+    },
+    getPortfolio(state) {
+      return state.portfolio
+    },
+    getExperience(state) {
+      return state.experience
+    },
+    getRole(state) {
+      return state.role
     }
   }
 }

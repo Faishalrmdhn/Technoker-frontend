@@ -25,7 +25,14 @@ export default new Vuex.Store({
   getters: {},
   plugins: [
     createPersistedState({
-      paths: ['Auth.user', 'recruiter.recruiter'],
+      paths: [
+        'Auth.user',
+        'worker.user',
+        'worker.portfolio',
+        'worker.experience',
+        'worker.skill',
+        'recruiter.recruiter'
+      ],
       storage: window.sessionStorage
     })
   ]
