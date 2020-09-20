@@ -12,7 +12,7 @@
           alt
         />
         <img style="width:25px;height:25px;" src="../assets/img/mail.png" alt />
-        <div v-if="user.role === 1" class="user-img" @click="homePage()">
+        <div v-if="user.role === 1" class="user-img " @click="homePage()">
           <!-- <route-link to="/home"> -->
           <img class="user-img" :src="port + user.user_image" alt="" />
           <!-- </route-link> -->
@@ -67,5 +67,9 @@ export default {
   height: 25px;
   border-radius: 50%;
   /* background-color: #5e50a1; */
+}
+
+.user-img:hover {
+  cursor: pointer;
 }
 </style>

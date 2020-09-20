@@ -199,7 +199,7 @@ export default {
       this.logout()
     },
     getPorto() {
-      this.getUserById()
+      console.log(this.getUserById)
     }
   },
   computed: {
