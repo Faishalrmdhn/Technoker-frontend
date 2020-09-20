@@ -87,6 +87,7 @@
               >
                 <b-tab title="Portofolio" class="p-3" active>
                   <b-row>
+<<<<<<< HEAD
                     <b-col xl="4" cols="6">
                       <b-img
                         fluid
@@ -146,12 +147,17 @@
                       <p class="text-center" style="font-size:15px">
                         Project Management App
                       </p>
+=======
+                    <b-col xl="4" cols="6" v-for="(value, index) in portfolio" :key="index">
+                      <b-img fluid :src="portfolioImg + value.portofolio_image" alt="Image 1"></b-img>
+                      <p class="text-center" style="font-size:15px">{{value.portofolio_name}}</p>
+>>>>>>> de940911846ae5a467e8437382809caf06a2ec16
                     </b-col>
                   </b-row>
                 </b-tab>
 
                 <b-tab title="Pengalaman Pekerjaan" class="p-3">
-                  <b-row>
+                  <b-row v-for="(value, index) in experience" :key="index">
                     <b-col cols="2">
                       <b-img
                         fluid
@@ -161,22 +167,25 @@
                     </b-col>
                     <b-col cols="10">
                       <p class="my-0">
-                        <strong>Enginerr</strong>
+                        <strong>{{value.experience_position}}</strong>
                       </p>
+<<<<<<< HEAD
                       <p class="my-0">Tokopedia</p>
                       <small class="text-muted"
                         >July 2019 - January 2020 6 months</small
                       >
+=======
+                      <p class="my-0">{{value.experience_company}}</p>
+                      <small
+                        class="text-muted"
+                      >{{value.experience_date_in}} - {{value.experience_date_out}}</small>
+>>>>>>> de940911846ae5a467e8437382809caf06a2ec16
                       <br />
                       <br />
-                      <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Reprehenderit quos qui nam, corrupti adipisci
-                        facere veritatis amet possimus explicabo magnam optio
-                        distinctio, officiis minus blanditiis.
-                      </p>
+                      <p>{{value.experience_desc}}</p>
                       <hr />
                     </b-col>
+<<<<<<< HEAD
                     <b-col cols="2">
                       <b-img
                         fluid
@@ -201,6 +210,8 @@
                         distinctio, officiis minus blanditiis.
                       </p>
                     </b-col>
+=======
+>>>>>>> de940911846ae5a467e8437382809caf06a2ec16
                   </b-row>
                 </b-tab>
               </b-tabs>
@@ -226,7 +237,8 @@ export default {
     return {
       showBtnEdit: false,
       showBtnHire: false,
-      port: 'http://127.0.0.1:4000/profile/'
+      port: 'http://127.0.0.1:4000/profile/',
+      portfolioImg: 'http://127.0.0.1:4000/portofolio/'
     }
   },
   created() {
@@ -255,7 +267,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ data: 'user' })
+    ...mapGetters({
+      data: 'user',
+      portfolio: 'portfolio',
+      experience: 'experience'
+    })
   }
 }
 </script>

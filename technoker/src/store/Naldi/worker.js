@@ -9,7 +9,9 @@ export default {
     totalData: 0,
     skills: [],
     search: '',
-    sort: null
+    sort: null,
+    portfolio: [],
+    experience: []
   },
   mutations: {
     setAllUser(state, payload) {
@@ -26,6 +28,10 @@ export default {
     },
     setUserById(state, payload) {
       state.user = payload.data.data[0]
+      state.portfolio = payload.data.data[0].portofolio
+      state.experience = payload.data.data[0].experience
+      console.log(payload.data.data[0].portofolio)
+      console.log(payload.data.data[0].experience)
     },
     setSort(state, payload) {
       state.sort = payload
@@ -51,6 +57,7 @@ export default {
         axios
           .get(`http://127.0.0.1:4000/user/${payload}`)
           .then(res => {
+            console.log(res)
             context.commit('setUserById', res)
           })
           .catch(err => {
@@ -87,7 +94,6 @@ export default {
         axios
           .post('http://127.0.0.1:4000/portofolio', payload)
           .then(res => {
-            console.log(res)
             resolve(res.data.msg)
           })
           .catch(err => {
@@ -100,7 +106,6 @@ export default {
         axios
           .post('http://127.0.0.1:4000/experience', payload)
           .then(res => {
-            console.log(res)
             resolve(res.data.msg)
           })
           .catch(err => {
@@ -109,7 +114,6 @@ export default {
       })
     },
     patchUser(context, payload) {
-      console.log(payload)
       return new Promise((resolve, reject) => {
         axios
           .patch(
@@ -117,10 +121,10 @@ export default {
             payload.FormData
           )
           .then(res => {
-            console.log(res)
+            resolve(res.data.msg)
           })
           .catch(err => {
-            console.log(err)
+            reject(err.response)
           })
       })
     }
@@ -134,6 +138,12 @@ export default {
     },
     user(state) {
       return state.user // DATA USER BY ID
+    },
+    portfolio(state) {
+      return state.portfolio
+    },
+    experience(state) {
+      return state.experience
     }
   }
 }
