@@ -7,7 +7,11 @@
           <b-col xl="4" cols="12" class="text-center mb-2">
             <b-card class="border-light">
               <b-avatar size="7rem" class="my-3">
-                <img :src="port + data.user_image" style="width: 7rem" class="mt-4" />
+                <img
+                  :src="port + data.user_image"
+                  style="width: 7rem"
+                  class="mt-4"
+                />
               </b-avatar>
               <div class="text-left">
                 <b-card-title class="my-1">{{ data.user_name }}</b-card-title>
@@ -15,9 +19,7 @@
                 <p class="mt-4 text-muted">{{ data.user_location }}</p>
                 <small class="text-muted">{{ data.user_job_type }}</small>
                 <b-card-text class="mt-2 text-muted">
-                  {{
-                  data.user_about
-                  }}
+                  {{ data.user_about }}
                 </b-card-text>
               </div>
               <div class="my-5">
@@ -26,18 +28,24 @@
                   style="width: 100%"
                   v-show="true"
                   @click="editPage"
-                >Edit</b-button>
+                  >Edit</b-button
+                >
                 <b-button
                   @click="redirectHire"
                   class="py-2 btn-hire-edit"
                   v-show="true"
                   style="width: 100%"
-                >Hire</b-button>
+                  >Hire</b-button
+                >
               </div>
               <h4 class="text-left my-3">Skill</h4>
               <div>
                 <div class="skills-grid">
-                  <div class="skills" v-for="(value, index) in data.skills" :key="index">
+                  <div
+                    class="skills"
+                    v-for="(value, index) in data.skills"
+                    :key="index"
+                  >
                     <div class="skill">{{ value.skill_name }}</div>
                   </div>
                 </div>
@@ -60,28 +68,64 @@
                 <b-tab title="Portofolio" class="p-3" active>
                   <b-row>
                     <b-col xl="4" cols="6">
-                      <b-img fluid :src="require('@/assets/porto1.jpg')" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">Reminder App</p>
+                      <b-img
+                        fluid
+                        :src="require('@/assets/porto1.jpg')"
+                        alt="Image 1"
+                      ></b-img>
+                      <p class="text-center" style="font-size:15px">
+                        Reminder App
+                      </p>
                     </b-col>
                     <b-col xl="4" cols="6">
-                      <b-img fluid :src="require('@/assets/porto2.png')" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">Social Media App</p>
+                      <b-img
+                        fluid
+                        :src="require('@/assets/porto2.png')"
+                        alt="Image 1"
+                      ></b-img>
+                      <p class="text-center" style="font-size:15px">
+                        Social Media App
+                      </p>
                     </b-col>
                     <b-col xl="4" cols="6">
-                      <b-img fluid :src="require('@/assets/porto3.jpg')" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">Project Management App</p>
+                      <b-img
+                        fluid
+                        :src="require('@/assets/porto3.jpg')"
+                        alt="Image 1"
+                      ></b-img>
+                      <p class="text-center" style="font-size:15px">
+                        Project Management App
+                      </p>
                     </b-col>
                     <b-col xl="4" cols="6">
-                      <b-img fluid :src="require('@/assets/porto4.jpg')" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">Reminder App</p>
+                      <b-img
+                        fluid
+                        :src="require('@/assets/porto4.jpg')"
+                        alt="Image 1"
+                      ></b-img>
+                      <p class="text-center" style="font-size:15px">
+                        Reminder App
+                      </p>
                     </b-col>
                     <b-col xl="4" cols="6">
-                      <b-img fluid :src="require('@/assets/porto5.png')" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">Social Media App</p>
+                      <b-img
+                        fluid
+                        :src="require('@/assets/porto5.png')"
+                        alt="Image 1"
+                      ></b-img>
+                      <p class="text-center" style="font-size:15px">
+                        Social Media App
+                      </p>
                     </b-col>
                     <b-col xl="4" cols="6">
-                      <b-img fluid :src="require('@/assets/porto6.png')" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">Project Management App</p>
+                      <b-img
+                        fluid
+                        :src="require('@/assets/porto6.png')"
+                        alt="Image 1"
+                      ></b-img>
+                      <p class="text-center" style="font-size:15px">
+                        Project Management App
+                      </p>
                     </b-col>
                   </b-row>
                 </b-tab>
@@ -89,14 +133,20 @@
                 <b-tab title="Pengalaman Pekerjaan" class="p-3">
                   <b-row>
                     <b-col cols="2">
-                      <b-img fluid :src="require('@/assets/tokped.jpg')" alt="Image 1"></b-img>
+                      <b-img
+                        fluid
+                        :src="require('@/assets/tokped.jpg')"
+                        alt="Image 1"
+                      ></b-img>
                     </b-col>
                     <b-col cols="10">
                       <p class="my-0">
                         <strong>Enginerr</strong>
                       </p>
                       <p class="my-0">Tokopedia</p>
-                      <small class="text-muted">July 2019 - January 2020 6 months</small>
+                      <small class="text-muted"
+                        >July 2019 - January 2020 6 months</small
+                      >
                       <br />
                       <br />
                       <p>
@@ -108,14 +158,20 @@
                       <hr />
                     </b-col>
                     <b-col cols="2">
-                      <b-img fluid :src="require('@/assets/tokped.jpg')" alt="Image 1"></b-img>
+                      <b-img
+                        fluid
+                        :src="require('@/assets/tokped.jpg')"
+                        alt="Image 1"
+                      ></b-img>
                     </b-col>
                     <b-col cols="10">
                       <p class="my-0">
                         <strong>Enginerr</strong>
                       </p>
                       <p class="my-0">Tokopedia</p>
-                      <small class="text-muted">July 2019 - January 2020 6 months</small>
+                      <small class="text-muted"
+                        >July 2019 - January 2020 6 months</small
+                      >
                       <br />
                       <br />
                       <p>

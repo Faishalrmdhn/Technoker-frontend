@@ -29,14 +29,41 @@
           <b-card header="Data Diri">
             <b-card-text>
               <b-form v-if="show" style="color:grey;">
-                <b-form-group id="input-group-2" label="Nama Lengkap" label-for="input-2">
-                  <b-form-input type="text" id="input-2" required placeholder="Enter name"></b-form-input>
+                <b-form-group
+                  id="input-group-2"
+                  label="Nama Lengkap"
+                  label-for="input-2"
+                >
+                  <b-form-input
+                    type="text"
+                    id="input-2"
+                    required
+                    placeholder="Enter name"
+                  ></b-form-input>
                 </b-form-group>
-                <b-form-group id="input-group-1" label="Job Desk" label-for="input-1">
-                  <b-form-input id="input-1" type="text" required placeholder="Masukkan Job desk"></b-form-input>
+                <b-form-group
+                  id="input-group-1"
+                  label="Job Desk"
+                  label-for="input-1"
+                >
+                  <b-form-input
+                    id="input-1"
+                    type="text"
+                    required
+                    placeholder="Masukkan Job desk"
+                  ></b-form-input>
                 </b-form-group>
-                <b-form-group id="input-group-2" label="Domisili" label-for="input-2">
-                  <b-form-input type="text" id="input-2" required placeholder="Masukkan Domisili"></b-form-input>
+                <b-form-group
+                  id="input-group-2"
+                  label="Domisili"
+                  label-for="input-2"
+                >
+                  <b-form-input
+                    type="text"
+                    id="input-2"
+                    required
+                    placeholder="Masukkan Domisili"
+                  ></b-form-input>
                 </b-form-group>
                 <b-form-group label="Tempat Kerja">
                   <b-form-input
@@ -46,7 +73,11 @@
                     placeholder="Masukkan Tempat Kerja"
                   ></b-form-input>
                 </b-form-group>
-                <b-form-group id="input-group-2" label="Deskripsi Singkat" label-for="textarea">
+                <b-form-group
+                  id="input-group-2"
+                  label="Deskripsi Singkat"
+                  label-for="textarea"
+                >
                   <b-form-textarea
                     id="textarea"
                     placeholder="Jelaskan lebih detail"
@@ -64,10 +95,22 @@
             <b-form v-if="show" style="color:grey;">
               <b-row align-h="between">
                 <b-col sm="9">
-                  <b-input type="text" id="input-2" v-model="skill" required placeholder="java" />
+                  <b-input
+                    type="text"
+                    id="input-2"
+                    v-model="skill"
+                    required
+                    placeholder="java"
+                  />
                 </b-col>
                 <b-col sm="3">
-                  <b-button block variant="warning" style="color:white" @click="getSkill">Simpan</b-button>
+                  <b-button
+                    block
+                    variant="warning"
+                    style="color:white"
+                    @click="getSkill"
+                    >Simpan</b-button
+                  >
                 </b-col>
               </b-row>
             </b-form>
@@ -79,30 +122,75 @@
           <b-card header="Pengalaman Kerja">
             <b-card-text>
               <b-form v-if="show" style="color:grey;">
-                <b-form-group id="input-group-2" label="Posisi" label-for="input-2">
-                  <b-form-input type="text" id="input-2" required placeholder="web developer"></b-form-input>
+                <b-form-group
+                  id="input-group-2"
+                  label="Posisi"
+                  label-for="input-2"
+                >
+                  <b-form-input
+                    type="text"
+                    id="input-2"
+                    required
+                    placeholder="web developer"
+                  ></b-form-input>
                 </b-form-group>
                 <b-row>
                   <b-col>
-                    <b-form-group id="input-group-1" label="Nama Perusahaan" label-for="input-1">
-                      <b-form-input id="input-1" type="text" required placeholder="PT Maju Mundur"></b-form-input>
+                    <b-form-group
+                      id="input-group-1"
+                      label="Nama Perusahaan"
+                      label-for="input-1"
+                    >
+                      <b-form-input
+                        id="input-1"
+                        type="text"
+                        required
+                        placeholder="PT Maju Mundur"
+                      ></b-form-input>
                     </b-form-group>
                   </b-col>
                   <b-col>
-                    <b-form-group id="input-group-2" label="Bulan / Tahun" label-for="input-2">
-                      <b-form-input type="text" id="input-2" required placeholder="Januari 2018"></b-form-input>
+                    <b-form-group
+                      id="input-group-2"
+                      label="Bulan / Tahun"
+                      label-for="input-2"
+                    >
+                      <b-form-input
+                        type="text"
+                        id="input-2"
+                        required
+                        placeholder="Januari 2018"
+                      ></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
               </b-form>
               <b-form @submit="onSubmitExp" v-if="show" style="color:grey;">
-                <b-form-group id="input-group-2" label="Posisi" label-for="input-2">
-                  <b-form-input type="text" id="input-2" required placeholder="web developer"></b-form-input>
+                <b-form-group
+                  id="input-group-2"
+                  label="Posisi"
+                  label-for="input-2"
+                >
+                  <b-form-input
+                    type="text"
+                    id="input-2"
+                    required
+                    placeholder="web developer"
+                  ></b-form-input>
                 </b-form-group>
                 <b-row>
                   <b-col>
-                    <b-form-group id="input-group-1" label="Nama Perusahaan" label-for="input-1">
-                      <b-form-input id="input-1" type="text" required placeholder="PT Maju Mundur"></b-form-input>
+                    <b-form-group
+                      id="input-group-1"
+                      label="Nama Perusahaan"
+                      label-for="input-1"
+                    >
+                      <b-form-input
+                        id="input-1"
+                        type="text"
+                        required
+                        placeholder="PT Maju Mundur"
+                      ></b-form-input>
                     </b-form-group>
                   </b-col>
                   <b-col>
@@ -111,7 +199,12 @@
                       label="Bulan / Tahun Masuk"
                       label-for="input-2"
                     >
-                      <b-form-input type="text" id="input-2" required placeholder="Januari 2018"></b-form-input>
+                      <b-form-input
+                        type="text"
+                        id="input-2"
+                        required
+                        placeholder="Januari 2018"
+                      ></b-form-input>
                     </b-form-group>
                   </b-col>
                   <!-- =================== -->
@@ -121,12 +214,21 @@
                       label="Bulan / Tahun Keluar"
                       label-for="input-2"
                     >
-                      <b-form-input type="text" id="input-2" required placeholder="Januari 2018"></b-form-input>
+                      <b-form-input
+                        type="text"
+                        id="input-2"
+                        required
+                        placeholder="Januari 2018"
+                      ></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
 
-                <b-form-group id="input-group-2" label="Deskripsi Singkat" label-for="textarea">
+                <b-form-group
+                  id="input-group-2"
+                  label="Deskripsi Singkat"
+                  label-for="textarea"
+                >
                   <b-form-textarea
                     id="textarea"
                     placeholder="Deskripsikan pekerjaan anda"
@@ -139,7 +241,8 @@
                   variant="outline-warning"
                   class="mt-5 btn-hire"
                   type="submit"
-                >Tambah pengalaman kerja</b-button>
+                  >Tambah pengalaman kerja</b-button
+                >
               </b-form>
             </b-card-text>
           </b-card>
@@ -148,8 +251,16 @@
         <div class="mt-3">
           <b-card header="Portofolio">
             <b-card-text>
-              <b-form v-on:submit.prevent="getPortfolio" v-if="show" style="color:grey;">
-                <b-form-group id="input-group-2" label="Nama Aplikasi" label-for="input-2">
+              <b-form
+                v-on:submit.prevent="getPortfolio"
+                v-if="show"
+                style="color:grey;"
+              >
+                <b-form-group
+                  id="input-group-2"
+                  label="Nama Aplikasi"
+                  label-for="input-2"
+                >
                   <b-form-input
                     type="text"
                     id="input-2"
@@ -158,7 +269,11 @@
                     placeholder="Masukkan nama aplikasi"
                   ></b-form-input>
                 </b-form-group>
-                <b-form-group id="input-group-1" label="Link Repository" label-for="input-1">
+                <b-form-group
+                  id="input-group-1"
+                  label="Link Repository"
+                  label-for="input-1"
+                >
                   <b-form-input
                     id="input-1"
                     v-model="formPortfolio.portofolio_repository"
@@ -173,13 +288,15 @@
                     name="checkbox-1"
                     value="accepted"
                     unchecked-value="aplikasi mobile"
-                  >Aplikasi Mobile</b-form-checkbox>
+                    >Aplikasi Mobile</b-form-checkbox
+                  >
                   <b-form-checkbox
                     id="checkbox-2"
                     name="checkbox-2"
                     value="accepted"
                     unchecked-value="aplikasi web"
-                  >Aplikasi Web</b-form-checkbox>
+                    >Aplikasi Web</b-form-checkbox
+                  >
                 </b-form-group>
                 <!-- IMAGE -->
                 <b-form-group label="Upload Gambar">
@@ -196,10 +313,11 @@
                   block
                   class="mt-5 btn-hire"
                   @click="getPortfolio"
-                >Tambah Portofolio</b-button>
+                  >Tambah Portofolio</b-button
+                >
               </b-form>
             </b-card-text>
-          </b-card>-->
+          </b-card>
         </div>
       </div>
     </div>
@@ -244,10 +362,10 @@ export default {
         user_id: this.user.user_id
       }
       this.postSkill(setData)
-        .then((res) => {
+        .then(res => {
           alert(res)
         })
-        .catch((err) => {
+        .catch(err => {
           alert(err)
         })
     },

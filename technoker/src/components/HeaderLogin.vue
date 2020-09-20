@@ -5,21 +5,32 @@
         <img src="../assets/img/logo.png" alt />
       </div>
       <div class="button-after-login">
-        <img style="width:25px;height:25px;" src="../assets/img/notif.png" alt />
+        <img
+          style="width:25px;height:25px;"
+          src="../assets/img/notif.png"
+          alt
+        />
         <img style="width:25px;height:25px;" src="../assets/img/mail.png" alt />
-        <div class="user-img"></div>
+        <div class="user-img"><img :src="port + user.user_image" alt="" /></div>
+        <!-- // {{ user.user_image }} -->
+        <div>{{ user }}</div>
       </div>
     </b-container>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
-    return {}
+    return {
+      port: 'http://127.0.0.1:4000/profile/'
+    }
   },
-  methods: {},
-  computed: {}
+  computed: {
+    ...mapGetters({ user: 'user' })
+  },
+  methods: {}
 }
 </script>
 
