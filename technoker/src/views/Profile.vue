@@ -7,20 +7,23 @@
           <b-col xl="4" cols="12" class="text-center mb-2">
             <b-card class="border-light">
               <b-avatar size="7rem" class="my-3">
-                <img src="@/assets/opinion3.jpg" style="width: 7rem" class="mt-4" />
+                <img :src="port + data.user_image" style="width: 7rem" class="mt-4" />
               </b-avatar>
               <div class="text-left">
                 <b-card-title class="my-1">{{data.user_name}}</b-card-title>
                 <small>{{data.user_job_desk}}</small>
                 <p class="mt-4 text-muted">{{data.user_location}}</p>
-                <small class="text-muted">Freelancer</small>
-                <b-card-text
-                  class="mt-2 text-muted"
-                >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
+                <small class="text-muted">{{data.user_job_type}}</small>
+                <b-card-text class="mt-2 text-muted">{{data.user_about}}</b-card-text>
               </div>
               <div class="my-5">
-                <b-button class="py-2 btn-hire-edit" style="width: 100%" @click="editPage">Edit</b-button>
-                <b-button class="py-2 btn-hire-edit" style="width: 100%">Hire</b-button>
+                <b-button
+                  class="py-2 btn-hire-edit"
+                  style="width: 100%"
+                  v-show="true"
+                  @click="editPage"
+                >Edit</b-button>
+                <b-button class="py-2 btn-hire-edit" v-show="true" style="width: 100%">Hire</b-button>
               </div>
               <h4 class="text-left my-3">Skill</h4>
               <div>
@@ -31,10 +34,9 @@
                 </div>
               </div>
               <div class="contact text-muted text-left mt-5">
-                <p>Louistommo@gmail.com</p>
-                <p>@louis91</p>
-                <p>@louistommo</p>
-                <p>@louistommo91</p>
+                <p>{{data.user_email}}</p>
+                <p>{{data.user_instagram}}</p>
+                <p>@{{data.user_github}}</p>
               </div>
             </b-card>
           </b-col>
@@ -128,7 +130,8 @@ export default {
   data() {
     return {
       showBtnEdit: false,
-      showBtnHire: false
+      showBtnHire: false,
+      port: 'http://127.0.0.1:4000/profile/'
     }
   },
   created() {

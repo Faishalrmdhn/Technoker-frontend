@@ -120,6 +120,9 @@ export default {
     Header,
     Footer
   },
+  created() {
+    this.recruiter()
+  },
   computed: {
     ...mapGetters(['recruiter'])
   },
@@ -127,11 +130,13 @@ export default {
     ...mapActions(['getRecruiterById', 'patchRecruiter']),
     onUpdate() {
       const setData = {
-        recruiter_id: 5,
+        recruiter_id: this.recruiter.recruiter_id,
         form: this.form
       }
       // console.log(setData)
       this.patchRecruiter(setData)
+        .then((result) => this.$router.push('/profile-company'))
+        .catch((error) => error)
     }
   }
 }

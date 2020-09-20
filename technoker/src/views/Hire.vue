@@ -27,9 +27,9 @@
         <h2>Hubungi Muhammad Naldi</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque ipsum, doloremque dignissimos voluptatum quisquam quis!</p>
         <div>
-          <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+          <b-form @submit="onSubmit">
             <b-form-group id="input-group-3" label="Tujuan tentang pesan ini:" label-for="input-3">
-              <b-form-select id="input-3" :options="foods" required></b-form-select>
+              <b-form-select id="input-3" :options="positions" required></b-form-select>
             </b-form-group>
             <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
               <b-form-input id="input-2" v-model="form.name" required placeholder="Enter name"></b-form-input>
@@ -60,7 +60,7 @@
                 max-rows="6"
               ></b-form-textarea>
             </b-form-group>
-            <b-button block class="mt-5 btn-hire">Hire</b-button>
+            <b-button block class="mt-5 btn-hire" type="submit">Hire</b-button>
           </b-form>
         </div>
       </div>
@@ -80,12 +80,12 @@ export default {
         name: '',
         checked: []
       },
-      foods: [
+      positions: [
         { text: 'Project', value: null },
-        'Carrots',
-        'Beans',
-        'Tomatoes',
-        'Corn'
+        'Fullstack Web Developer',
+        'Frontend Developer',
+        'Backend Developer',
+        'DevOps'
       ],
       show: true
     }
