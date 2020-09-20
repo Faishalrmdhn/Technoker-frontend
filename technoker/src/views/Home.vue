@@ -99,6 +99,7 @@ export default {
       options: [
         { value: null, text: 'SORT' },
         { value: 'user_name ASC', text: 'Name' },
+        { value: 'user_skill DESC', text: 'Skill' },
         { value: 'freelance', text: 'Freelance' },
         { value: 'fulltime', text: 'Fulltime' }
       ],
