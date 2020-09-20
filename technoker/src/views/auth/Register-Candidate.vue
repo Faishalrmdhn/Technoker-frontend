@@ -4,12 +4,18 @@
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
           <b-col>
-            <h2>Temukan developer berbakat &#38; terbaik di berbagai bidang keahlian</h2>
+            <img class="logo" src="../../assets/img/logo-footer.png" alt="" />
+            <h2>
+              Temukan developer berbakat &#38; terbaik di berbagai bidang
+              keahlian
+            </h2>
           </b-col>
         </b-row>
       </b-col>
       <b-col sm="6" class="right">
-        <b-alert :show="alert" class="m-3" variant="danger">{{ isMsg }}</b-alert>
+        <b-alert :show="alert" class="m-3" variant="danger">{{
+          isMsg
+        }}</b-alert>
         <b-row class="content-right" align-v="center">
           <b-col>
             <div class="text-left p-3">
@@ -64,7 +70,8 @@
                       variant="warning"
                       type="submit"
                       class="my-3"
-                    >Masuk</b-button>
+                      >Masuk</b-button
+                    >
                   </b-col>
                 </b-row>
                 <b-row class="text-center">
@@ -149,11 +156,11 @@ export default {
         }, 2000)
       } else {
         this.registerUser(this.form)
-          .then((result) => {
+          .then(result => {
             console.log(result)
             this.$router.push('/login')
           })
-          .catch((error) => {
+          .catch(error => {
             console.log(error.data.msg)
             if (error.data.msg === 'Email has been registered') {
               this.alert = true
@@ -170,6 +177,13 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  position: relative;
+  width: 86px;
+  top: -230px;
+  left: -240px;
+  z-index: 2;
+}
 .registerC {
   text-align: center;
   width: 90%;

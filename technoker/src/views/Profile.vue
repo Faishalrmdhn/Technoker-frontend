@@ -10,11 +10,15 @@
                 <img :src="port + data.user_image" style="width: 7rem" class="mt-4" />
               </b-avatar>
               <div class="text-left">
-                <b-card-title class="my-1">{{data.user_name}}</b-card-title>
-                <small>{{data.user_job_desk}}</small>
-                <p class="mt-4 text-muted">{{data.user_location}}</p>
-                <small class="text-muted">{{data.user_job_type}}</small>
-                <b-card-text class="mt-2 text-muted">{{data.user_about}}</b-card-text>
+                <b-card-title class="my-1">{{ data.user_name }}</b-card-title>
+                <small>{{ data.user_job_desk }}</small>
+                <p class="mt-4 text-muted">{{ data.user_location }}</p>
+                <small class="text-muted">{{ data.user_job_type }}</small>
+                <b-card-text class="mt-2 text-muted">
+                  {{
+                  data.user_about
+                  }}
+                </b-card-text>
               </div>
               <div class="my-5">
                 <b-button
@@ -34,14 +38,14 @@
               <div>
                 <div class="skills-grid">
                   <div class="skills" v-for="(value, index) in data.skills" :key="index">
-                    <div class="skill">{{value.skill_name}}</div>
+                    <div class="skill">{{ value.skill_name }}</div>
                   </div>
                 </div>
               </div>
               <div class="contact text-muted text-left mt-5">
-                <p>{{data.user_email}}</p>
-                <p>{{data.user_instagram}}</p>
-                <p>@{{data.user_github}}</p>
+                <p>{{ data.user_email }}</p>
+                <p>{{ data.user_instagram }}</p>
+                <p>@{{ data.user_github }}</p>
               </div>
             </b-card>
           </b-col>
@@ -95,7 +99,12 @@
                       <small class="text-muted">July 2019 - January 2020 6 months</small>
                       <br />
                       <br />
-                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit quos qui nam, corrupti adipisci facere veritatis amet possimus explicabo magnam optio distinctio, officiis minus blanditiis.</p>
+                      <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Reprehenderit quos qui nam, corrupti adipisci
+                        facere veritatis amet possimus explicabo magnam optio
+                        distinctio, officiis minus blanditiis.
+                      </p>
                       <hr />
                     </b-col>
                     <b-col cols="2">
@@ -109,7 +118,12 @@
                       <small class="text-muted">July 2019 - January 2020 6 months</small>
                       <br />
                       <br />
-                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit quos qui nam, corrupti adipisci facere veritatis amet possimus explicabo magnam optio distinctio, officiis minus blanditiis.</p>
+                      <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Reprehenderit quos qui nam, corrupti adipisci
+                        facere veritatis amet possimus explicabo magnam optio
+                        distinctio, officiis minus blanditiis.
+                      </p>
                     </b-col>
                   </b-row>
                 </b-tab>

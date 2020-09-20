@@ -4,20 +4,27 @@
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
           <b-col>
-            <h2>Temukan developer berbakat &#38; terbaik di berbagai bidang keahlian</h2>
+            <img class="logo" src="../../assets/img/logo-footer.png" alt="" />
+            <h2>
+              Temukan developer berbakat &#38; terbaik di berbagai bidang
+              keahlian
+            </h2>
           </b-col>
         </b-row>
       </b-col>
       <b-col sm="6" class="right">
         <b-row class="content-right" align-v="center">
           <b-col>
+            <b-alert :show="alert" class="m-3" variant="danger">
+              {{ isMsg }}
+            </b-alert>
             <div class="text-left p-3">
               <h3>
                 <strong>Reset Password</strong>
               </h3>
               <p>
-                Enter your user account's verified email address and we will send
-                you a password reset link.
+                Enter your user account's verified email address and we will
+                send you a password reset link.
               </p>
               <b-form @submit.prevent="onSubmit" style="color:grey;">
                 <b-form-group label="Email">
@@ -36,7 +43,8 @@
                       variant="warning"
                       type="submit"
                       class="my-3"
-                    >Send password reset email</b-button>
+                      >Send password reset email</b-button
+                    >
                   </b-col>
                 </b-row>
               </b-form>
@@ -49,26 +57,63 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'ResetPass',
   data() {
     return {
       form: {
         user_email: ''
-      }
+      },
+      alert: false,
+      isMsg: ''
     }
   },
-  computed: {},
+  computed: {
+    ...mapGetters(['user'])
+  },
   methods: {
-    ...mapActions(['forgotPassword']),
+    ...mapActions(['forgotPasswordUser', 'forgotPasswordRecruiter']),
     onSubmit() {
-      this.forgotPassword(this.form)
-        .then((result) => {
+      this.forgotPasswordUser(this.form)
+        .then(result => {
+          this.$bvToast.toast('Key telah dikirim ke alamat email anda', {
+            title: 'Status :',
+            autoHideDelay: 2000,
+            appendToast: true
+          })
+          setTimeout(() => {
+            this.$router.push('/confirm-password')
+          }, 2000)
           console.log(result)
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error)
+          if (error) {
+            const newForm = {
+              recruiter_email: this.form.user_email
+            }
+            this.forgotPasswordRecruiter(newForm)
+              .then(result => {
+                this.$bvToast.toast('Key telah dikirim ke alamat email anda', {
+                  title: 'Status :',
+                  autoHideDelay: 2000,
+                  appendToast: true
+                })
+                setTimeout(() => {
+                  this.$router.push('/confirm-password')
+                }, 2000)
+                console.log(result)
+              })
+              .catch(error => {
+                console.log(error)
+                this.alert = true
+                this.isMsg = error.data.msg
+                setTimeout(() => {
+                  this.alert = false
+                }, 2000)
+              })
+          }
         })
     }
   }
@@ -76,6 +121,13 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  position: relative;
+  width: 86px;
+  top: -230px;
+  left: -240px;
+  z-index: 2;
+}
 .resetPass {
   text-align: center;
   width: 90%;

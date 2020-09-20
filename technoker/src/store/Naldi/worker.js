@@ -52,6 +52,7 @@ export default {
           .get(`http://127.0.0.1:4000/user/${payload}`)
           .then(res => {
             context.commit('setUserById', res)
+            console.log('ASEASDASDASDASD')
           })
           .catch(err => {
             console.log(err)

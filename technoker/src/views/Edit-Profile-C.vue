@@ -11,17 +11,17 @@
           <img class="image" :src="port + user.user_image" alt />
         </div>
         <div style="padding:0 30px" class="mt-5">
-          <h4>{{user.user_name}}</h4>
-          <h6>{{user.user_job_desk}}</h6>
+          <h4>{{ user.user_name }}</h4>
+          <h6>{{ user.user_job_desk }}</h6>
           <p style="color:grey;">
             <span>
               <img src="../assets/img/location.png" alt />
             </span>
-            {{user.user_location}}
+            {{ user.user_location }}
           </p>
-          <p style="color:grey;">{{user.user_job_type}}</p>
+          <p style="color:grey;">{{ user.user_job_type }}</p>
         </div>
-        <button class="btn1" block>Simpan</button>
+        <button class="btn1" @click="onSubmit()" block>Simpan</button>
         <button class="btn2" block>Batal</button>
       </div>
       <div class="hire-info">
@@ -58,7 +58,7 @@
             </b-card-text>
           </b-card>
         </div>
-        <!-- ========================================================= -->
+        <!-- ==========================SKILL========================== -->
         <div class="mt-3">
           <b-card header="Skill">
             <b-form v-if="show" style="color:grey;">
@@ -74,7 +74,7 @@
             <div></div>
           </b-card>
         </div>
-        <!-- =================================================================== -->
+        <!-- ===============================EXPERIENCE================================ -->
         <div class="mt-3">
           <b-card header="Pengalaman Kerja">
             <b-card-text>
@@ -94,6 +94,37 @@
                     </b-form-group>
                   </b-col>
                 </b-row>
+              </b-form>
+              <b-form @submit="onSubmitExp" v-if="show" style="color:grey;">
+                <b-form-group id="input-group-2" label="Posisi" label-for="input-2">
+                  <b-form-input type="text" id="input-2" required placeholder="web developer"></b-form-input>
+                </b-form-group>
+                <b-row>
+                  <b-col>
+                    <b-form-group id="input-group-1" label="Nama Perusahaan" label-for="input-1">
+                      <b-form-input id="input-1" type="text" required placeholder="PT Maju Mundur"></b-form-input>
+                    </b-form-group>
+                  </b-col>
+                  <b-col>
+                    <b-form-group
+                      id="input-group-2"
+                      label="Bulan / Tahun Masuk"
+                      label-for="input-2"
+                    >
+                      <b-form-input type="text" id="input-2" required placeholder="Januari 2018"></b-form-input>
+                    </b-form-group>
+                  </b-col>
+                  <!-- =================== -->
+                  <b-col>
+                    <b-form-group
+                      id="input-group-2"
+                      label="Bulan / Tahun Keluar"
+                      label-for="input-2"
+                    >
+                      <b-form-input type="text" id="input-2" required placeholder="Januari 2018"></b-form-input>
+                    </b-form-group>
+                  </b-col>
+                </b-row>
 
                 <b-form-group id="input-group-2" label="Deskripsi Singkat" label-for="textarea">
                   <b-form-textarea
@@ -107,12 +138,13 @@
                   block
                   variant="outline-warning"
                   class="mt-5 btn-hire"
+                  type="submit"
                 >Tambah pengalaman kerja</b-button>
               </b-form>
             </b-card-text>
           </b-card>
         </div>
-        <!-- ============================================================================================= -->
+        <!-- ==========================================PORTFOLIO=============================================== -->
         <div class="mt-3">
           <b-card header="Portofolio">
             <b-card-text>
@@ -167,7 +199,7 @@
                 >Tambah Portofolio</b-button>
               </b-form>
             </b-card-text>
-          </b-card>
+          </b-card>-->
         </div>
       </div>
     </div>
@@ -185,15 +217,10 @@ export default {
     Header,
     Footer
   },
-  name: 'EditProfileR',
+  name: 'EditProfileC',
   data() {
     return {
       status: '',
-      form: {
-        email: '',
-        name: '',
-        checked: []
-      },
       formPortfolio: {
         portofolio_image: {},
         portofolio_name: '',
@@ -205,6 +232,9 @@ export default {
       skill: '',
       port: 'http://127.0.0.1:4000/profile/'
     }
+  },
+  computed: {
+    ...mapGetters({ user: 'user' })
   },
   methods: {
     ...mapActions(['postSkill', 'postPortfolio']),
@@ -225,15 +255,13 @@ export default {
       this.formPortfolio.portofolio_image = event.target.files[0]
     },
     getPortfolio() {
-      const data = new FormData()
-      data.append('portofolio_name', this.formPortfolio.portofolio_name)
-      data.append('portofolio_image', this.formPortfolio.portofolio_image)
+      // const data = new FormData()
+      // data.append('portofolio_name', this.formPortfolio.portofolio_name)
+      // data.append('portofolio_image', this.formPortfolio.portofolio_image)
       // data.append('user_id', this.user.user_id)
       // console.log(data)
-      this.postPortfolio(data)
-
+      // this.postPortfolio(data)
       // console.log(this.formPortfolio)
-
       // const setData = {
       //   portofolio_image: this.formPortfolio.portofolio_image,
       //   portofolio_name: this.formPortfolio.portofolio_name,
@@ -241,17 +269,13 @@ export default {
       //   user_id: this.user.user_id
       // }
       // console.log(setData)
-
       // console.log(setData)
     }
-  },
-  computed: {
-    ...mapGetters({ user: 'user' })
   }
 }
 </script>
 
-<style  scoped>
+<style scoped>
 .magenta {
   width: 100%;
   position: relative;
