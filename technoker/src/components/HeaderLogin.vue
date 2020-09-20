@@ -12,8 +12,6 @@
         />
         <img style="width:25px;height:25px;" src="../assets/img/mail.png" alt />
         <div class="user-img"><img :src="port + user.user_image" alt="" /></div>
-        <!-- // {{ user.user_image }} -->
-        <div>{{ user }}</div>
       </div>
     </b-container>
   </div>
@@ -28,7 +26,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ user: 'user' })
+    ...mapGetters({ user: 'getUser' })
   },
   methods: {}
 }

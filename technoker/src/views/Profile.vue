@@ -16,7 +16,12 @@
               <div class="text-left">
                 <b-card-title class="my-1">{{ data.user_name }}</b-card-title>
                 <small>{{ data.user_job_desk }}</small>
-                <p class="mt-4 text-muted">{{ data.user_location }}</p>
+                <p class="mt-3 text-muted">
+                  <span>
+                    <img src="../assets/img/location.png" alt />
+                  </span>
+                  {{ data.user_location }}
+                </p>
                 <small class="text-muted">{{ data.user_job_type }}</small>
                 <b-card-text class="mt-2 text-muted">
                   {{ data.user_about }}
@@ -51,9 +56,24 @@
                 </div>
               </div>
               <div class="contact text-muted text-left mt-5">
-                <p>email : {{ data.user_email }}</p>
-                <p>Instagram : @{{ data.user_instagram }}</p>
-                <p>github : @{{ data.user_github }}</p>
+                <p>
+                  <span>
+                    <img src="../assets/img/mail.png" alt />
+                  </span>
+                  {{ data.user_email }}
+                </p>
+                <p>
+                  <span>
+                    <img src="../assets/img/instagram.png" alt />
+                  </span>
+                  {{ data.user_instagram }}
+                </p>
+                <p>
+                  <span>
+                    <img src="../assets/img/github.png" alt />
+                  </span>
+                  {{ data.user_github }}
+                </p>
               </div>
             </b-card>
           </b-col>
@@ -221,18 +241,17 @@ export default {
       this.$router.push('/hire')
     },
     showButton() {
-      console.log(this.data.role)
-      if (this.data.role === 2) {
-        this.showBtnEdit = true
-      } else {
-        this.showBtnEdit = false
-      }
-
-      if (this.data.role === 1) {
-        this.showBtnHire = true
-      } else {
-        this.showBtnHire = false
-      }
+      // console.log(this.data.role)
+      // if (this.data.role === 2) {
+      //   this.showBtnEdit = true
+      // } else {
+      //   this.showBtnEdit = false
+      // }
+      // if (this.data.role === 1) {
+      //   this.showBtnHire = true
+      // } else {
+      //   this.showBtnHire = false
+      // }
     }
   },
   computed: {

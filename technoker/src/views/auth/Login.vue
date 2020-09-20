@@ -71,7 +71,7 @@
                   >
                   <b-modal id="modalRegister" hide-footer hide-header>
                     <template>
-                      <strong>Select your role:</strong>
+                      <strong>SELECT YOUR ROLE :</strong>
                     </template>
                     <div class="d-block text-center">
                       <b-row>

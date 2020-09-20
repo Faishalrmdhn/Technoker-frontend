@@ -4,7 +4,7 @@ export default {
     page: 1,
     limit: 3,
     allUsers: [],
-    user: [],
+    user: {},
     pagination: {},
     totalData: 0,
     skills: [],
@@ -52,7 +52,6 @@ export default {
           .get(`http://127.0.0.1:4000/user/${payload}`)
           .then(res => {
             context.commit('setUserById', res)
-            console.log('ASEASDASDASDASD')
           })
           .catch(err => {
             console.log(err)
@@ -84,7 +83,46 @@ export default {
       })
     },
     postPortfolio(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post('http://127.0.0.1:4000/portofolio', payload)
+          .then(res => {
+            console.log(res)
+            resolve(res.data.msg)
+          })
+          .catch(err => {
+            reject(err.response)
+          })
+      })
+    },
+    postExperience(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post('http://127.0.0.1:4000/experience', payload)
+          .then(res => {
+            console.log(res)
+            resolve(res.data.msg)
+          })
+          .catch(err => {
+            reject(err.response)
+          })
+      })
+    },
+    patchUser(context, payload) {
       console.log(payload)
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(
+            `http://127.0.0.1:4000/user/${payload.user_id}`,
+            payload.FormData
+          )
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      })
     }
   },
   getters: {
