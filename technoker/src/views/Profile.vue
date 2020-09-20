@@ -48,6 +48,7 @@
                 </div>
               </div>
               <div class="contact text-muted text-left mt-5">
+<<<<<<< HEAD
                 <p>
                   <span>
                     <img src="../assets/img/mail.png" alt />
@@ -66,6 +67,11 @@
                   </span>
                   {{ data.user_github }}
                 </p>
+=======
+                <p>email : {{ data.user_email }}</p>
+                <p>Instagram : @{{ data.user_instagram }}</p>
+                <p>github : @{{ data.user_github }}</p>
+>>>>>>> b41eafb933ae0e61b2bf2e2e0f0d22433e76891d
               </div>
             </b-card>
           </b-col>
