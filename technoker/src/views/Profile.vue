@@ -8,10 +8,12 @@
             <b-card class="border-light">
               <b-avatar size="7rem" class="my-3">
                 <img
+                  v-if="data.user_image !== null"
                   :src="port + data.user_image"
                   style="width: 7rem"
                   class="mt-4"
                 />
+                <img v-if="data.user_image === null" src="../assets/img/default.png" alt />
               </b-avatar>
               <div class="text-left">
                 <b-card-title class="my-1">{{ data.user_name }}</b-card-title>
@@ -23,43 +25,38 @@
                   {{ data.user_location }}
                 </p>
                 <small class="text-muted">{{ data.user_job_type }}</small>
-                <b-card-text class="mt-2 text-muted">{{
+                <b-card-text class="mt-2 text-muted">
+                  {{
                   data.user_about
-                }}</b-card-text>
+                  }}
+                </b-card-text>
               </div>
               <div class="my-5">
                 <b-button
                   class="py-2 btn-hire-edit"
                   style="width: 100%"
-                  v-show="true"
+                  v-show="showBtnEdit"
                   @click="editPage"
-                  >Edit</b-button
-                >
+                >Edit</b-button>
 
                 <b-button
                   @click="redirectHire"
                   class="py-2 my-2 mb-2 btn-hire-edit"
-                  v-show="true"
+                  v-show="showBtnHire"
                   style="width: 100%"
-                  >Hire</b-button
-                >
+                >Hire</b-button>
 
                 <b-button
-                  class="py-3 btn-hire-edit"
+                  class="mt-2 btn-hire-edit"
                   style="width: 100%"
-                  v-show="true"
+                  v-show="showBtnEdit"
                   @click="getLogout"
-                  >Logout</b-button
-                >
+                >Logout</b-button>
               </div>
               <h4 class="text-left my-3">Skill</h4>
               <div>
                 <div class="skills-grid">
-                  <div
-                    class="skills"
-                    v-for="(value, index) in data.skills"
-                    :key="index"
-                  >
+                  <div class="skills" v-for="(value, index) in data.skills" :key="index">
                     <div class="skill">{{ value.skill_name }}</div>
                   </div>
                 </div>
@@ -94,27 +91,11 @@
                 content-class="mt-3 ml-0"
                 active-nav-item-class="font-weight-bold text-dark"
               >
-                <b-tab
-                  title="Portofolio"
-                  class="p-3"
-                  active
-                  @click="getPorto()"
-                >
+                <b-tab title="Portofolio" class="p-3" active @click="getPorto()">
                   <b-row>
-                    <b-col
-                      xl="4"
-                      cols="6"
-                      v-for="(value, index) in portfolio"
-                      :key="index"
-                    >
-                      <b-img
-                        fluid
-                        :src="portfolioImg + value.portofolio_image"
-                        alt="Image 1"
-                      ></b-img>
-                      <p class="text-center" style="font-size:15px">
-                        {{ value.portofolio_name }}
-                      </p>
+                    <b-col xl="4" cols="6" v-for="(value, index) in portfolio" :key="index">
+                      <b-img fluid :src="portfolioImg + value.portofolio_image" alt="Image 1"></b-img>
+                      <p class="text-center" style="font-size:15px">{{ value.portofolio_name }}</p>
                     </b-col>
                   </b-row>
                 </b-tab>
@@ -122,11 +103,7 @@
                 <b-tab title="Pengalaman Pekerjaan" class="p-3">
                   <b-row v-for="(value, index) in experience" :key="index">
                     <b-col cols="2">
-                      <b-img
-                        fluid
-                        :src="require('@/assets/tokped.jpg')"
-                        alt="Image 1"
-                      ></b-img>
+                      <b-img fluid :src="require('@/assets/tokped.jpg')" alt="Image 1"></b-img>
                     </b-col>
                     <b-col cols="10">
                       <p class="my-0">
@@ -156,7 +133,7 @@
 
 <script>
 import HeaderLogin from '@/components/HeaderLogin.vue'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Profile',
@@ -174,8 +151,12 @@ export default {
   created() {
     this.showButton()
   },
+  updated() {
+    this.getUserById()
+  },
   methods: {
     ...mapActions(['getUserById', 'logout']),
+    ...mapMutations(['setUserById']),
     editPage() {
       this.$router.push('/edit-profile-c')
     },
@@ -183,17 +164,17 @@ export default {
       this.$router.push('/hire')
     },
     showButton() {
-      // console.log(this.data.role)
-      // if (this.data.role === 2) {
-      //   this.showBtnEdit = true
-      // } else {
-      //   this.showBtnEdit = false
-      // }
-      // if (this.data.role === 1) {
-      //   this.showBtnHire = true
-      // } else {
-      //   this.showBtnHire = false
-      // }
+      if (this.role.role === 2) {
+        this.showBtnEdit = true
+      } else {
+        this.showBtnEdit = false
+      }
+      if (this.role.role === 1) {
+        this.showBtnHire = true
+      } else {
+        this.showBtnHire = false
+      }
+      console.log(this.role)
     },
     getLogout() {
       this.logout()
@@ -206,7 +187,8 @@ export default {
     ...mapGetters({
       data: 'user',
       portfolio: 'portfolio',
-      experience: 'experience'
+      experience: 'experience',
+      role: 'getUser'
     })
   }
 }
@@ -221,9 +203,16 @@ export default {
   height: auto;
   background-color: #e5e5ee;
 }
+
 .btn-hire-edit {
   background-color: #5e50a1;
+  border-color: #5e50a1;
 }
+.btn-hire-edit:hover {
+  background-color: #fbb017;
+  border-color: #fbb017;
+}
+
 .portofolio {
   display: flex;
   justify-content: space-between;

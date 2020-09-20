@@ -6,13 +6,15 @@ export default {
     token: localStorage.getItem('token') || null,
     user_id: null,
     portfolio: [],
-    experience: []
+    experience: [],
+    role: ''
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload
       state.token = payload.token
       state.user_id = payload.user_id
+      state.role = payload.role
     },
     delUser(state) {
       state.user = {}
@@ -25,7 +27,7 @@ export default {
         axios
           .post('http://127.0.0.1:4000/user/login', payload)
           .then(response => {
-            console.log(response)
+            // console.log(response)
             context.commit('setUser', response.data.data)
             localStorage.setItem('token', response.data.data.token)
             resolve(response.data)
@@ -191,6 +193,9 @@ export default {
     },
     getExperience(state) {
       return state.experience
+    },
+    getRole(state) {
+      return state.role
     }
   }
 }
