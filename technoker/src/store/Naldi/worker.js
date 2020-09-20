@@ -30,8 +30,6 @@ export default {
       state.user = payload.data.data[0]
       state.portfolio = payload.data.data[0].portofolio
       state.experience = payload.data.data[0].experience
-      console.log(payload.data.data[0].portofolio)
-      console.log(payload.data.data[0].experience)
     },
     setSort(state, payload) {
       state.sort = payload
