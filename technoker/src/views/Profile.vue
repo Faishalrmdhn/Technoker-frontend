@@ -7,11 +7,7 @@
           <b-col xl="4" cols="12" class="text-center mb-2">
             <b-card class="border-light">
               <b-avatar size="7rem" class="my-3">
-                <img
-                  :src="port + data.user_image"
-                  style="width: 7rem"
-                  class="mt-4"
-                />
+                <img :src="port + data.user_image" style="width: 7rem" class="mt-4" />
               </b-avatar>
               <div class="text-left">
                 <b-card-title class="my-1">{{ data.user_name }}</b-card-title>
@@ -23,9 +19,7 @@
                   {{ data.user_location }}
                 </p>
                 <small class="text-muted">{{ data.user_job_type }}</small>
-                <b-card-text class="mt-2 text-muted">
-                  {{ data.user_about }}
-                </b-card-text>
+                <b-card-text class="mt-2 text-muted">{{ data.user_about }}</b-card-text>
               </div>
               <div class="my-5">
                 <b-button
@@ -33,31 +27,26 @@
                   style="width: 100%"
                   v-show="true"
                   @click="editPage"
-                  >Edit</b-button
-                >
-                <b-button
-                  class="py-2 btn-hire-edit"
-                  style="width: 100%"
-                  v-show="true"
-                  @click="getLogout"
-                  >Logout</b-button
-                >
+                >Edit</b-button>
+
                 <b-button
                   @click="redirectHire"
                   class="py-2 my-2 mb-2 btn-hire-edit"
                   v-show="true"
                   style="width: 100%"
-                  >Hire</b-button
-                >
+                >Hire</b-button>
+
+                <b-button
+                  class="py-3 btn-hire-edit"
+                  style="width: 100%"
+                  v-show="true"
+                  @click="getLogout"
+                >Logout</b-button>
               </div>
               <h4 class="text-left my-3">Skill</h4>
               <div>
                 <div class="skills-grid">
-                  <div
-                    class="skills"
-                    v-for="(value, index) in data.skills"
-                    :key="index"
-                  >
+                  <div class="skills" v-for="(value, index) in data.skills" :key="index">
                     <div class="skill">{{ value.skill_name }}</div>
                   </div>
                 </div>
@@ -94,20 +83,9 @@
               >
                 <b-tab title="Portofolio" class="p-3" active>
                   <b-row>
-                    <b-col
-                      xl="4"
-                      cols="6"
-                      v-for="(value, index) in portfolio"
-                      :key="index"
-                    >
-                      <b-img
-                        fluid
-                        :src="portfolioImg + value.portofolio_image"
-                        alt="Image 1"
-                      ></b-img>
-                      <p class="text-center" style="font-size:15px">
-                        {{ value.portofolio_name }}
-                      </p>
+                    <b-col xl="4" cols="6" v-for="(value, index) in portfolio" :key="index">
+                      <b-img fluid :src="portfolioImg + value.portofolio_image" alt="Image 1"></b-img>
+                      <p class="text-center" style="font-size:15px">{{ value.portofolio_name }}</p>
                     </b-col>
                   </b-row>
                 </b-tab>
@@ -115,21 +93,17 @@
                 <b-tab title="Pengalaman Pekerjaan" class="p-3">
                   <b-row v-for="(value, index) in experience" :key="index">
                     <b-col cols="2">
-                      <b-img
-                        fluid
-                        :src="require('@/assets/tokped.jpg')"
-                        alt="Image 1"
-                      ></b-img>
+                      <b-img fluid :src="require('@/assets/tokped.jpg')" alt="Image 1"></b-img>
                     </b-col>
                     <b-col cols="10">
                       <p class="my-0">
                         <strong>{{ value.experience_position }}</strong>
                       </p>
                       <p class="my-0">{{ value.experience_company }}</p>
-                      <small class="text-muted"
-                        >{{ value.experience_date_in }} -
-                        {{ value.experience_date_out }}</small
-                      >
+                      <small class="text-muted">
+                        {{ value.experience_date_in }} -
+                        {{ value.experience_date_out }}
+                      </small>
                       <br />
                       <br />
                       <p>{{ value.experience_desc }}</p>
@@ -194,9 +168,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      data: 'getUser',
-      portfolio: 'getPortfolio',
-      experience: 'getExperience'
+      data: 'user',
+      portfolio: 'portfolio',
+      experience: 'experience'
     })
   }
 }

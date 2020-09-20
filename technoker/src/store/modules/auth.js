@@ -13,8 +13,6 @@ export default {
       state.user = payload
       state.token = payload.token
       state.user_id = payload.user_id
-      state.portfolio = payload.data.data[0].portofolio
-      state.experience = payload.data.data[0].experience
     },
     delUser(state) {
       state.user = {}
@@ -42,7 +40,7 @@ export default {
         axios
           .post('http://127.0.0.1:4000/recruiter/login', payload)
           .then(response => {
-            console.log(response)
+            // console.log(response)
             context.commit('setUser', response.data.data)
             localStorage.setItem('token', response.data.data.token)
             resolve(response.data)
@@ -57,7 +55,7 @@ export default {
         axios
           .post('http://127.0.0.1:4000/user/register', payload)
           .then(response => {
-            console.log(response.data)
+            // console.log(response.data)
             resolve(response.data)
           })
           .catch(error => {
