@@ -26,17 +26,17 @@
         <h2>Hubungi {{data.user_name}}</h2>
         <p>{{data.user_about}}</p>
         <div>
-          <b-form v-if="show">
+          <b-form @submit.prevent="hireCandidate">
             <b-form-group id="input-group-2" label="Tuliskan pesan:" label-for="textarea">
               <b-form-textarea
                 id="textarea"
-                v-model="text"
+                v-model="form.message_text"
                 placeholder="Jelaskan lebih detail"
                 rows="10"
                 max-rows="6"
               ></b-form-textarea>
             </b-form-group>
-            <b-button block class="mt-5 btn-hire">Hire</b-button>
+            <b-button block class="mt-5 btn-hire" type="submit">Hire</b-button>
           </b-form>
         </div>
       </div>
@@ -48,25 +48,46 @@
 <script>
 import Header from '../components/HeaderLogin'
 import Footer from '../components/Footer'
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   data() {
     return {
       form: {
-        email: '',
-        name: '',
-        checked: []
+        message_text: ''
       },
       show: true,
       port: 'http://127.0.0.1:4000/profile/'
     }
   },
   computed: {
-    ...mapGetters({ data: 'user' })
+    ...mapGetters({ data: 'user', recruit: 'recruiter' })
+  },
+  created() {
+    console.log(this.data)
   },
   components: {
     Header,
     Footer
+  },
+  methods: {
+    ...mapActions(['postMessage']),
+    hireCandidate() {
+      console.log(this.form)
+      const sendMail = {
+        user_id: this.data.user_id,
+        recruiter_id: this.recruit.recruiter_id,
+        role: this.data.role,
+        sender_id: this.recruit.recruiter_id,
+        message_text: this.form.message_text
+      }
+      console.log(sendMail)
+      this.postMessage(sendMail)
+        .then((result) => {
+          alert('Pesan berhasil dikirim')
+          this.$router.push('/home')
+        })
+        .catch((error) => error)
+    }
   }
 }
 </script>
