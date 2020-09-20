@@ -22,7 +22,7 @@
           <p style="color:grey;">{{ user.user_job_type }}</p>
         </div>
         <button class="btn1" @click="getEditUser" block>Simpan</button>
-        <button class="btn2" block @click="back">Batal</button>
+        <button class="btn2" block @click="back">Kembali</button>
       </div>
       <div class="hire-info">
         <div>
@@ -320,20 +320,18 @@ export default {
       }
       this.postSkill(setData)
         .then((res) => {
-          alert(res)
-          // this.$bvToast.toast(res, {
-          //   title: 'Status :',
-          //   autoHideDelay: 500,
-          //   appendToast: true
-          // })
+          this.$bvToast.toast(res, {
+            title: 'Status :',
+            autoHideDelay: 500,
+            appendToast: true
+          })
         })
         .catch((err) => {
-          alert(err)
-          // this.$bvToast.toast(err, {
-          //   title: 'Status :',
-          //   autoHideDelay: 500,
-          //   appendToast: true
-          // })
+          this.$bvToast.toast(err, {
+            title: 'Status :',
+            autoHideDelay: 500,
+            appendToast: true
+          })
         })
     },
     handleFile(event) {
@@ -405,14 +403,14 @@ export default {
       data.append('user_id', this.userId.user_id)
       this.postPortfolio(data)
         .then((res) => {
-          this.$bvToast.toast(res.data.msg, {
+          this.$bvToast.toast(res, {
             title: 'Status :',
             autoHideDelay: 500,
             appendToast: true
           })
         })
         .catch((err) => {
-          this.$bvToast.toast(err.data.msg, {
+          this.$bvToast.toast(err, {
             title: 'Status :',
             autoHideDelay: 500,
             appendToast: true
@@ -421,6 +419,7 @@ export default {
     },
     back() {
       this.$router.push('/profile')
+      this.getUserById()
     }
   }
 }

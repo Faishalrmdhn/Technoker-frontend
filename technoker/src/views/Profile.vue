@@ -25,21 +25,21 @@
                 <b-button
                   class="py-2 btn-hire-edit"
                   style="width: 100%"
-                  v-show="true"
+                  v-show="showBtnEdit"
                   @click="editPage"
                 >Edit</b-button>
 
                 <b-button
                   @click="redirectHire"
                   class="py-2 my-2 mb-2 btn-hire-edit"
-                  v-show="true"
+                  v-show="showBtnHire"
                   style="width: 100%"
                 >Hire</b-button>
 
                 <b-button
-                  class="py-3 btn-hire-edit"
+                  class="mt-2 btn-hire-edit"
                   style="width: 100%"
-                  v-show="true"
+                  v-show="showBtnEdit"
                   @click="getLogout"
                 >Logout</b-button>
               </div>
@@ -123,7 +123,7 @@
 
 <script>
 import HeaderLogin from '@/components/HeaderLogin.vue'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Profile',
@@ -141,8 +141,12 @@ export default {
   created() {
     this.showButton()
   },
+  updated() {
+    this.getUserById()
+  },
   methods: {
     ...mapActions(['getUserById', 'logout']),
+    ...mapMutations(['setUserById']),
     editPage() {
       this.$router.push('/edit-profile-c')
     },
@@ -150,17 +154,17 @@ export default {
       this.$router.push('/hire')
     },
     showButton() {
-      // console.log(this.data.role)
-      // if (this.data.role === 2) {
-      //   this.showBtnEdit = true
-      // } else {
-      //   this.showBtnEdit = false
-      // }
-      // if (this.data.role === 1) {
-      //   this.showBtnHire = true
-      // } else {
-      //   this.showBtnHire = false
-      // }
+      if (this.role.role === 2) {
+        this.showBtnEdit = true
+      } else {
+        this.showBtnEdit = false
+      }
+      if (this.role.role === 1) {
+        this.showBtnHire = true
+      } else {
+        this.showBtnHire = false
+      }
+      console.log(this.role)
     },
     getLogout() {
       this.logout()
@@ -170,7 +174,8 @@ export default {
     ...mapGetters({
       data: 'user',
       portfolio: 'portfolio',
-      experience: 'experience'
+      experience: 'experience',
+      role: 'getUser'
     })
   }
 }
@@ -185,9 +190,16 @@ export default {
   height: auto;
   background-color: #e5e5ee;
 }
+
 .btn-hire-edit {
   background-color: #5e50a1;
+  border-color: #5e50a1;
 }
+.btn-hire-edit:hover {
+  background-color: #fbb017;
+  border-color: #fbb017;
+}
+
 .portofolio {
   display: flex;
   justify-content: space-between;

@@ -30,6 +30,7 @@ export default {
       state.user = payload.data.data[0]
       state.portfolio = payload.data.data[0].portofolio
       state.experience = payload.data.data[0].experience
+      state.skills = payload.data.data[0].skills
     },
     setSort(state, payload) {
       state.sort = payload
