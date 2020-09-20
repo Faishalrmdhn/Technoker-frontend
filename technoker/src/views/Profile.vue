@@ -50,9 +50,9 @@
                 </div>
               </div>
               <div class="contact text-muted text-left mt-5">
-                <p>{{ data.user_email }}</p>
-                <p>{{ data.user_instagram }}</p>
-                <p>@{{ data.user_github }}</p>
+                <p>email : {{ data.user_email }}</p>
+                <p>Instagram : @{{ data.user_instagram }}</p>
+                <p>github : @{{ data.user_github }}</p>
               </div>
             </b-card>
           </b-col>
