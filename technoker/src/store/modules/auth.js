@@ -13,9 +13,6 @@ export default {
       state.user = payload
       state.token = payload.token
       state.user_id = payload.user_id
-      state.portfolio = payload.portofolio
-      state.experience = payload.experience
-      // console.log(payload)
     },
     delUser(state) {
       state.user = {}
@@ -178,20 +175,6 @@ export default {
           })
       })
     }
-    // patchDataUser(context, payload) {
-    //   return new Promise((resolve, reject) => {
-    //     axios
-    //       .patch(`http://127.0.0.1:4000/user/${payload}`, payload)
-    //       .then(response => {
-    //         console.log(payload)
-    //         resolve(response.data)
-    //       })
-    //       .catch(error => {
-    //         reject(error.response)
-    //         console.log('error di auth')
-    //       })
-    //   })
-    // },
   },
   getters: {
     isLogin(state) {

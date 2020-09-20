@@ -21,7 +21,8 @@ export default new Vuex.Store({
         'Auth.user',
         'worker.user',
         'worker.portfolio',
-        'worker.experience'
+        'worker.experience',
+        'worker.skill'
       ],
       storage: window.sessionStorage
     })
