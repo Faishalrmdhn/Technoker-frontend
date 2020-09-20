@@ -54,7 +54,7 @@
                 max-rows="6"
               ></b-form-textarea>
             </b-form-group>
-            <b-form-group id="input-group-1" label="Email" label-for="input-1">
+            <!-- <b-form-group id="input-group-1" label="Email" label-for="input-1">
               <b-form-input
                 id="input-1"
                 v-model="form.recruiter_email"
@@ -62,7 +62,7 @@
                 required
                 placeholder="Masukkan email"
               ></b-form-input>
-            </b-form-group>
+            </b-form-group>-->
             <b-form-group id="input-group-2" label="Instagram" label-for="input-2">
               <b-form-input
                 id="input-2"
@@ -109,7 +109,6 @@ export default {
         recruiter_field: '',
         recruiter_location: '',
         recruiter_about: '',
-        recruiter_email: '',
         recruiter_instagram: '',
         recruiter_phone: '',
         recruiter_linkedin: ''

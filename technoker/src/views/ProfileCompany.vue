@@ -10,28 +10,32 @@
           <div class="white text-center mx-auto" style="padding-bottom: -100px">
             <div class="mx-auto pb-3" style="position: relative; top: -110px; width: 50%">
               <b-avatar size="11rem" class="my-3">
-                <img src="@/assets/opinion3.jpg" style="width: 11rem" class="mt-4" />
+                <b-img
+                  center
+                  fluid
+                  :src="port + recruiter.recruiter_profile_image"
+                  alt="Image 1"
+                  class="mt-4"
+                ></b-img>
               </b-avatar>
               <div>
                 <h3 class="my-1">{{recruiter.recruiter_company}}</h3>
-                <p>{{recruiter.recruiter_position}}</p>
+                <p>{{recruiter.recruiter_field}}</p>
                 <p class="mt-3 text-muted">{{recruiter.recruiter_location}}</p>
-                <b-card-text
-                  class="mt-2 text-muted"
-                >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus!</b-card-text>
+                <b-card-text class="mt-2 text-muted">{{recruiter.recruiter_about}}</b-card-text>
               </div>
               <b-button
                 class="py-2 my-4 btn-hire-edit"
                 style="width: 50%; background-color: #5e50a1"
+                @click="editDataCompany()"
               >Edit</b-button>
               <div
                 class="text-muted text-left mt-3 mx-auto"
-                style="width: 30%; margin-bottom: -100px"
+                style="width: 40%; margin-bottom: -100px"
               >
-                <p>Louistommo@gmail.com</p>
-                <p>@louis91</p>
-                <p>@louistommo</p>
-                <p>@louistommo91</p>
+                <p>Email : {{recruiter.recruiter_email}}</p>
+                <p>Instagram : {{recruiter.recruiter_instagram}}</p>
+                <p>LinkedIn : {{recruiter.recruiter_linkedin}}</p>
               </div>
             </div>
             <b-button
@@ -54,18 +58,25 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'ProfileCompany',
+  data() {
+    return {
+      port: 'http://127.0.0.1:4000/profile/'
+    }
+  },
   components: {
     HeaderLogin,
     Footer
   },
-  created() {},
+  created() {
+    this.getRecruiterById(this.recruiter.recruiter_id)
+  },
   computed: {
     ...mapGetters(['recruiter'])
   },
   methods: {
     ...mapActions(['getRecruiterById']),
     ...mapActions({ handleLogout: 'logout' }),
-    editDataCompany(data) {
+    editDataCompany() {
       this.$router.push('/edit-profile-r')
     },
     logout() {

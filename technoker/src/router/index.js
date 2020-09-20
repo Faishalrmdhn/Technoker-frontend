@@ -10,10 +10,10 @@ import ConfirmPass from '../views/auth/Confirm-Password.vue'
 import Hire from '../views/Hire.vue'
 import EditProfileC from '../views/Edit-Profile-C.vue'
 import EditProfileR from '../views/Edit-Profile-Recruiter.vue'
-import ProfileCandidate from '../views/ProfileCandidate.vue'
 import ProfileCompany from '@/views/ProfileCompany.vue'
-import Profile from '@/views/Profile.vue'
 import Notification from '@/views/Notification.vue'
+import Profile from '../views/Profile.vue'
+import Chat from '../views/Chat.vue'
 import store from '../store/index'
 
 Vue.use(VueRouter)
@@ -79,12 +79,6 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/profile-candidate',
-    name: 'ProfileCandidate',
-    component: ProfileCandidate,
-    meta: { requiresAuth: true }
-  },
-  {
     path: '/profile-company',
     name: 'ProfileCompany',
     component: ProfileCompany,
@@ -100,6 +94,12 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/chat',
+    name: 'Chat',
+    component: Chat,
     meta: { requiresAuth: true }
   }
 ]
