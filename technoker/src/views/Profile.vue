@@ -36,8 +36,15 @@
                   >Edit</b-button
                 >
                 <b-button
-                  @click="redirectHire"
                   class="py-2 btn-hire-edit"
+                  style="width: 100%"
+                  v-show="true"
+                  @click="getLogout"
+                  >Logout</b-button
+                >
+                <b-button
+                  @click="redirectHire"
+                  class="py-2 my-2 mb-2 btn-hire-edit"
                   v-show="true"
                   style="width: 100%"
                   >Hire</b-button
@@ -161,7 +168,7 @@ export default {
     this.showButton()
   },
   methods: {
-    ...mapActions(['getUserById']),
+    ...mapActions(['getUserById', 'logout']),
     editPage() {
       this.$router.push('/edit-profile-c')
     },
@@ -180,13 +187,16 @@ export default {
       // } else {
       //   this.showBtnHire = false
       // }
+    },
+    getLogout() {
+      this.logout()
     }
   },
   computed: {
     ...mapGetters({
       data: 'getUser',
-      portfolio: 'portfolio',
-      experience: 'experience'
+      portfolio: 'getPortfolio',
+      experience: 'getExperience'
     })
   }
 }

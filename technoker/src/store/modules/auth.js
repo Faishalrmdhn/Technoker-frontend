@@ -4,13 +4,17 @@ export default {
   state: {
     user: {},
     token: localStorage.getItem('token') || null,
-    user_id: null
+    user_id: null,
+    portfolio: [],
+    experience: []
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload
       state.token = payload.token
       state.user_id = payload.user_id
+      state.portfolio = payload.data.data[0].portofolio
+      state.experience = payload.data.data[0].experience
     },
     delUser(state) {
       state.user = {}
@@ -173,20 +177,6 @@ export default {
           })
       })
     }
-    // patchDataUser(context, payload) {
-    //   return new Promise((resolve, reject) => {
-    //     axios
-    //       .patch(`http://127.0.0.1:4000/user/${payload}`, payload)
-    //       .then(response => {
-    //         console.log(payload)
-    //         resolve(response.data)
-    //       })
-    //       .catch(error => {
-    //         reject(error.response)
-    //         console.log('error di auth')
-    //       })
-    //   })
-    // },
   },
   getters: {
     isLogin(state) {
@@ -197,6 +187,12 @@ export default {
     },
     getUserId(state) {
       return state.user_id
+    },
+    getPortfolio(state) {
+      return state.portfolio
+    },
+    getExperience(state) {
+      return state.experience
     }
   }
 }
