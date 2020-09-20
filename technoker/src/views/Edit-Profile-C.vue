@@ -8,7 +8,8 @@
     <div class="page-container">
       <div class="profile-info">
         <div class="image">
-          <img class="image" :src="port + user.user_image" alt />
+          <img v-if="user.user_image !== null" class="image" :src="port + user.user_image" alt />
+          <img v-if="user.user_image === null" class="image" src="../assets/img/default.png" alt />
         </div>
         <div style="padding:0 30px" class="mt-5">
           <h4>{{ user.user_name }}</h4>
@@ -405,14 +406,14 @@ export default {
         .then((res) => {
           this.$bvToast.toast(res, {
             title: 'Status :',
-            autoHideDelay: 500,
+            autoHideDelay: 1000,
             appendToast: true
           })
         })
         .catch((err) => {
           this.$bvToast.toast(err, {
             title: 'Status :',
-            autoHideDelay: 500,
+            autoHideDelay: 1000,
             appendToast: true
           })
         })

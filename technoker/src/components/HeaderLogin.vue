@@ -4,15 +4,21 @@
       <div>
         <img src="../assets/img/logo.png" alt />
       </div>
+      <!-- <div>{{ user }}</div> -->
       <div class="button-after-login">
-        <img
-          style="width:25px;height:25px;"
-          src="../assets/img/notif.png"
-          alt
-        />
+        <img style="width:25px;height:25px;" src="../assets/img/notif.png" alt />
         <img style="width:25px;height:25px;" src="../assets/img/mail.png" alt />
-        <div class="user-img">
-          <img class="user-img" :src="port + user.user_image" alt="" />
+        <div v-if="user.role === 1" class="user-img" @click="homePage()">
+          <!-- <route-link to="/home"> -->
+          <img v-if="user.user_image !== null" class="user-img" :src="port + user.user_image" alt />
+          <img v-if="user.user_image === null" class="user-img" src="../assets/img/default.png" alt />
+          <!-- </route-link> -->
+        </div>
+        <div v-if="user.role === 2 " class="user-img" @click="profilePage()">
+          <!-- <route-link to="/profile"> -->
+          <img v-if="user.user_image !== null" class="user-img" :src="port + user.user_image" alt />
+          <img v-if="user.user_image === null" class="user-img" src="../assets/img/default.png" alt />
+          <!-- </route-link> -->
         </div>
       </div>
     </b-container>
@@ -30,7 +36,14 @@ export default {
   computed: {
     ...mapGetters({ user: 'getUser' })
   },
-  methods: {}
+  methods: {
+    homePage() {
+      this.$router.push('/home')
+    },
+    profilePage() {
+      this.$router.push('/profile')
+    }
+  }
 }
 </script>
 
@@ -50,7 +63,9 @@ export default {
 .user-img {
   width: 25px;
   height: 25px;
+  margin-top: -1.5px;
   border-radius: 50%;
+  cursor: pointer;
   /* background-color: #5e50a1; */
 }
 </style>

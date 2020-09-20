@@ -7,7 +7,13 @@
           <b-col xl="4" cols="12" class="text-center mb-2">
             <b-card class="border-light">
               <b-avatar size="7rem" class="my-3">
-                <img :src="port + data.user_image" style="width: 7rem" class="mt-4" />
+                <img
+                  v-if="data.user_image !== null"
+                  :src="port + data.user_image"
+                  style="width: 7rem"
+                  class="mt-4"
+                />
+                <img v-if="data.user_image === null" src="../assets/img/default.png" alt />
               </b-avatar>
               <div class="text-left">
                 <b-card-title class="my-1">{{ data.user_name }}</b-card-title>
@@ -19,7 +25,11 @@
                   {{ data.user_location }}
                 </p>
                 <small class="text-muted">{{ data.user_job_type }}</small>
-                <b-card-text class="mt-2 text-muted">{{ data.user_about }}</b-card-text>
+                <b-card-text class="mt-2 text-muted">
+                  {{
+                  data.user_about
+                  }}
+                </b-card-text>
               </div>
               <div class="my-5">
                 <b-button
@@ -81,7 +91,7 @@
                 content-class="mt-3 ml-0"
                 active-nav-item-class="font-weight-bold text-dark"
               >
-                <b-tab title="Portofolio" class="p-3" active>
+                <b-tab title="Portofolio" class="p-3" active @click="getPorto()">
                   <b-row>
                     <b-col xl="4" cols="6" v-for="(value, index) in portfolio" :key="index">
                       <b-img fluid :src="portfolioImg + value.portofolio_image" alt="Image 1"></b-img>
@@ -168,6 +178,9 @@ export default {
     },
     getLogout() {
       this.logout()
+    },
+    getPorto() {
+      this.getUserById()
     }
   },
   computed: {
