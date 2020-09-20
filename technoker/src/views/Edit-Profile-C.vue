@@ -348,7 +348,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ user: 'user' })
+    ...mapGetters({ user: 'getUser' })
   },
   created() {
     this.userId = {
