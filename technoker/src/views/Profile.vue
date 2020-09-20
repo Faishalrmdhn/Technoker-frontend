@@ -23,7 +23,12 @@
                   v-show="true"
                   @click="editPage"
                 >Edit</b-button>
-                <b-button class="py-2 btn-hire-edit" v-show="true" style="width: 100%">Hire</b-button>
+                <b-button
+                  @click="redirectHire"
+                  class="py-2 btn-hire-edit"
+                  v-show="true"
+                  style="width: 100%"
+                >Hire</b-button>
               </div>
               <h4 class="text-left my-3">Skill</h4>
               <div>
@@ -142,6 +147,9 @@ export default {
     editPage() {
       this.$router.push('/edit-profile-c')
     },
+    redirectHire() {
+      this.$router.push('/hire')
+    },
     showButton() {
       console.log(this.data.role)
       if (this.data.role === 2) {
@@ -195,5 +203,6 @@ export default {
   padding: 3px 0;
   color: #ffff;
   margin: 0 5px 5px 0px;
+  font-size: 12px;
 }
 </style>

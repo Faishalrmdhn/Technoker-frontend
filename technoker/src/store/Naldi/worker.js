@@ -25,7 +25,6 @@ export default {
       state.search = payload
     },
     setUserById(state, payload) {
-      console.log('DDDDDDDDDDD')
       state.user = payload.data.data[0]
     },
     setSort(state, payload) {
@@ -40,7 +39,6 @@ export default {
             `http://127.0.0.1:4000/user?orderBy=${context.state.sort}&limit=${context.state.limit}&page=${context.state.page}`
           )
           .then(res => {
-            console.log(res.data.data)
             context.commit('setAllUser', res)
           })
           .catch(err => {
@@ -71,6 +69,21 @@ export default {
             console.log(err)
           })
       })
+    },
+    postSkill(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post('http://127.0.0.1:4000/skill', payload)
+          .then(res => {
+            resolve(res.data.msg)
+          })
+          .catch(err => {
+            reject(err.response)
+          })
+      })
+    },
+    postPortfolio(context, payload) {
+      console.log(payload)
     }
   },
   getters: {

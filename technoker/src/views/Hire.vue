@@ -6,57 +6,33 @@
     />
     <div class="page-container">
       <div class="profile-info">
-        <div class="image"></div>
-        <div style="padding:0 30px">
-          <h4>Muhammad Naldi</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, adipisci nemo.</p>
-          <p>Medan, North Sumatera</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quo voluptatum assumenda deserunt illo molestiae laboriosam minus incidunt. Maiores, voluptas.</p>
+        <div class="image">
+          <img class="image" :src="port + data.user_image" alt />
+        </div>
+        <div style="padding:0 30px" class="mt-5">
+          <h4>{{data.user_name}}</h4>
+          <p>{{data.user_job_desk}}</p>
+          <p>{{data.user_location}}</p>
+          <p>{{data.user_about}}</p>
           <h4>Skill</h4>
-          <div class="skills">
-            <div class="skill">Javascript</div>
-            <div class="skill">Vue</div>
-            <div class="skill">Express</div>
-            <div class="skill">Javascript</div>
-            <div class="skill">Javascript</div>
-            <div class="skill">Javascript</div>
+          <div class="skills-grid">
+            <div class="skills" v-for="(value, index) in data.skills" :key="index">
+              <div class="skill">{{value.skill_name}}</div>
+            </div>
           </div>
         </div>
       </div>
       <div class="hire-info">
-        <h2>Hubungi Muhammad Naldi</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque ipsum, doloremque dignissimos voluptatum quisquam quis!</p>
+        <h2>Hubungi {{data.user_name}}</h2>
+        <p>{{data.user_about}}</p>
         <div>
-          <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-            <b-form-group id="input-group-3" label="Tujuan tentang pesan ini:" label-for="input-3">
-              <b-form-select id="input-3" :options="foods" required></b-form-select>
-            </b-form-group>
-            <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
-              <b-form-input id="input-2" v-model="form.name" required placeholder="Enter name"></b-form-input>
-            </b-form-group>
-            <b-form-group id="input-group-1" label="Email address:" label-for="input-1">
-              <b-form-input
-                id="input-1"
-                v-model="form.email"
-                type="email"
-                required
-                placeholder="Enter email"
-              ></b-form-input>
-            </b-form-group>
-            <b-form-group id="input-group-2" label="Phone Number:" label-for="input-2">
-              <b-form-input
-                id="input-2"
-                v-model="form.name"
-                required
-                placeholder="Enter phone number"
-              ></b-form-input>
-            </b-form-group>
-            <b-form-group id="input-group-2" label="Deskripsi:" label-for="textarea">
+          <b-form v-if="show">
+            <b-form-group id="input-group-2" label="Tuliskan pesan:" label-for="textarea">
               <b-form-textarea
                 id="textarea"
                 v-model="text"
                 placeholder="Jelaskan lebih detail"
-                rows="3"
+                rows="10"
                 max-rows="6"
               ></b-form-textarea>
             </b-form-group>
@@ -72,6 +48,7 @@
 <script>
 import Header from '../components/HeaderLogin'
 import Footer from '../components/Footer'
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -87,8 +64,12 @@ export default {
         'Tomatoes',
         'Corn'
       ],
-      show: true
+      show: true,
+      port: 'http://127.0.0.1:4000/profile/'
     }
+  },
+  computed: {
+    ...mapGetters({ data: 'user' })
   },
   components: {
     Header,
@@ -126,7 +107,7 @@ export default {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background: black;
+  /* background: black; */
   margin: 30px auto;
 }
 
@@ -136,7 +117,7 @@ export default {
   border-radius: 8px;
 }
 /* Skills */
-.skills {
+.skills-grid {
   margin: 20px 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -150,7 +131,7 @@ export default {
   border-radius: 4px;
   text-align: center;
   padding: 3px 15px;
-  color: #fbb017;
+  color: white;
   margin: 0 5px 5px 0px;
 }
 
