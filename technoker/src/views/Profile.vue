@@ -87,71 +87,20 @@
               >
                 <b-tab title="Portofolio" class="p-3" active>
                   <b-row>
-<<<<<<< HEAD
-                    <b-col xl="4" cols="6">
+                    <b-col
+                      xl="4"
+                      cols="6"
+                      v-for="(value, index) in portfolio"
+                      :key="index"
+                    >
                       <b-img
                         fluid
-                        :src="require('@/assets/porto1.jpg')"
+                        :src="portfolioImg + value.portofolio_image"
                         alt="Image 1"
                       ></b-img>
                       <p class="text-center" style="font-size:15px">
-                        Reminder App
+                        {{ value.portofolio_name }}
                       </p>
-                    </b-col>
-                    <b-col xl="4" cols="6">
-                      <b-img
-                        fluid
-                        :src="require('@/assets/porto2.png')"
-                        alt="Image 1"
-                      ></b-img>
-                      <p class="text-center" style="font-size:15px">
-                        Social Media App
-                      </p>
-                    </b-col>
-                    <b-col xl="4" cols="6">
-                      <b-img
-                        fluid
-                        :src="require('@/assets/porto3.jpg')"
-                        alt="Image 1"
-                      ></b-img>
-                      <p class="text-center" style="font-size:15px">
-                        Project Management App
-                      </p>
-                    </b-col>
-                    <b-col xl="4" cols="6">
-                      <b-img
-                        fluid
-                        :src="require('@/assets/porto4.jpg')"
-                        alt="Image 1"
-                      ></b-img>
-                      <p class="text-center" style="font-size:15px">
-                        Reminder App
-                      </p>
-                    </b-col>
-                    <b-col xl="4" cols="6">
-                      <b-img
-                        fluid
-                        :src="require('@/assets/porto5.png')"
-                        alt="Image 1"
-                      ></b-img>
-                      <p class="text-center" style="font-size:15px">
-                        Social Media App
-                      </p>
-                    </b-col>
-                    <b-col xl="4" cols="6">
-                      <b-img
-                        fluid
-                        :src="require('@/assets/porto6.png')"
-                        alt="Image 1"
-                      ></b-img>
-                      <p class="text-center" style="font-size:15px">
-                        Project Management App
-                      </p>
-=======
-                    <b-col xl="4" cols="6" v-for="(value, index) in portfolio" :key="index">
-                      <b-img fluid :src="portfolioImg + value.portofolio_image" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">{{value.portofolio_name}}</p>
->>>>>>> de940911846ae5a467e8437382809caf06a2ec16
                     </b-col>
                   </b-row>
                 </b-tab>
@@ -167,51 +116,18 @@
                     </b-col>
                     <b-col cols="10">
                       <p class="my-0">
-                        <strong>{{value.experience_position}}</strong>
+                        <strong>{{ value.experience_position }}</strong>
                       </p>
-<<<<<<< HEAD
-                      <p class="my-0">Tokopedia</p>
+                      <p class="my-0">{{ value.experience_company }}</p>
                       <small class="text-muted"
-                        >July 2019 - January 2020 6 months</small
+                        >{{ value.experience_date_in }} -
+                        {{ value.experience_date_out }}</small
                       >
-=======
-                      <p class="my-0">{{value.experience_company}}</p>
-                      <small
-                        class="text-muted"
-                      >{{value.experience_date_in}} - {{value.experience_date_out}}</small>
->>>>>>> de940911846ae5a467e8437382809caf06a2ec16
                       <br />
                       <br />
-                      <p>{{value.experience_desc}}</p>
+                      <p>{{ value.experience_desc }}</p>
                       <hr />
                     </b-col>
-<<<<<<< HEAD
-                    <b-col cols="2">
-                      <b-img
-                        fluid
-                        :src="require('@/assets/tokped.jpg')"
-                        alt="Image 1"
-                      ></b-img>
-                    </b-col>
-                    <b-col cols="10">
-                      <p class="my-0">
-                        <strong>Enginerr</strong>
-                      </p>
-                      <p class="my-0">Tokopedia</p>
-                      <small class="text-muted"
-                        >July 2019 - January 2020 6 months</small
-                      >
-                      <br />
-                      <br />
-                      <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Reprehenderit quos qui nam, corrupti adipisci
-                        facere veritatis amet possimus explicabo magnam optio
-                        distinctio, officiis minus blanditiis.
-                      </p>
-                    </b-col>
-=======
->>>>>>> de940911846ae5a467e8437382809caf06a2ec16
                   </b-row>
                 </b-tab>
               </b-tabs>
@@ -268,7 +184,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      data: 'user',
+      data: 'getUser',
       portfolio: 'portfolio',
       experience: 'experience'
     })

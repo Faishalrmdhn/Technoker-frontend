@@ -371,18 +371,20 @@ export default {
       }
       this.postSkill(setData)
         .then(res => {
-          this.$bvToast.toast(res.data.msg, {
-            title: 'Status :',
-            autoHideDelay: 500,
-            appendToast: true
-          })
+          alert(res)
+          // this.$bvToast.toast(res, {
+          //   title: 'Status :',
+          //   autoHideDelay: 500,
+          //   appendToast: true
+          // })
         })
         .catch(err => {
-          this.$bvToast.toast(err.data.msg, {
-            title: 'Status :',
-            autoHideDelay: 500,
-            appendToast: true
-          })
+          alert(err)
+          // this.$bvToast.toast(err, {
+          //   title: 'Status :',
+          //   autoHideDelay: 500,
+          //   appendToast: true
+          // })
         })
     },
     handleFile(event) {
@@ -403,14 +405,14 @@ export default {
       console.log(this.formUser)
       this.patchUser(setData)
         .then(res => {
-          this.$bvToast.toast('Data Successfully Updated', {
+          this.$bvToast.toast(res, {
             title: 'Status :',
             autoHideDelay: 1000,
             appendToast: true
           })
         })
         .catch(err => {
-          this.$bvToast.toast(err.data.msg, {
+          this.$bvToast.toast(err, {
             title: 'Status :',
             autoHideDelay: 1000,
             appendToast: true
@@ -428,14 +430,14 @@ export default {
       }
       this.postExperience(setData)
         .then(res => {
-          this.$bvToast.toast(res.data.msg, {
+          this.$bvToast.toast(res, {
             title: 'Status :',
             autoHideDelay: 500,
             appendToast: true
           })
         })
         .catch(err => {
-          this.$bvToast.toast(err.data.msg, {
+          this.$bvToast.toast(err, {
             title: 'Status :',
             autoHideDelay: 500,
             appendToast: true

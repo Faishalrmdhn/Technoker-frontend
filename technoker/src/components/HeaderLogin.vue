@@ -11,7 +11,9 @@
           alt
         />
         <img style="width:25px;height:25px;" src="../assets/img/mail.png" alt />
-        <div class="user-img"><img :src="port + user.user_image" alt="" /></div>
+        <div class="user-img">
+          <img class="user-img" :src="port + user.user_image" alt="" />
+        </div>
       </div>
     </b-container>
   </div>
@@ -49,6 +51,6 @@ export default {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background-color: #5e50a1;
+  /* background-color: #5e50a1; */
 }
 </style>
