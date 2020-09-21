@@ -8,16 +8,27 @@
     <div class="page-container">
       <div class="profile-info">
         <div class="image">
-          <img class="image" :src="port + recruiter.recruiter_profile_image" alt />
+          <img
+            v-if="recruiter.recruiter_profile_image !== null"
+            class="image"
+            :src="port + recruiter.recruiter_profile_image"
+            alt
+          />
+          <img
+            class="image"
+            v-if="recruiter.recruiter_profile_image === null"
+            src="../assets/img/default.png"
+            alt
+          />
         </div>
-        <div style="padding:0 30px">
+        <div class="name-box">
           <h4>{{recruiter.recruiter_company}}</h4>
           <p>{{recruiter.recruiter_position}}</p>
           <p>{{recruiter.recruiter_location}}</p>
         </div>
         <!-- <b-button block class="mt-4 btn-save">Simpan</b-button> -->
         <router-link to="/profile-company">
-          <b-button block class="mt-3 btn-cancel">Batal</b-button>
+          <b-button block class="mt-5 btn-cancel">Batal</b-button>
         </router-link>
       </div>
       <div class="hire-info">
@@ -166,6 +177,11 @@ export default {
 </script>
 
 <style scoped>
+.name-box {
+  padding: 0 30px;
+  position: relative;
+  top: 20px;
+}
 .btn-hire {
   background-color: #fbb017;
   border-color: #fbb017;
@@ -189,9 +205,9 @@ export default {
   color: #111;
 }
 .btn-cancel {
-  background-color: white;
+  background-color: #5e50a1;
   border-color: #5e50a1;
-  color: #5e50a1;
+  color: WHITE;
   margin: 0 20px;
   width: 357px;
   height: 50px;

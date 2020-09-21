@@ -2,11 +2,11 @@
   <div style="width: 100%">
     <b-container class="nav-grid py-2">
       <div>
-        <img src="../assets/img/logo.png" alt />
+        <img src="../assets/img/technoker.png" style="width:100px; height: 40px" alt />
       </div>
       <!-- <div>{{ user }}</div> -->
       <div class="button-after-login">
-        <router-link style="cursor:pointer" to="/notification">
+        <router-link style="cursor:pointer" to="/chat">
           <img style="width:25px;height:25px;" src="../assets/img/notif.png" alt />
         </router-link>
         <router-link style="cursor:pointer" to="/chat">

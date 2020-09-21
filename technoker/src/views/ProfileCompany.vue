@@ -4,9 +4,7 @@
     <div style="background-color: #e5e5e5">
       <b-jumbotron class="mb-0">
         <b-container>
-          <div class="purple" style="position: relative;">
-            <h5 style="position: absolute; bottom: 0; right: 0" class="mr-3 text-white">Ubah Latar</h5>
-          </div>
+          <div class="purple" style="position: relative;"></div>
           <div class="white text-center mx-auto" style="padding-bottom: -100px">
             <div class="mx-auto pb-3" style="position: relative; top: -110px; width: 50%">
               <b-avatar size="11rem" class="my-3">
@@ -18,13 +16,14 @@
                   alt="Image 1"
                   class="mt-4"
                 ></b-img>
-                <b-img
+                <img
                   center
+                  class="user-img mt-4"
                   v-if="recruiter.recruiter_profile_image === null"
                   fluid
                   src="../assets/img/default.png"
-                  class="mt-4"
-                ></b-img>
+                  alt="Image Default"
+                />
               </b-avatar>
               <div>
                 <h3 class="my-1">{{recruiter.recruiter_company}}</h3>
@@ -124,5 +123,17 @@ export default {
   background-color: #ffff;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
+}
+
+.user-img {
+  width: 100%;
+
+  position: relative;
+  top: -11px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.user-img:hover {
+  cursor: pointer;
 }
 </style>

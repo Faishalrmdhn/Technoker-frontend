@@ -1,16 +1,14 @@
 <template>
   <b-container class="nav-grid py-4">
     <div>
-      <img src="../assets/img/logo.png" alt />
+      <img src="../assets/img/technoker.png" style="width:100px; height: 40px" alt />
     </div>
     <div class="button-login-register text-right">
       <router-link to="/login">
         <b-button class="login-btn mx-4">Login</b-button>
       </router-link>
 
-      <b-button class="register-btn" @click="$bvModal.show('modalRegister')"
-        >Register</b-button
-      >
+      <b-button class="register-btn" @click="$bvModal.show('modalRegister')">Register</b-button>
       <b-modal id="modalRegister" hide-footer hide-header>
         <template>
           <strong>SELECT YOUR ROLE :</strong>
@@ -24,9 +22,8 @@
                   class="mt-3"
                   block
                   @click="registerCandidatePage()"
-                  >Candidate</b-button
-                ></router-link
-              >
+                >Candidate</b-button>
+              </router-link>
             </b-col>
             <b-col @click="$bvModal.hide('modalRegister')">
               <router-link to="/register-recruiter">
@@ -36,9 +33,8 @@
                   class="mt-3"
                   block
                   @click="registerRecruiterPage()"
-                  >Recruiter</b-button
-                ></router-link
-              >
+                >Recruiter</b-button>
+              </router-link>
             </b-col>
           </b-row>
         </div>

@@ -12,7 +12,7 @@
     <b-container>
       <form @submit.prevent="onSearch" class="form pt-3 my-5">
         <div class="search-name">
-          <b-form-input id="input-1" v-model="search" required placeholder="Search for any skill"></b-form-input>
+          <b-form-input id="input-1" v-model="search" placeholder="Search name"></b-form-input>
         </div>
         <div class="img-search">
           <img src="../assets/img/search.png" alt />
