@@ -20,12 +20,9 @@
           <b-col>
             <div class="text-left p-3">
               <h3>
-                <strong>Halo, Pewpeople</strong>
+                <strong>Halo, Technokerian!</strong>
               </h3>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio,
-                tempore.
-              </p>
+              <p>Get Your Job More Easier &#38; Quicker!</p>
               <b-form @submit.prevent="onSubmit" style="color:grey;">
                 <b-form-group label="Nama">
                   <b-input
