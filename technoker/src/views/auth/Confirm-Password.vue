@@ -79,7 +79,7 @@ export default {
       const role = this.urlParams.get('role')
       const keys = this.urlParams.get('keys')
       this.form.user_key = keys
-      if (role === '1') {
+      if (role === '2') {
         this.updatePasswordUser(this.form)
           .then(result => {
             this.onSuccess()
@@ -91,7 +91,12 @@ export default {
             }, 8000)
           })
       } else {
-        this.updatePasswordRecruiter(this.form)
+        const recData = {
+          recruiter_key: keys,
+          recruiter_password: this.form.user_password,
+          recruiter_password_confirmation: this.form.user_confirm_password
+        }
+        this.updatePasswordRecruiter(recData)
           .then(result => {
             this.onSuccess()
           }).catch(error => {
