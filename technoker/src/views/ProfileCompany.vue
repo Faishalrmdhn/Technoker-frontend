@@ -12,7 +12,7 @@
               <b-avatar size="11rem" class="my-3">
                 <b-img
                   center
-                  v-if="recruiter.user_image !== null"
+                  v-if="recruiter.recruiter_profile_image !== null"
                   fluid
                   :src="port + recruiter.recruiter_profile_image"
                   alt="Image 1"
@@ -20,7 +20,7 @@
                 ></b-img>
                 <b-img
                   center
-                  v-if="user.user_image === null"
+                  v-if="recruiter.recruiter_profile_image === null"
                   fluid
                   src="../assets/img/default.png"
                   alt="Image 1"
@@ -34,10 +34,18 @@
                 <b-card-text class="mt-2 text-muted">{{recruiter.recruiter_about}}</b-card-text>
               </div>
               <b-button
-                class="py-2 my-4 btn-hire-edit"
+                class="py-2 my-3 btn-hire-edit"
                 style="width: 50%; background-color: #5e50a1"
                 @click="editDataCompany()"
               >Edit</b-button>
+              <br />
+              <router-link to="home">
+                <b-button
+                  class="py-2 btn-hire-edit"
+                  style="width: 50%; background-color: #5e50a1"
+                >Back</b-button>
+              </router-link>
+
               <div
                 class="text-muted text-left mt-3 mx-auto"
                 style="width: 40%; margin-bottom: -100px"
