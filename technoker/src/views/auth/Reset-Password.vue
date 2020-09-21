@@ -79,12 +79,12 @@ export default {
         .then(result => {
           this.$bvToast.toast('Key telah dikirim ke alamat email anda', {
             title: 'Status :',
-            autoHideDelay: 2000,
+            autoHideDelay: 6000,
             appendToast: true
           })
-          setTimeout(() => {
-            this.$router.push('/confirm-password')
-          }, 2000)
+          // setTimeout(() => {
+          //   this.$router.push('/confirm-password')
+          // }, 2000)
           console.log(result)
         })
         .catch(error => {
@@ -97,12 +97,12 @@ export default {
               .then(result => {
                 this.$bvToast.toast('Key telah dikirim ke alamat email anda', {
                   title: 'Status :',
-                  autoHideDelay: 2000,
+                  autoHideDelay: 6000,
                   appendToast: true
                 })
-                setTimeout(() => {
-                  this.$router.push('/confirm-password')
-                }, 2000)
+                // setTimeout(() => {
+                //   this.$router.push('/confirm-password')
+                // }, 2000)
                 console.log(result)
               })
               .catch(error => {
@@ -111,7 +111,7 @@ export default {
                 this.isMsg = error.data.msg
                 setTimeout(() => {
                   this.alert = false
-                }, 2000)
+                }, 6000)
               })
           }
         })

@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     homePage() {
-      this.$router.push('/home')
+      this.$router.push('/profile-company')
     },
     profilePage() {
       this.$router.push('/profile')
@@ -67,5 +67,9 @@ export default {
   border-radius: 50%;
   cursor: pointer;
   /* background-color: #5e50a1; */
+}
+
+.user-img:hover {
+  cursor: pointer;
 }
 </style>
