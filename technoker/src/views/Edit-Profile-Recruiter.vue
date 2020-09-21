@@ -8,9 +8,19 @@
     <div class="page-container">
       <div class="profile-info">
         <div class="image">
-          <img class="image" :src="port + recruiter.recruiter_profile_image" alt />
+          <img
+            v-if="recruiter.recruiter_profile_image !== null"
+            class="image"
+            :src="port + recruiter.recruiter_profile_image"
+            alt
+          />
+          <img
+            v-if="recruiter.recruiter_profile_image === null"
+            src="../assets/img/default.png"
+            alt="image default"
+          />
         </div>
-        <div style="padding:0 30px">
+        <div class="name-box">
           <h4>{{recruiter.recruiter_company}}</h4>
           <p>{{recruiter.recruiter_position}}</p>
           <p>{{recruiter.recruiter_location}}</p>
@@ -166,6 +176,11 @@ export default {
 </script>
 
 <style scoped>
+.name-box {
+  padding: 0 30px;
+  position: relative;
+  top: 20px;
+}
 .btn-hire {
   background-color: #fbb017;
   border-color: #fbb017;

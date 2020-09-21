@@ -18,14 +18,14 @@
                   alt="Image 1"
                   class="mt-4"
                 ></b-img>
-                <b-img
+                <img
                   center
+                  class="user-img mt-4"
                   v-if="recruiter.recruiter_profile_image === null"
                   fluid
                   src="../assets/img/default.png"
-                  alt="Image 1"
-                  class="mt-4"
-                ></b-img>
+                  alt="Image Default"
+                />
               </b-avatar>
               <div>
                 <h3 class="my-1">{{recruiter.recruiter_company}}</h3>
@@ -125,5 +125,17 @@ export default {
   background-color: #ffff;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
+}
+
+.user-img {
+  width: 100%;
+
+  position: relative;
+  top: -11px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.user-img:hover {
+  cursor: pointer;
 }
 </style>
