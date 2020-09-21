@@ -34,7 +34,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ user: 'getUser' })
+    ...mapGetters({ user: 'getUser', recruiter: 'recruiter' })
   },
   methods: {
     homePage() {

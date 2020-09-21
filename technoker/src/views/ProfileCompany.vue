@@ -20,7 +20,7 @@
                 ></b-img>
                 <b-img
                   center
-                  v-if="user.user_image === null"
+                  v-if="recruiter.user_image === null"
                   fluid
                   src="../assets/img/default.png"
                   alt="Image 1"
