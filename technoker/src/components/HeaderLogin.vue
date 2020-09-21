@@ -2,7 +2,7 @@
   <div style="width: 100%">
     <b-container class="nav-grid py-2">
       <div>
-        <img src="../assets/img/logo.png" alt />
+        <img style="width:100px; height:40px" src="../assets/img/technoker.png" alt />
       </div>
       <!-- <div>{{ user }}</div> -->
       <div class="button-after-login">

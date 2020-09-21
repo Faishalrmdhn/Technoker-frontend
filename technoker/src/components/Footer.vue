@@ -3,7 +3,7 @@
     <b-col cols="12">
       <b-container class="footer">
         <div class="pt-5">
-          <img src="../assets/img/logo-footer.png" alt />
+          <img style="width:100px; height:40px" src="../assets/img/technoker.png" alt />
         </div>
         <p
           class="foot-text mt-4"

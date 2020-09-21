@@ -4,7 +4,7 @@
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
           <b-col>
-            <img class="logo" src="../../assets/img/logo-footer.png" alt="" />
+            <img class="logo" src="../../assets/img/logo-footer.png" alt />
             <h2>
               Temukan developer berbakat &#38; terbaik di berbagai bidang
               keahlian
@@ -13,9 +13,11 @@
         </b-row>
       </b-col>
       <b-col sm="6" class="right">
-        <b-alert :show="alert" class="m-3" variant="danger">{{
+        <b-alert :show="alert" class="m-3" variant="danger">
+          {{
           isMsg
-        }}</b-alert>
+          }}
+        </b-alert>
         <b-row class="content-right" align-v="center">
           <b-col>
             <div class="text-left p-3">
@@ -81,8 +83,7 @@
                       variant="warning"
                       type="submit"
                       class="my-3"
-                      >Masuk</b-button
-                    >
+                    >Masuk</b-button>
                   </b-col>
                 </b-row>
                 <b-row class="text-center">
@@ -148,11 +149,11 @@ export default {
         }, 2000)
       } else {
         this.registerRecruiter(this.form)
-          .then(result => {
+          .then((result) => {
             console.log(result)
             this.$router.push('/login')
           })
-          .catch(error => {
+          .catch((error) => {
             console.log(error.data.msg)
             if (error.data.msg === 'Email has been registered') {
               this.alert = true
