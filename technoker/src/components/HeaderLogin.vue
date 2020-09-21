@@ -6,12 +6,26 @@
       </div>
       <!-- <div>{{ user }}</div> -->
       <div class="button-after-login">
-        <img style="width:25px;height:25px;" src="../assets/img/notif.png" alt />
-        <img style="width:25px;height:25px;" src="../assets/img/mail.png" alt />
+        <router-link style="cursor:pointer" to="/notification">
+          <img style="width:25px;height:25px;" src="../assets/img/notif.png" alt />
+        </router-link>
+        <router-link style="cursor:pointer" to="/chat">
+          <img style="width:25px;height:25px;" src="../assets/img/mail.png" alt />
+        </router-link>
         <div v-if="user.role === 1" class="user-img" @click="homePage()">
           <!-- <route-link to="/home"> -->
-          <img v-if="user.user_image !== null" class="user-img" :src="port + user.user_image" alt />
-          <img v-if="user.user_image === null" class="user-img" src="../assets/img/default.png" alt />
+          <img
+            v-if="recruiter.recruiter_profile_image !== null"
+            class="user-img"
+            :src="port + recruiter.recruiter_profile_image"
+            alt
+          />
+          <img
+            v-if="recruiter.recruiter_profile_image === null"
+            class="user-img"
+            src="../assets/img/default.png"
+            alt
+          />
           <!-- </route-link> -->
         </div>
         <div v-if="user.role === 2 " class="user-img" @click="profilePage()">
