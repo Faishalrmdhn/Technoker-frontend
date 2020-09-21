@@ -23,7 +23,6 @@
                   v-if="recruiter.recruiter_profile_image === null"
                   fluid
                   src="../assets/img/default.png"
-                  alt="Image 1"
                   class="mt-4"
                 ></b-img>
               </b-avatar>
