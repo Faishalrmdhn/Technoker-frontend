@@ -12,8 +12,17 @@
               <b-avatar size="11rem" class="my-3">
                 <b-img
                   center
+                  v-if="recruiter.user_image !== null"
                   fluid
                   :src="port + recruiter.recruiter_profile_image"
+                  alt="Image 1"
+                  class="mt-4"
+                ></b-img>
+                <b-img
+                  center
+                  v-if="user.user_image === null"
+                  fluid
+                  src="../assets/img/default.png"
                   alt="Image 1"
                   class="mt-4"
                 ></b-img>
@@ -71,7 +80,7 @@ export default {
     this.getRecruiterById(this.recruiter.recruiter_id)
   },
   computed: {
-    ...mapGetters(['recruiter'])
+    ...mapGetters(['recruiter', 'getUser'])
   },
   methods: {
     ...mapActions(['getRecruiterById']),
