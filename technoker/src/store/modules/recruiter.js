@@ -25,7 +25,7 @@ export default {
         axios
           .patch(
             `http://127.0.0.1:4000/recruiter/${payload.recruiter_id}`,
-            payload.form
+            payload.FormData
           )
           .then(response => {
             resolve(response.data)

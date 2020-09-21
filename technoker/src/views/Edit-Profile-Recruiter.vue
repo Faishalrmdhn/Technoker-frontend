@@ -7,14 +7,18 @@
     <div class="magenta"></div>
     <div class="page-container">
       <div class="profile-info">
-        <div class="image"></div>
+        <div class="image">
+          <img class="image" :src="port + recruiter.recruiter_profile_image" alt />
+        </div>
         <div style="padding:0 30px">
           <h4>{{recruiter.recruiter_company}}</h4>
           <p>{{recruiter.recruiter_position}}</p>
-          <p>Birmingham, Small Heath</p>
+          <p>{{recruiter.recruiter_location}}</p>
         </div>
-        <b-button block class="mt-4 btn-save">Simpan</b-button>
-        <b-button block class="mt-3 btn-cancel">Batal</b-button>
+        <!-- <b-button block class="mt-4 btn-save">Simpan</b-button> -->
+        <router-link to="/profile-company">
+          <b-button block class="mt-3 btn-cancel">Batal</b-button>
+        </router-link>
       </div>
       <div class="hire-info">
         <h3>Data diri</h3>
@@ -28,6 +32,14 @@
                 required
                 placeholder="Masukkan nama perusahaan"
               ></b-form-input>
+            </b-form-group>
+            <b-form-group label="Upload Gambar">
+              <b-form-file
+                v-model="form.recruiter_profile_image"
+                @change="handleFile"
+                placeholder="Choose a file or drop it here..."
+                drop-placeholder="Drop file here..."
+              ></b-form-file>
             </b-form-group>
             <b-form-group id="input-group-2" label="Bidang" label-for="input-2">
               <b-form-input
@@ -108,11 +120,13 @@ export default {
         recruiter_company: '',
         recruiter_field: '',
         recruiter_location: '',
+        recruiter_profile_image: {},
         recruiter_about: '',
         recruiter_instagram: '',
         recruiter_phone: '',
         recruiter_linkedin: ''
-      }
+      },
+      port: 'http://127.0.0.1:4000/profile/'
     }
   },
   components: {
@@ -124,13 +138,25 @@ export default {
     ...mapGetters(['recruiter'])
   },
   methods: {
+    handleFile(event) {
+      this.form.recruiter_profile_image = event.target.files[0]
+    },
     ...mapActions(['getRecruiterById', 'patchRecruiter']),
     onUpdate() {
+      const data = new FormData()
+      data.append('recruiter_company', this.form.recruiter_company)
+      data.append('recruiter_field', this.form.recruiter_field)
+      data.append('recruiter_location', this.form.recruiter_location)
+      data.append('recruiter_profile_image', this.form.recruiter_profile_image)
+      data.append('recruiter_about', this.form.recruiter_about)
+      data.append('recruiter_phone', this.form.recruiter_phone)
+      data.append('recruiter_instagram', this.form.recruiter_instagram)
+      data.append('recruiter_linkedin', this.form.recruiter_linkedin)
+      console.log(data)
       const setData = {
         recruiter_id: this.recruiter.recruiter_id,
-        form: this.form
+        FormData: data
       }
-      // console.log(setData)
       this.patchRecruiter(setData)
         .then((result) => this.$router.push('/profile-company'))
         .catch((error) => error)
@@ -153,7 +179,7 @@ export default {
   background-color: #5e50a1;
   border-color: #5e50a1;
   color: white;
-  margin: 0 20px;
+  margin: 0 auto;
   width: 357px;
   height: 50px;
 }
@@ -207,7 +233,6 @@ export default {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background: black;
   margin: 30px auto;
 }
 
