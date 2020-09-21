@@ -174,7 +174,6 @@ export default {
       } else {
         this.showBtnHire = false
       }
-      console.log(this.role)
     },
     getLogout() {
       this.logout()

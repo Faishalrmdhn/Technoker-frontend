@@ -39,6 +39,7 @@
               <h4 @click="getUserId(value.user_id)" style="cursor: pointer">{{ value.user_name}}</h4>
               <p style="color: #9EA0A5;">{{value.user_job_desk}}</p>
               <p style="color: #9EA0A5; margin-top: -10px">{{value.user_location}}</p>
+              <p style="color: #9EA0A5; margin-top: -10px">{{value.user_job_type}}</p>
               <div class="skills-grid">
                 <div class="skills" v-for="(value, index) in value.skills" :key="index">
                   <div class="skill">{{value.skill_name}}</div>
