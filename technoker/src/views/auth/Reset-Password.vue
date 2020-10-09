@@ -15,7 +15,9 @@
       <b-col sm="6" class="right">
         <b-row class="content-right" align-v="center">
           <b-col>
-            <b-alert :show="alert" class="m-3" variant="danger">{{ isMsg }}</b-alert>
+            <b-alert :show="alert" class="m-3" variant="danger">{{
+              isMsg
+            }}</b-alert>
             <div class="text-left p-3">
               <h3>
                 <strong>Reset Password</strong>
@@ -41,7 +43,8 @@
                       variant="warning"
                       type="submit"
                       class="my-3"
-                    >Send password reset email</b-button>
+                      >Send password reset email</b-button
+                    >
                   </b-col>
                 </b-row>
               </b-form>
@@ -73,7 +76,7 @@ export default {
     ...mapActions(['forgotPasswordUser', 'forgotPasswordRecruiter']),
     onSubmit() {
       this.forgotPasswordUser(this.form)
-        .then((result) => {
+        .then(result => {
           this.$bvToast.toast('Key telah dikirim ke alamat email anda', {
             title: 'Status :',
             autoHideDelay: 2000,
@@ -84,14 +87,14 @@ export default {
           }, 2000)
           console.log(result)
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error)
           if (error) {
             const newForm = {
               recruiter_email: this.form.user_email
             }
             this.forgotPasswordRecruiter(newForm)
-              .then((result) => {
+              .then(result => {
                 this.$bvToast.toast('Key telah dikirim ke alamat email anda', {
                   title: 'Status :',
                   autoHideDelay: 2000,
@@ -102,7 +105,7 @@ export default {
                 }, 2000)
                 console.log(result)
               })
-              .catch((error) => {
+              .catch(error => {
                 console.log(error)
                 this.alert = true
                 this.isMsg = error.data.msg

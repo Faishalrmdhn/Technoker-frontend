@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #E5E5E5">
+  <div style="background-color: #e5e5e5">
     <header class="header-mobile">
       <div class="header-m-t">
         <h5>Mon, 20 Mei 2020</h5>
@@ -7,12 +7,17 @@
       </div>
       <img src="../assets/img/notif.png" alt />
     </header>
-    <Header class="py-3" style="background-color: white; " />
+    <Header class="py-3" style="background-color: white" />
     <TopJobs />
     <b-container>
       <form @submit.prevent="onSearch" class="form pt-3 my-5">
         <div class="search-name">
-          <b-form-input id="input-1" v-model="search" required placeholder="Search for any skill"></b-form-input>
+          <b-form-input
+            id="input-1"
+            v-model="search"
+            required
+            placeholder="Search for any skill"
+          ></b-form-input>
         </div>
         <div class="img-search">
           <img src="../assets/img/search.png" alt />
@@ -20,7 +25,11 @@
         <div class="slash"></div>
         <div class="form-sort">
           <b-form-group id="input-group-3">
-            <b-form-select v-model="selected" :options="options" @change="sort"></b-form-select>
+            <b-form-select
+              v-model="selected"
+              :options="options"
+              @change="sort"
+            ></b-form-select>
           </b-form-group>
         </div>
         <div>
@@ -36,20 +45,30 @@
               <img class="profile-img" :src="port + value.user_image" alt />
             </div>
             <div class="profile-details">
-              <h4 @click="getUserId(value.user_id)" style="cursor: pointer">{{ value.user_name}}</h4>
-              <p style="color: #9EA0A5;">{{value.user_job_desk}}</p>
-              <p style="color: #9EA0A5; margin-top: -10px">{{value.user_location}}</p>
+              <h4 @click="getUserId(value.user_id)" style="cursor: pointer">
+                {{ value.user_name }}
+              </h4>
+              <p style="color: #9ea0a5">{{ value.user_job_desk }}</p>
+              <p style="color: #9ea0a5; margin-top: -10px">
+                {{ value.user_location }}
+              </p>
               <div class="skills-grid">
-                <div class="skills" v-for="(value, index) in value.skills" :key="index">
-                  <div class="skill">{{value.skill_name}}</div>
+                <div
+                  class="skills"
+                  v-for="(value, index) in value.skills"
+                  :key="index"
+                >
+                  <div class="skill">{{ value.skill_name }}</div>
                 </div>
               </div>
             </div>
           </div>
           <div style="position: relative">
-            <b-button class="btn-profile" @click="getUserId(value.user_id)">See Profile</b-button>
+            <b-button class="btn-profile" @click="getUserId(value.user_id)"
+              >See Profile</b-button
+            >
           </div>
-          <hr style="color:#9ea0a5" />
+          <hr style="color: #9ea0a5" />
         </div>
       </div>
     </b-container>

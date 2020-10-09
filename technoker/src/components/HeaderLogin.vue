@@ -2,15 +2,27 @@
   <div style="width: 100%">
     <b-container class="nav-grid py-2">
       <div>
-        <img style="width:100px; height:40px" src="../assets/img/technoker.png" alt />
+        <img
+          style="width: 100px; height: 40px"
+          src="../assets/img/technoker.png"
+          alt
+        />
       </div>
       <!-- <div>{{ user }}</div> -->
       <div class="button-after-login">
-        <router-link style="cursor:pointer" to="/notification">
-          <img style="width:25px;height:25px;" src="../assets/img/notif.png" alt />
+        <router-link style="cursor: pointer" to="/notification">
+          <img
+            style="width: 25px; height: 25px"
+            src="../assets/img/notif.png"
+            alt
+          />
         </router-link>
-        <router-link style="cursor:pointer" to="/chat">
-          <img style="width:25px;height:25px;" src="../assets/img/mail.png" alt />
+        <router-link style="cursor: pointer" to="/chat">
+          <img
+            style="width: 25px; height: 25px"
+            src="../assets/img/mail.png"
+            alt
+          />
         </router-link>
         <div v-if="user.role === 1" class="user-img" @click="homePage()">
           <!-- <route-link to="/home"> -->
@@ -28,10 +40,20 @@
           />
           <!-- </route-link> -->
         </div>
-        <div v-if="user.role === 2 " class="user-img" @click="profilePage()">
+        <div v-if="user.role === 2" class="user-img" @click="profilePage()">
           <!-- <route-link to="/profile"> -->
-          <img v-if="user.user_image !== null" class="user-img" :src="port + user.user_image" alt />
-          <img v-if="user.user_image === null" class="user-img" src="../assets/img/default.png" alt />
+          <img
+            v-if="user.user_image !== null"
+            class="user-img"
+            :src="port + user.user_image"
+            alt
+          />
+          <img
+            v-if="user.user_image === null"
+            class="user-img"
+            src="../assets/img/default.png"
+            alt
+          />
           <!-- </route-link> -->
         </div>
       </div>

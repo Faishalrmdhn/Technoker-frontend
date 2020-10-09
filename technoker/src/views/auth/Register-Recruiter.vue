@@ -14,9 +14,7 @@
       </b-col>
       <b-col sm="6" class="right">
         <b-alert :show="alert" class="m-3" variant="danger">
-          {{
-          isMsg
-          }}
+          {{ isMsg }}
         </b-alert>
         <b-row class="content-right" align-v="center">
           <b-col>
@@ -83,7 +81,8 @@
                       variant="warning"
                       type="submit"
                       class="my-3"
-                    >Masuk</b-button>
+                      >Masuk</b-button
+                    >
                   </b-col>
                 </b-row>
                 <b-row class="text-center">
@@ -149,11 +148,11 @@ export default {
         }, 2000)
       } else {
         this.registerRecruiter(this.form)
-          .then((result) => {
+          .then(result => {
             console.log(result)
             this.$router.push('/login')
           })
-          .catch((error) => {
+          .catch(error => {
             console.log(error.data.msg)
             if (error.data.msg === 'Email has been registered') {
               this.alert = true

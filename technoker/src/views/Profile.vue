@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeaderLogin style="padding:20px 0" />
+    <HeaderLogin style="padding: 20px 0" />
     <div class="purple">
       <b-container class="pt-5">
         <b-row class="card-profile pt-5 mx-auto">
@@ -13,7 +13,11 @@
                   style="width: 7rem"
                   class="mt-4"
                 />
-                <img v-if="data.user_image === null" src="../assets/img/default.png" alt />
+                <img
+                  v-if="data.user_image === null"
+                  src="../assets/img/default.png"
+                  alt
+                />
               </b-avatar>
               <div class="text-left">
                 <b-card-title class="my-1">{{ data.user_name }}</b-card-title>
@@ -26,9 +30,7 @@
                 </p>
                 <small class="text-muted">{{ data.user_job_type }}</small>
                 <b-card-text class="mt-2 text-muted">
-                  {{
-                  data.user_about
-                  }}
+                  {{ data.user_about }}
                 </b-card-text>
               </div>
               <div class="my-5">
@@ -37,26 +39,33 @@
                   style="width: 100%"
                   v-show="showBtnEdit"
                   @click="editPage"
-                >Edit</b-button>
+                  >Edit</b-button
+                >
 
                 <b-button
                   @click="redirectHire"
                   class="py-2 my-2 mb-2 btn-hire-edit"
                   v-show="showBtnHire"
                   style="width: 100%"
-                >Hire</b-button>
+                  >Hire</b-button
+                >
 
                 <b-button
                   class="mt-2 btn-hire-edit"
                   style="width: 100%"
                   v-show="showBtnEdit"
                   @click="getLogout"
-                >Logout</b-button>
+                  >Logout</b-button
+                >
               </div>
               <h4 class="text-left my-3">Skill</h4>
               <div>
                 <div class="skills-grid">
-                  <div class="skills" v-for="(value, index) in data.skills" :key="index">
+                  <div
+                    class="skills"
+                    v-for="(value, index) in data.skills"
+                    :key="index"
+                  >
                     <div class="skill">{{ value.skill_name }}</div>
                   </div>
                 </div>
@@ -68,13 +77,13 @@
                   </span>
                   {{ data.user_email }}
                 </p>
-                <p>
+                <p v-if="data.user_instagram !== null">
                   <span>
                     <img src="../assets/img/instagram.png" alt />
                   </span>
                   {{ data.user_instagram }}
                 </p>
-                <p>
+                <p v-if="data.user_github !== null">
                   <span>
                     <img src="../assets/img/github.png" alt />
                   </span>
@@ -91,11 +100,27 @@
                 content-class="mt-3 ml-0"
                 active-nav-item-class="font-weight-bold text-dark"
               >
-                <b-tab title="Portofolio" class="p-3" active @click="getPorto()">
+                <b-tab
+                  title="Portofolio"
+                  class="p-3"
+                  active
+                  @click="getPorto()"
+                >
                   <b-row>
-                    <b-col xl="4" cols="6" v-for="(value, index) in portfolio" :key="index">
-                      <b-img fluid :src="portfolioImg + value.portofolio_image" alt="Image 1"></b-img>
-                      <p class="text-center" style="font-size:15px">{{ value.portofolio_name }}</p>
+                    <b-col
+                      xl="4"
+                      cols="6"
+                      v-for="(value, index) in portfolio"
+                      :key="index"
+                    >
+                      <b-img
+                        fluid
+                        :src="portfolioImg + value.portofolio_image"
+                        alt="Image 1"
+                      ></b-img>
+                      <p class="text-center" style="font-size: 15px">
+                        {{ value.portofolio_name }}
+                      </p>
                     </b-col>
                   </b-row>
                 </b-tab>
@@ -103,7 +128,11 @@
                 <b-tab title="Pengalaman Pekerjaan" class="p-3">
                   <b-row v-for="(value, index) in experience" :key="index">
                     <b-col cols="2">
-                      <b-img fluid :src="require('@/assets/tokped.jpg')" alt="Image 1"></b-img>
+                      <b-img
+                        fluid
+                        :src="require('@/assets/tokped.jpg')"
+                        alt="Image 1"
+                      ></b-img>
                     </b-col>
                     <b-col cols="10">
                       <p class="my-0">
