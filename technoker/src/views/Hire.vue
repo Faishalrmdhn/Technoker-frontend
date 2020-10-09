@@ -1,33 +1,44 @@
 <template>
-  <div style="width:100%; background-color: #E5E5E5;">
+  <div style="width: 100%; background-color: #e5e5e5">
     <Header
       class="py-4"
-      style="background-color: white; box-shadow: 0px 10px 50px rgba(132, 132, 132, 0.25);"
+      style="
+        background-color: white;
+        box-shadow: 0px 10px 50px rgba(132, 132, 132, 0.25);
+      "
     />
     <div class="page-container">
       <div class="profile-info">
         <div class="image">
           <img class="image" :src="port + data.user_image" alt />
         </div>
-        <div style="padding:0 30px" class="mt-5">
-          <h4>{{data.user_name}}</h4>
-          <p>{{data.user_job_desk}}</p>
-          <p>{{data.user_location}}</p>
-          <p>{{data.user_about}}</p>
+        <div style="padding: 0 30px" class="mt-5">
+          <h4>{{ data.user_name }}</h4>
+          <p>{{ data.user_job_desk }}</p>
+          <p>{{ data.user_location }}</p>
+          <p>{{ data.user_about }}</p>
           <h4>Skill</h4>
           <div class="skills-grid">
-            <div class="skills" v-for="(value, index) in data.skills" :key="index">
-              <div class="skill">{{value.skill_name}}</div>
+            <div
+              class="skills"
+              v-for="(value, index) in data.skills"
+              :key="index"
+            >
+              <div class="skill">{{ value.skill_name }}</div>
             </div>
           </div>
         </div>
       </div>
       <div class="hire-info">
-        <h2>Hubungi {{data.user_name}}</h2>
-        <p>{{data.user_about}}</p>
+        <h2>Hubungi {{ data.user_name }}</h2>
+        <p>{{ data.user_about }}</p>
         <div>
           <b-form @submit.prevent="hireCandidate">
-            <b-form-group id="input-group-2" label="Tuliskan pesan:" label-for="textarea">
+            <b-form-group
+              id="input-group-2"
+              label="Tuliskan pesan:"
+              label-for="textarea"
+            >
               <b-form-textarea
                 id="textarea"
                 v-model="form.message_text"
@@ -56,15 +67,14 @@ export default {
         message_text: ''
       },
       show: true,
-      port: 'http://127.0.0.1:4000/profile/'
+      port: 'http://127.0.0.1:4000/profile/',
+      senderId: ''
     }
   },
   computed: {
-    ...mapGetters({ data: 'user', recruit: 'recruiter' })
+    ...mapGetters({ data: 'user', recruit: 'getUser' })
   },
-  created() {
-    console.log(this.data)
-  },
+  created() {},
   components: {
     Header,
     Footer
@@ -72,15 +82,13 @@ export default {
   methods: {
     ...mapActions(['postMessage']),
     hireCandidate() {
-      console.log(this.form)
       const sendMail = {
         user_id: this.data.user_id,
         recruiter_id: this.recruit.recruiter_id,
-        role: this.data.role,
+        role: this.recruit.role,
         sender_id: this.recruit.recruiter_id,
         message_text: this.form.message_text
       }
-      console.log(sendMail)
       this.postMessage(sendMail)
         .then((result) => {
           alert('Pesan berhasil dikirim')

@@ -1,7 +1,11 @@
 <template>
   <b-container class="nav-grid py-4">
     <div>
-      <img src="../assets/img/logo.png" alt />
+      <img
+        src="../assets/img/technoker.png"
+        style="width: 100px; height: 40px"
+        alt
+      />
     </div>
     <div class="button-login-register text-right">
       <router-link to="/login">
@@ -25,20 +29,20 @@
                   block
                   @click="registerCandidatePage()"
                   >Candidate</b-button
-                ></router-link
-              >
+                >
+              </router-link>
             </b-col>
             <b-col @click="$bvModal.hide('modalRegister')">
               <router-link to="/register-recruiter">
                 <b-button
                   variant="warning"
-                  style="color:white;"
+                  style="color: white"
                   class="mt-3"
                   block
                   @click="registerRecruiterPage()"
                   >Recruiter</b-button
-                ></router-link
-              >
+                >
+              </router-link>
             </b-col>
           </b-row>
         </div>

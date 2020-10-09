@@ -1,5 +1,5 @@
 <template>
-  <div style="width:100%">
+  <div style="width: 100%">
     <b-row class="login" align-h="center">
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
@@ -13,9 +13,9 @@
         </b-row>
       </b-col>
       <b-col sm="6" class="right">
-        <b-alert :show="alert" class="m-3" variant="danger">{{
-          isMsg
-        }}</b-alert>
+        <b-alert :show="alert" class="m-3" variant="danger">
+          {{ isMsg }}
+        </b-alert>
         <b-row class="content-right" align-v="center">
           <b-col>
             <div class="text-left p-3">
@@ -54,7 +54,7 @@
                       variant="warning"
                       type="submit"
                       class="my-3"
-                      style="color:white;"
+                      style="color: white"
                       >Masuk</b-button
                     >
                   </b-col>
@@ -84,7 +84,7 @@
                         <b-col @click="$bvModal.hide('modalRegister')">
                           <b-button
                             variant="warning"
-                            style="color:white;"
+                            style="color: white"
                             class="mt-3"
                             block
                             @click="registerRecruiterPage()"
@@ -131,7 +131,7 @@ export default {
     ...mapMutations(['setUser']),
     onSubmit() {
       this.loginUser(this.form)
-        .then(result => {
+        .then((result) => {
           this.$bvToast.toast('Anda berhasil login', {
             title: 'Status :',
             autoHideDelay: 500,
@@ -140,17 +140,16 @@ export default {
           setTimeout(() => {
             this.$router.push('/profile')
           }, 1500)
-          console.log(result.data.user_id)
           this.getUserById(result.data.user_id)
         })
-        .catch(error => {
+        .catch((error) => {
           if (error) {
             const newForm = {
               recruiter_email: this.form.user_email,
               recruiter_password: this.form.user_password
             }
             this.loginRecruiter(newForm)
-              .then(result => {
+              .then((result) => {
                 this.$bvToast.toast('Anda berhasil login', {
                   title: 'Status :',
                   autoHideDelay: 1500,
@@ -161,7 +160,7 @@ export default {
                 }, 2000)
                 this.getRecruiterById(result.data.recruiter_id)
               })
-              .catch(error => {
+              .catch((error) => {
                 this.alert = true
                 this.isMsg = error.data.msg
                 setTimeout(() => {

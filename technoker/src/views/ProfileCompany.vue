@@ -4,9 +4,7 @@
     <div style="background-color: #e5e5e5">
       <b-jumbotron class="mb-0">
         <b-container>
-          <div class="purple" style="position: relative;">
-            <h5 style="position: absolute; bottom: 0; right: 0" class="mr-3 text-white">Ubah Latar</h5>
-          </div>
+          <div class="purple" style="position: relative;"></div>
           <div class="white text-center mx-auto" style="padding-bottom: -100px">
             <div class="mx-auto pb-3" style="position: relative; top: -110px; width: 50%">
               <b-avatar size="11rem" class="my-3">

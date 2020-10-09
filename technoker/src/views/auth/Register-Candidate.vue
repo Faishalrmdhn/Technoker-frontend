@@ -1,10 +1,10 @@
 <template>
-  <div style="width:100%">
+  <div style="width: 100%">
     <b-row class="registerC" align-h="center">
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
           <b-col>
-            <img class="logo" src="../../assets/img/logo-footer.png" alt="" />
+            <img class="logo" src="../../assets/img/logo-footer.png" alt />
             <h2>
               Temukan developer berbakat &#38; terbaik di berbagai bidang
               keahlian
@@ -13,9 +13,9 @@
         </b-row>
       </b-col>
       <b-col sm="6" class="right">
-        <b-alert :show="alert" class="m-3" variant="danger">{{
-          isMsg
-        }}</b-alert>
+        <b-alert :show="alert" class="m-3" variant="danger">
+          {{ isMsg }}
+        </b-alert>
         <b-row class="content-right" align-v="center">
           <b-col>
             <div class="text-left p-3">
@@ -23,7 +23,7 @@
                 <strong>Halo, Technokerian!</strong>
               </h3>
               <p>Get Your Job More Easier &#38; Quicker!</p>
-              <b-form @submit.prevent="onSubmit" style="color:grey;">
+              <b-form @submit.prevent="onSubmit" style="color: grey">
                 <b-form-group label="Nama">
                   <b-input
                     type="text"
@@ -63,11 +63,11 @@
                   <b-col>
                     <b-button
                       block
-                      style="color:white;"
+                      style="color: white"
                       variant="warning"
                       type="submit"
                       class="my-3"
-                      >Masuk</b-button
+                      >Sign up</b-button
                     >
                   </b-col>
                 </b-row>
@@ -153,11 +153,11 @@ export default {
         }, 2000)
       } else {
         this.registerUser(this.form)
-          .then(result => {
+          .then((result) => {
             console.log(result)
             this.$router.push('/login')
           })
-          .catch(error => {
+          .catch((error) => {
             console.log(error.data.msg)
             if (error.data.msg === 'Email has been registered') {
               this.alert = true

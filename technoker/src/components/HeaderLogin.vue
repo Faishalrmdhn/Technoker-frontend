@@ -2,7 +2,11 @@
   <div style="width: 100%">
     <b-container class="nav-grid py-2">
       <div>
-        <img src="../assets/img/logo.png" alt />
+        <img
+          src="../assets/img/technoker.png"
+          style="width: 100px; height: 40px"
+          alt
+        />
       </div>
       <!-- <div>{{ user }}</div> -->
       <div class="button-after-login">
@@ -34,10 +38,20 @@
           <img v-if="recruiter.recruiter_profile_image === null" class="user-img" src="../assets/img/default.png" alt />
           <!-- </route-link> -->
         </div>
-        <div v-if="user.role === 2 " class="user-img" @click="profilePage()">
+        <div v-if="user.role === 2" class="user-img" @click="profilePage()">
           <!-- <route-link to="/profile"> -->
-          <img v-if="user.user_image !== null" class="user-img" :src="port + user.user_image" alt />
-          <img v-if="user.user_image === null" class="user-img" src="../assets/img/default.png" alt />
+          <img
+            v-if="user.user_image !== null"
+            class="user-img"
+            :src="port + user.user_image"
+            alt
+          />
+          <img
+            v-if="user.user_image === null"
+            class="user-img"
+            src="../assets/img/default.png"
+            alt
+          />
           <!-- </route-link> -->
         </div>
       </div>

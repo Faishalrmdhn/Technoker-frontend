@@ -35,10 +35,11 @@
                     type="text"
                     id="input-2"
                     v-model="formUser.user_name"
+                    placeholder="Enter your name"
                     required
-                    placeholder="Enter name"
                   ></b-form-input>
                 </b-form-group>
+
                 <b-form-group id="input-group-1" label="Job Desk" label-for="input-1">
                   <b-form-input
                     id="input-1"
@@ -73,6 +74,24 @@
                     placeholder="Choose a file or drop it here..."
                     drop-placeholder="Drop file here..."
                   ></b-form-file>
+                </b-form-group>
+                <b-form-group label="Instagram">
+                  <b-form-input
+                    type="text"
+                    id="input-2"
+                    v-model="formUser.user_instagram"
+                    required
+                    placeholder="@Instagram"
+                  ></b-form-input>
+                </b-form-group>
+                <b-form-group label="Github">
+                  <b-form-input
+                    type="text"
+                    id="input-2"
+                    v-model="formUser.user_github"
+                    required
+                    placeholder="Github"
+                  ></b-form-input>
                 </b-form-group>
                 <b-form-group id="input-group-2" label="Deskripsi Singkat" label-for="textarea">
                   <b-form-textarea
@@ -239,7 +258,6 @@
                     drop-placeholder="Drop file here..."
                   ></b-form-file>
                 </b-form-group>
-
                 <b-button
                   variant="outline-warning"
                   block
@@ -276,7 +294,9 @@ export default {
         user_location: '',
         user_image: {},
         user_about: '',
-        user_workplace: ''
+        user_workplace: '',
+        user_instagram: '',
+        user_github: ''
       },
       formExperience: {
         experience_position: '',
@@ -346,11 +366,12 @@ export default {
       data.append('user_image', this.formUser.user_image)
       data.append('user_about', this.formUser.user_about)
       data.append('user_workplace', this.formUser.user_workplace)
+      data.append('user_instagram', this.formUser.user_instagram)
+      data.append('user_github', this.formUser.user_github)
       const setData = {
         user_id: this.userId.user_id,
         FormData: data
       }
-      console.log(this.formUser)
       this.patchUser(setData)
         .then((res) => {
           this.$bvToast.toast(res, {
@@ -360,7 +381,8 @@ export default {
           })
         })
         .catch((err) => {
-          this.$bvToast.toast(err, {
+          console.log(err)
+          this.$bvToast.toast(err.data.msg, {
             title: 'Status :',
             autoHideDelay: 1000,
             appendToast: true

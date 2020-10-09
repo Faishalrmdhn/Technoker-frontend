@@ -4,7 +4,7 @@
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
           <b-col>
-            <img class="logo" src="../../assets/img/logo-footer.png" alt="" />
+            <img class="logo" src="../../assets/img/logo-footer.png" alt />
             <h2>
               Temukan developer berbakat &#38; terbaik di berbagai bidang
               keahlian
@@ -15,9 +15,9 @@
       <b-col sm="6" class="right">
         <b-row class="content-right" align-v="center">
           <b-col>
-            <b-alert :show="alert" class="m-3" variant="danger">
-              {{ isMsg }}
-            </b-alert>
+            <b-alert :show="alert" class="m-3" variant="danger">{{
+              isMsg
+            }}</b-alert>
             <div class="text-left p-3">
               <h3>
                 <strong>Reset Password</strong>
@@ -79,12 +79,12 @@ export default {
         .then(result => {
           this.$bvToast.toast('Key telah dikirim ke alamat email anda', {
             title: 'Status :',
-            autoHideDelay: 6000,
+            autoHideDelay: 2000,
             appendToast: true
           })
-          // setTimeout(() => {
-          //   this.$router.push('/confirm-password')
-          // }, 2000)
+          setTimeout(() => {
+            this.$router.push('/confirm-password')
+          }, 2000)
           console.log(result)
         })
         .catch(error => {
@@ -97,12 +97,12 @@ export default {
               .then(result => {
                 this.$bvToast.toast('Key telah dikirim ke alamat email anda', {
                   title: 'Status :',
-                  autoHideDelay: 6000,
+                  autoHideDelay: 2000,
                   appendToast: true
                 })
-                // setTimeout(() => {
-                //   this.$router.push('/confirm-password')
-                // }, 2000)
+                setTimeout(() => {
+                  this.$router.push('/confirm-password')
+                }, 2000)
                 console.log(result)
               })
               .catch(error => {

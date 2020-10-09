@@ -1,13 +1,18 @@
 <template>
-  <div style="background-color:#5e50a1">
+  <div style="background-color: #5e50a1">
     <b-col cols="12">
       <b-container class="footer">
         <div class="pt-5">
-          <img src="../assets/img/logo-footer.png" alt />
+          <img
+            src="../assets/img/technoker.png"
+            style="width: 100px; height: 70px"
+            alt
+          />
         </div>
-        <p
-          class="foot-text mt-4"
-        >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt aut dignissimos velit! Tempora, possimus minus.</p>
+        <p class="foot-text mt-4">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt aut
+          dignissimos velit! Tempora, possimus minus.
+        </p>
         <hr class="mt-5" />
         <div class="btm-text pb-5">
           <p>2020 Technoker. All right reserved</p>
