@@ -111,6 +111,8 @@ export default {
   methods: {
     ...mapActions(['registerUser']),
     onSubmit() {
+      console.log(this.form.user_password)
+      console.log(this.form.user_confirm_password)
       console.log(this.form)
       if (this.form.user_email === '') {
         this.alert = true
