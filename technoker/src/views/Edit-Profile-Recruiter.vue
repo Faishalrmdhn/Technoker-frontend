@@ -53,7 +53,6 @@
                 <b-form-input
                   id="input-2"
                   v-model="form.recruiter_company"
-                  required
                   placeholder="Masukkan nama perusahaan"
                 ></b-form-input>
               </b-form-group>
@@ -73,7 +72,6 @@
                 <b-form-input
                   id="input-2"
                   v-model="form.recruiter_field"
-                  required
                   placeholder="Masukkan nama bidang perusahaan ex: Financial"
                 ></b-form-input>
               </b-form-group>
@@ -81,7 +79,6 @@
                 <b-form-input
                   id="input-2"
                   v-model="form.recruiter_location"
-                  required
                   placeholder="Masukkan kota"
                 ></b-form-input>
               </b-form-group>
@@ -106,7 +103,6 @@
                 <b-form-input
                   id="input-2"
                   v-model="form.recruiter_instagram"
-                  required
                   placeholder="Masukkan nama instagram"
                 ></b-form-input>
               </b-form-group>
@@ -118,7 +114,6 @@
                 <b-form-input
                   id="input-2"
                   v-model="form.recruiter_phone"
-                  required
                   placeholder="Masukkan no telepon"
                 ></b-form-input>
               </b-form-group>
@@ -202,14 +197,13 @@ export default {
       data.append('recruiter_phone', this.form.recruiter_phone)
       data.append('recruiter_instagram', this.form.recruiter_instagram)
       data.append('recruiter_linkedin', this.form.recruiter_linkedin)
-      console.log(data)
       const setData = {
         recruiter_id: this.recruiter.recruiter_id,
         FormData: data
       }
       this.patchRecruiter(setData)
         .then((result) => this.$router.push('/profile-company'))
-        .catch((error) => error)
+        .catch((error) => console.log(error))
     }
   }
 }
