@@ -1,6 +1,7 @@
 import axios from 'axios'
 export default {
   state: {
+    urlAPI: process.env.VUE_APP_URL,
     page: 1,
     limit: 3,
     allUsers: [],
@@ -41,7 +42,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .get(
-            `http://127.0.0.1:4000/user?orderBy=${context.state.sort}&limit=${context.state.limit}&page=${context.state.page}`
+            `${context.state.urlAPI}user?orderBy=${context.state.sort}&limit=${context.state.limit}&page=${context.state.page}`
           )
           .then(res => {
             context.commit('setAllUser', res)
@@ -54,7 +55,7 @@ export default {
     getUserById(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`http://127.0.0.1:4000/user/${payload}`)
+          .get(`${context.state.urlAPI}user/${payload}`)
           .then(res => {
             context.commit('setUserById', res)
           })
@@ -66,7 +67,7 @@ export default {
     searchUser(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`http://127.0.0.1:4000/user/search?name=${context.state.search}`)
+          .get(`${context.state.urlAPI}user/search?name=${context.state.search}`)
           .then(res => {
             context.commit('setAllUser', res)
           })
@@ -78,7 +79,7 @@ export default {
     postSkill(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://127.0.0.1:4000/skill', payload)
+          .post(`${context.state.urlAPI}skill`, payload)
           .then(res => {
             resolve(res.data.msg)
           })
@@ -90,7 +91,7 @@ export default {
     postPortfolio(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://127.0.0.1:4000/portofolio', payload)
+          .post(`${context.state.urlAPI}portofolio`, payload)
           .then(res => {
             resolve(res.data.msg)
           })
@@ -102,7 +103,7 @@ export default {
     postExperience(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://127.0.0.1:4000/experience', payload)
+          .post(`${context.state.urlAPI}experience`, payload)
           .then(res => {
             resolve(res.data.msg)
           })
@@ -115,7 +116,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .patch(
-            `http://127.0.0.1:4000/user/${payload.user_id}`,
+            `${context.state.urlAPI}user/${payload.user_id}`,
             payload.FormData
           )
           .then(res => {

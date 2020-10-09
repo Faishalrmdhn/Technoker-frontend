@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export default {
   state: {
+    urlAPI: process.env.VUE_APP_URL,
     notifList: [],
     notifCount: 0
   },
@@ -17,7 +18,7 @@ export default {
     getNotificationByUser(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`http://127.0.0.1:4000/notification/${payload.role}/${payload.user_id}`)
+          .get(`${context.state.urlAPI}notification/${payload.role}/${payload.user_id}`)
           .then(response => {
             context.commit('setNotifList', response.data.data)
             resolve(response)
@@ -30,7 +31,7 @@ export default {
     getCountNotif(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`http://127.0.0.1:4000/notification/unread/${payload.role}/${payload.user_id}`)
+          .get(`${context.state.urlAPI}notification/unread/${payload.role}/${payload.user_id}`)
           .then(response => {
             context.commit('setNotifCount', parseInt(response.data.data[0].total))
             resolve(response)

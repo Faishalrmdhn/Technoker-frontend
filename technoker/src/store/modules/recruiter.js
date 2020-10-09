@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export default {
   state: {
+    urlAPI: process.env.VUE_APP_URL,
     recruiter: []
   },
   mutations: {
@@ -13,7 +14,7 @@ export default {
     getRecruiterById(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`http://127.0.0.1:4000/recruiter/${payload}`)
+          .get(`${context.state.urlAPI}recruiter/${payload}`)
           .then(response => {
             context.commit('setRecruiterById', response)
             resolve(response)
@@ -27,7 +28,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .patch(
-            `http://127.0.0.1:4000/recruiter/${payload.recruiter_id}`,
+            `${context.state.urlAPI}recruiter/${payload.recruiter_id}`,
             payload.FormData
           )
           .then(response => {
