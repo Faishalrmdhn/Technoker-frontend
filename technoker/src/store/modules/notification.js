@@ -20,7 +20,7 @@ export default {
           .get(`http://127.0.0.1:4000/notification/${payload.role}/${payload.user_id}`)
           .then(response => {
             context.commit('setNotifList', response.data.data)
-            console.log(response)
+            resolve(response)
           })
           .catch(error => {
             reject(error)
@@ -32,8 +32,8 @@ export default {
         axios
           .get(`http://127.0.0.1:4000/notification/unread/${payload.role}/${payload.user_id}`)
           .then(response => {
-            console.log(response)
             context.commit('setNotifCount', parseInt(response.data.data[0].total))
+            resolve(response)
           })
           .catch(error => {
             reject(error)
