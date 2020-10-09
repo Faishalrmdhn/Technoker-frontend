@@ -173,8 +173,8 @@ export default {
     return {
       showBtnEdit: false,
       showBtnHire: false,
-      port: 'http://127.0.0.1:4000/profile/',
-      portfolioImg: 'http://127.0.0.1:4000/portofolio/'
+      port: `${process.env.VUE_APP_URL}profile/`,
+      portfolioImg: `${process.env.VUE_APP_URL}portofolio/`
     }
   },
   created() {

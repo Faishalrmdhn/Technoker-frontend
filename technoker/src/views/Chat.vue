@@ -103,7 +103,7 @@ export default {
       userId: '',
       senderName: '',
       message_text: '',
-      port: 'http://127.0.0.1:4000/profile/',
+      port: `${process.env.VUE_APP_URL}profile/`,
       receiverName: '',
       receiverImg: ''
     }

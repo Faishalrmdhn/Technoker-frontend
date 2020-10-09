@@ -58,7 +58,7 @@ export default {
   name: 'ProfileCompany',
   data() {
     return {
-      port: 'http://127.0.0.1:4000/profile/'
+      port: `${process.env.VUE_APP_URL}profile/`
     }
   },
   components: {
