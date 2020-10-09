@@ -7,7 +7,7 @@
     <a href="https://github.com/mhdnaldi/Technoker-frontend/issues">Request Feature</a>
   </p>
 
-![Image Banner]()
+![Image Banner](https://user-images.githubusercontent.com/22453547/95569375-b3ca3600-0a4f-11eb-8434-afe6765f6d1e.jpg)
 
 ## About The Project
 
