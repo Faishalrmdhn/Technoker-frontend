@@ -1,4 +1,4 @@
-<h1 align='center'>Vue JS - Tecnoker</h1>
+<h1 align='center'>Vue JS - Technoker</h1>
   <p align="center">
     <a href="#">View Demo</a>
     ·
@@ -7,7 +7,9 @@
     <a href="https://github.com/mhdnaldi/Technoker-frontend/issues">Request Feature</a>
   </p>
 
-![Image Banner]()
+<p align="center">
+<img src="https://user-images.githubusercontent.com/22453547/95569489-d9573f80-0a4f-11eb-93bd-e00f053ac176.jpg" />
+</p>
 
 ## About The Project
 
