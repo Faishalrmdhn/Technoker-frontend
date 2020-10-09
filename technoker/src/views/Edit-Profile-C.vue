@@ -313,7 +313,7 @@ export default {
       portofolio_type: '',
       show: true,
       skill: '',
-      port: 'http://127.0.0.1:4000/profile/',
+      port: `${process.env.VUE_APP_URL}profile/`,
       userId: ''
     }
   },

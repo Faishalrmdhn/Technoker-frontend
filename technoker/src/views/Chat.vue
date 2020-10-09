@@ -35,10 +35,20 @@
             <b-card style="height: 600px; position: relative">
               <div>
                 <div class="room mb-2">
-                  <div class="img">
+                  <div
+                    class="img"
+                    v-if="
+                      receiverImg === null ||
+                      receiverImg === undefined ||
+                      receiverImg === ''
+                    "
+                  >
+                    <img class="img" src="../assets/img/default.png" alt="" />
+                  </div>
+                  <div class="img" v-if="receiverImg !== null">
                     <img class="img" :src="port + receiverImg" alt="" />
                   </div>
-                  <h5>{{ receiverName }}</h5>
+                  <h5 v-if="receiverName">{{ receiverName }}</h5>
                 </div>
               </div>
               <hr />
@@ -93,7 +103,7 @@ export default {
       userId: '',
       senderName: '',
       message_text: '',
-      port: 'http://127.0.0.1:4000/profile/',
+      port: `${process.env.VUE_APP_URL}profile/`,
       receiverName: '',
       receiverImg: ''
     }

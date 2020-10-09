@@ -40,7 +40,10 @@
       <div class="worker mt-5">
         <div v-for="(value, index) in users" :key="index" class="workers">
           <div class="profile">
-            <div>
+            <div v-if="value.user_image === null">
+              <img class="profile-img" src="../assets/img/default.png" alt />
+            </div>
+            <div v-if="value.user_image !== null">
               <img class="profile-img" :src="port + value.user_image" alt />
             </div>
             <div class="profile-details">
@@ -130,7 +133,7 @@ export default {
       search: '',
       limit: 3,
       workerId: '',
-      port: 'http://127.0.0.1:4000/profile/'
+      port: `${process.env.VUE_APP_URL}profile/`
     }
   },
   created() {

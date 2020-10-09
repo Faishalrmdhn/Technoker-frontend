@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       notifData: [1, 2, 3, 4, 5],
-      port: 'http://127.0.0.1:4000/profile/'
+      port: `${process.env.VUE_APP_URL}profile/`
     }
   },
   computed: {
