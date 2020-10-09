@@ -7,6 +7,7 @@ import createPersistedState from 'vuex-persistedstate'
 import worker from './Naldi/worker'
 import recruiter from './modules/recruiter'
 import message from './modules/message'
+import notification from './modules/notification'
 
 Vue.use(Vuex)
 
@@ -17,7 +18,8 @@ export default new Vuex.Store({
     Portofolio,
     worker,
     recruiter,
-    message
+    message,
+    notification
   },
   state: {},
   mutations: {},
