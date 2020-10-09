@@ -1,18 +1,20 @@
 <template>
   <b-container class="nav-grid py-4">
     <div>
-<<<<<<< HEAD
-      <img style="width:100px; height:40px" src="../assets/img/technoker.png" alt />
-=======
-      <img src="../assets/img/technoker.png" style="width:100px; height: 40px" alt />
->>>>>>> 7d7de540cb4f40a351d5ae1f4255e282069c4e9a
+      <img
+        src="../assets/img/technoker.png"
+        style="width: 100px; height: 40px"
+        alt
+      />
     </div>
     <div class="button-login-register text-right">
       <router-link to="/login">
         <b-button class="login-btn mx-4">Login</b-button>
       </router-link>
 
-      <b-button class="register-btn" @click="$bvModal.show('modalRegister')">Register</b-button>
+      <b-button class="register-btn" @click="$bvModal.show('modalRegister')"
+        >Register</b-button
+      >
       <b-modal id="modalRegister" hide-footer hide-header>
         <template>
           <strong>SELECT YOUR ROLE :</strong>
@@ -26,18 +28,20 @@
                   class="mt-3"
                   block
                   @click="registerCandidatePage()"
-                >Candidate</b-button>
+                  >Candidate</b-button
+                >
               </router-link>
             </b-col>
             <b-col @click="$bvModal.hide('modalRegister')">
               <router-link to="/register-recruiter">
                 <b-button
                   variant="warning"
-                  style="color:white;"
+                  style="color: white"
                   class="mt-3"
                   block
                   @click="registerRecruiterPage()"
-                >Recruiter</b-button>
+                  >Recruiter</b-button
+                >
               </router-link>
             </b-col>
           </b-row>

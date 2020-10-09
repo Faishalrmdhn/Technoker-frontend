@@ -12,16 +12,11 @@
     <b-container>
       <form @submit.prevent="onSearch" class="form pt-3 my-5">
         <div class="search-name">
-<<<<<<< HEAD
           <b-form-input
             id="input-1"
             v-model="search"
-            required
-            placeholder="Search for any skill"
+            placeholder="Search name"
           ></b-form-input>
-=======
-          <b-form-input id="input-1" v-model="search" placeholder="Search name"></b-form-input>
->>>>>>> 7d7de540cb4f40a351d5ae1f4255e282069c4e9a
         </div>
         <div class="img-search">
           <img src="../assets/img/search.png" alt />
@@ -49,7 +44,6 @@
               <img class="profile-img" :src="port + value.user_image" alt />
             </div>
             <div class="profile-details">
-<<<<<<< HEAD
               <h4 @click="getUserId(value.user_id)" style="cursor: pointer">
                 {{ value.user_name }}
               </h4>
@@ -57,12 +51,9 @@
               <p style="color: #9ea0a5; margin-top: -10px">
                 {{ value.user_location }}
               </p>
-=======
-              <h4 @click="getUserId(value.user_id)" style="cursor: pointer">{{ value.user_name}}</h4>
-              <p style="color: #9EA0A5;">{{value.user_job_desk}}</p>
-              <p style="color: #9EA0A5; margin-top: -10px">{{value.user_location}}</p>
-              <p style="color: #9EA0A5; margin-top: -10px">{{value.user_job_type}}</p>
->>>>>>> 7d7de540cb4f40a351d5ae1f4255e282069c4e9a
+              <p style="color: #9ea0a5; margin-top: -10px">
+                {{ value.user_job_type }}
+              </p>
               <div class="skills-grid">
                 <div
                   class="skills"

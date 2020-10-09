@@ -2,29 +2,20 @@
   <div style="width: 100%">
     <b-container class="nav-grid py-2">
       <div>
-<<<<<<< HEAD
         <img
-          style="width: 100px; height: 40px"
           src="../assets/img/technoker.png"
+          style="width: 100px; height: 40px"
           alt
         />
       </div>
       <!-- <div>{{ user }}</div> -->
       <div class="button-after-login">
-        <router-link style="cursor: pointer" to="/notification">
+        <router-link style="cursor: pointer" to="/chat">
           <img
             style="width: 25px; height: 25px"
             src="../assets/img/notif.png"
             alt
           />
-=======
-        <img src="../assets/img/technoker.png" style="width:100px; height: 40px" alt />
-      </div>
-      <!-- <div>{{ user }}</div> -->
-      <div class="button-after-login">
-        <router-link style="cursor:pointer" to="/chat">
-          <img style="width:25px;height:25px;" src="../assets/img/notif.png" alt />
->>>>>>> 7d7de540cb4f40a351d5ae1f4255e282069c4e9a
         </router-link>
         <router-link style="cursor: pointer" to="/chat">
           <img
