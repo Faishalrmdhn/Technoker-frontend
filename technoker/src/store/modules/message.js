@@ -12,7 +12,6 @@ export default {
     },
     getMessages(state, payload) {
       state.messages = payload[0].messages
-      console.log(state.messages)
     }
   },
   actions: {

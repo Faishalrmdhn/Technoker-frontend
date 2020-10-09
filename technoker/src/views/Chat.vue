@@ -5,18 +5,27 @@
       <b-container>
         <b-row>
           <b-col cols="4" class="chat-room">
-            <b-card style="height: 400px;">
+            <b-card style="height: 400px">
               <p>Chat</p>
               <hr />
-              <div class="my-5" v-if="room.room_name = 0">
-                <b-img center fluid :src="require('@/assets/message.png')" alt="Image 1" class></b-img>
-                <p class="text-center" style="font-size:15px">No New Inbox</p>
+              <div class="my-5" v-if="(room.room_name = 0)">
+                <b-img
+                  center
+                  fluid
+                  :src="require('@/assets/message.png')"
+                  alt="Image 1"
+                  class
+                ></b-img>
+                <p class="text-center" style="font-size: 15px">No New Inbox</p>
               </div>
-              <div style="overflowY: scroll; height: 85%">
+              <div style="overflowy: scroll; height: 85%">
                 <div v-for="(value, index) in room" :key="index">
                   <div class="room mb-2">
-                    <div class="img" @click="getDataRoom(value.room_id)"></div>
-                    <h5>{{value.room_name}}</h5>
+                    <div class="img" @click="getDataRoom(value)">
+                      <!-- {{ value.image }} -->
+                      <img class="img" :src="port + value.image" alt="" />
+                    </div>
+                    <h5>{{ value.room_name }}</h5>
                   </div>
                 </div>
               </div>
@@ -26,18 +35,26 @@
             <b-card style="height: 600px; position: relative">
               <div>
                 <div class="room mb-2">
-                  <div class="img"></div>
-                  <h5>{{senderName}}</h5>
+                  <div class="img">
+                    <img class="img" :src="port + receiverImg" alt="" />
+                  </div>
+                  <h5>{{ receiverName }}</h5>
                 </div>
               </div>
               <hr />
-              <div style="overflowY: scroll; height: 73%">
+              <div style="overflow-x: hidden; height: 73%">
                 <div v-for="(value, index) in msg" :key="index">
                   <div class="chat-r">
-                    <div class="img"></div>
-                    <h5>{{value.sender_name}}</h5>
+                    <div class="img" v-if="value.sender_img === null">
+                      <img src="../assets/img/default.png" alt="" />
+                    </div>
+                    <div class="img" v-if="value.sender_img !== null">
+                      <img class="img" :src="port + value.sender_img" alt="" />
+                    </div>
+                    <h5>{{ value.sender_name }}</h5>
                   </div>
-                  <p class="msg">{{value.message_text}}</p>
+                  <p class="msg">{{ value.message_text }}</p>
+                  <hr />
                 </div>
               </div>
 
@@ -51,7 +68,9 @@
                   v-model="message_text"
                   placeholder="Send a message"
                 ></b-form-textarea>
-                <b-button class="btn btn-send" @click="sendMessage">Send</b-button>
+                <b-button class="btn btn-send" @click="sendMessage"
+                  >Send</b-button
+                >
               </div>
             </b-card>
           </b-col>
@@ -73,7 +92,10 @@ export default {
     return {
       userId: '',
       senderName: '',
-      message_text: ''
+      message_text: '',
+      port: 'http://127.0.0.1:4000/profile/',
+      receiverName: '',
+      receiverImg: ''
     }
   },
   components: {
@@ -85,6 +107,7 @@ export default {
   },
   created() {
     this.getIdUser()
+    console.log(this.room)
   },
   methods: {
     ...mapActions([
@@ -104,7 +127,10 @@ export default {
       }
     },
     getDataRoom(data) {
-      this.getRoomById(data)
+      this.getRoomById(data.room_id)
+      console.log(data)
+      this.receiverImg = data.image
+      this.receiverName = data.room_name
     },
     sendMessage() {
       if (this.dataLogin.role === 2) {
@@ -169,6 +195,12 @@ export default {
 
 .msg {
   margin: 10px 5px;
+  padding-left: 10px;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  color: white;
+  border-radius: 4px;
+  background-color: #5e50a1;
 }
 
 .room {
@@ -180,9 +212,9 @@ export default {
 
 .img {
   /* margin-left: 20px; */
-  width: 80%;
+  width: 85%;
   height: 30px;
-  background-color: #111;
+  /* background-color: #111; */
   border-radius: 50%;
   /* display: inline-block; */
 }
