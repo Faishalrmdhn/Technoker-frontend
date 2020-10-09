@@ -2,6 +2,7 @@ import axios from 'axios'
 import router from '../../router/index'
 export default {
   state: {
+    urlAPI: process.env.VUE_APP_URL,
     user: {},
     recruiter: {},
     token: localStorage.getItem('token') || null,
@@ -32,7 +33,7 @@ export default {
     loginUser(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://127.0.0.1:4000/user/login', payload)
+          .post(`${context.state.urlAPI}user/login`, payload)
           .then(response => {
             // console.log(response)
             context.commit('setUser', response.data.data)
@@ -47,7 +48,7 @@ export default {
     loginRecruiter(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://127.0.0.1:4000/recruiter/login', payload)
+          .post(`${context.state.urlAPI}recruiter/login`, payload)
           .then(response => {
             // console.log(response)
             context.commit('setUser', response.data.data)
@@ -62,7 +63,7 @@ export default {
     registerUser(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://127.0.0.1:4000/user/register', payload)
+          .post(`${context.state.urlAPI}user/register`, payload)
           .then(response => {
             // console.log(response.data)
             resolve(response.data)
@@ -75,7 +76,7 @@ export default {
     registerRecruiter(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://127.0.0.1:4000/recruiter/register', payload)
+          .post(`${context.state.urlAPI}recruiter/register`, payload)
           .then(response => {
             resolve(response)
           })
@@ -87,12 +88,12 @@ export default {
     interceptorRequest(context) {
       console.log('interceptor works!')
       axios.interceptors.request.use(
-        function(config) {
+        function (config) {
           config.headers.authorization = `Bearer ${context.state.token}`
           // Do something before request is sent
           return config
         },
-        function(error) {
+        function (error) {
           return Promise.reject(error)
         }
       )
@@ -104,10 +105,10 @@ export default {
     },
     interceptorResponse(context) {
       axios.interceptors.response.use(
-        function(response) {
+        function (response) {
           return response
         },
-        function(error) {
+        function (error) {
           if (error.response.status === 403) {
             if (
               error.response.data.msg === 'invalid token' ||
@@ -131,7 +132,7 @@ export default {
     forgotPasswordUser(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://127.0.0.1:4000/user/forgot-password', payload)
+          .post(`${context.state.urlAPI}user/forgot-password`, payload)
           .then(response => {
             resolve(response.data)
           })
@@ -143,7 +144,7 @@ export default {
     forgotPasswordRecruiter(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://127.0.0.1:4000/recruiter/forgot-password', payload)
+          .post(`${context.state.urlAPI}recruiter/forgot-password`, payload)
           .then(response => {
             resolve(response.data)
           })
@@ -155,7 +156,7 @@ export default {
     updatePasswordUser(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .patch('http://127.0.0.1:4000/user/update-password', payload)
+          .patch(`${context.state.urlAPI}user/update-password`, payload)
           .then(response => {
             resolve(response.data)
           })
@@ -168,7 +169,7 @@ export default {
     updatePasswordRecruiter(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .patch('http://127.0.0.1:4000/recruiter/update-password', payload)
+          .patch(`${context.state.urlAPI}recruiter/update-password`, payload)
           .then(response => {
             console.log(payload)
             resolve(response.data)
