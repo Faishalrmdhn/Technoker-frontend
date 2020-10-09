@@ -108,7 +108,6 @@ export default {
           return response
         },
         function(error) {
-          console.log(error.response)
           if (error.response.status === 403) {
             if (
               error.response.data.msg === 'invalid token' ||
@@ -134,8 +133,6 @@ export default {
         axios
           .post('http://127.0.0.1:4000/user/forgot-password', payload)
           .then(response => {
-            console.log('dibawah ini')
-            console.log(response)
             resolve(response.data)
           })
           .catch(error => {
@@ -148,7 +145,6 @@ export default {
         axios
           .post('http://127.0.0.1:4000/recruiter/forgot-password', payload)
           .then(response => {
-            console.log(response)
             resolve(response.data)
           })
           .catch(error => {
@@ -161,7 +157,6 @@ export default {
         axios
           .patch('http://127.0.0.1:4000/user/update-password', payload)
           .then(response => {
-            console.log(payload)
             resolve(response.data)
           })
           .catch(error => {

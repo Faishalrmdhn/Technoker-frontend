@@ -67,15 +67,14 @@ export default {
         message_text: ''
       },
       show: true,
-      port: 'http://127.0.0.1:4000/profile/'
+      port: 'http://127.0.0.1:4000/profile/',
+      senderId: ''
     }
   },
   computed: {
-    ...mapGetters({ data: 'user', recruit: 'recruiter' })
+    ...mapGetters({ data: 'user', recruit: 'getUser' })
   },
-  created() {
-    console.log(this.data)
-  },
+  created() {},
   components: {
     Header,
     Footer
@@ -83,15 +82,13 @@ export default {
   methods: {
     ...mapActions(['postMessage']),
     hireCandidate() {
-      console.log(this.form)
       const sendMail = {
         user_id: this.data.user_id,
         recruiter_id: this.recruit.recruiter_id,
-        role: this.data.role,
+        role: this.recruit.role,
         sender_id: this.recruit.recruiter_id,
         message_text: this.form.message_text
       }
-      console.log(sendMail)
       this.postMessage(sendMail)
         .then((result) => {
           alert('Pesan berhasil dikirim')

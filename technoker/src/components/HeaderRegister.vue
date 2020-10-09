@@ -1,7 +1,11 @@
 <template>
   <b-container class="nav-grid py-4">
     <div>
+<<<<<<< HEAD
       <img style="width:100px; height:40px" src="../assets/img/technoker.png" alt />
+=======
+      <img src="../assets/img/technoker.png" style="width:100px; height: 40px" alt />
+>>>>>>> 7d7de540cb4f40a351d5ae1f4255e282069c4e9a
     </div>
     <div class="button-login-register text-right">
       <router-link to="/login">

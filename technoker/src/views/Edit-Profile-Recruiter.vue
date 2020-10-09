@@ -1,123 +1,150 @@
 <template>
-  <div style="width:100%; background-color: #E5E5E5; position:relative;">
+  <div style="background-color: #e5e5e5; position: relative">
     <Header
       class="py-4"
-      style="background-color: white; box-shadow: 0px 10px 50px rgba(132, 132, 132, 0.25); position:relative; z-index:5555;"
+      style="
+        background-color: white;
+        box-shadow: 0px 10px 50px rgba(132, 132, 132, 0.25);
+        position: relative;
+        z-index: 5555;
+      "
     />
     <div class="magenta"></div>
-    <div class="page-container">
-      <div class="profile-info">
-        <div class="image">
-          <img
-            v-if="recruiter.recruiter_profile_image !== null"
-            class="image"
-            :src="port + recruiter.recruiter_profile_image"
-            alt
-          />
-          <img
-            v-if="recruiter.recruiter_profile_image === null"
-            src="../assets/img/default.png"
-            alt="image default"
-          />
+    <b-container>
+      <b-row class="mt-5">
+        <div class="profile-info col-md-4">
+          <div class="image">
+            <img
+              v-if="recruiter.recruiter_profile_image !== null"
+              class="image"
+              :src="port + recruiter.recruiter_profile_image"
+              alt
+            />
+            <img
+              class="image"
+              v-if="recruiter.recruiter_profile_image === null"
+              src="../assets/img/default.png"
+              alt
+            />
+          </div>
+          <div class="name-box mb-5">
+            <h4>{{ recruiter.recruiter_company }}</h4>
+            <p>{{ recruiter.recruiter_field }}</p>
+            <p>
+              <img src="../assets/img/location.png" alt="" />
+              {{ recruiter.recruiter_location }}
+            </p>
+          </div>
+          <router-link to="/profile-company">
+            <b-button block class="mt-5 btn-cancel">Batal</b-button>
+          </router-link>
         </div>
-        <div class="name-box">
-          <h4>{{recruiter.recruiter_company}}</h4>
-          <p>{{recruiter.recruiter_position}}</p>
-          <p>{{recruiter.recruiter_location}}</p>
+        <b-col md="1"></b-col>
+        <div class="hire-info col-md-7">
+          <h3>Data diri</h3>
+          <hr />
+          <div>
+            <b-form @submit.prevent="onUpdate">
+              <b-form-group
+                id="input-group-2"
+                label="Nama Perusahaan"
+                label-for="input-2"
+              >
+                <b-form-input
+                  id="input-2"
+                  v-model="form.recruiter_company"
+                  required
+                  placeholder="Masukkan nama perusahaan"
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group label="Upload Gambar">
+                <b-form-file
+                  v-model="form.recruiter_profile_image"
+                  @change="handleFile"
+                  placeholder="Choose a file or drop it here..."
+                  drop-placeholder="Drop file here..."
+                ></b-form-file>
+              </b-form-group>
+              <b-form-group
+                id="input-group-2"
+                label="Bidang"
+                label-for="input-2"
+              >
+                <b-form-input
+                  id="input-2"
+                  v-model="form.recruiter_field"
+                  required
+                  placeholder="Masukkan nama bidang perusahaan ex: Financial"
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group id="input-group-2" label="Kota" label-for="input-2">
+                <b-form-input
+                  id="input-2"
+                  v-model="form.recruiter_location"
+                  required
+                  placeholder="Masukkan kota"
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group
+                id="input-group-2"
+                label="Deskripsi:"
+                label-for="textarea"
+              >
+                <b-form-textarea
+                  id="textarea"
+                  v-model="form.recruiter_about"
+                  placeholder="Jelaskan lebih detail"
+                  rows="3"
+                  max-rows="6"
+                ></b-form-textarea>
+              </b-form-group>
+              <b-form-group
+                id="input-group-2"
+                label="Instagram"
+                label-for="input-2"
+              >
+                <b-form-input
+                  id="input-2"
+                  v-model="form.recruiter_instagram"
+                  required
+                  placeholder="Masukkan nama instagram"
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group
+                id="input-group-2"
+                label="Nomor Telepon"
+                label-for="input-2"
+              >
+                <b-form-input
+                  id="input-2"
+                  v-model="form.recruiter_phone"
+                  required
+                  placeholder="Masukkan no telepon"
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group
+                id="input-group-2"
+                label="LinkedIn"
+                label-for="input-2"
+              >
+                <b-form-input
+                  id="input-2"
+                  v-model="form.recruiter_linkedin"
+                  required
+                  placeholder="Masukkan LinkedIn"
+                ></b-form-input>
+              </b-form-group>
+              <b-button block class="mt-4 btn-save" type="submit"
+                >Simpan</b-button
+              >
+            </b-form>
+          </div>
         </div>
-        <!-- <b-button block class="mt-4 btn-save">Simpan</b-button> -->
-        <router-link to="/profile-company">
-          <b-button block class="mt-3 btn-cancel">Batal</b-button>
-        </router-link>
-      </div>
-      <div class="hire-info">
-        <h3>Data diri</h3>
-        <hr />
-        <div>
-          <b-form @submit.prevent="onUpdate">
-            <b-form-group id="input-group-2" label="Nama Perusahaan" label-for="input-2">
-              <b-form-input
-                id="input-2"
-                v-model="form.recruiter_company"
-                required
-                placeholder="Masukkan nama perusahaan"
-              ></b-form-input>
-            </b-form-group>
-            <b-form-group label="Upload Gambar">
-              <b-form-file
-                v-model="form.recruiter_profile_image"
-                @change="handleFile"
-                placeholder="Choose a file or drop it here..."
-                drop-placeholder="Drop file here..."
-              ></b-form-file>
-            </b-form-group>
-            <b-form-group id="input-group-2" label="Bidang" label-for="input-2">
-              <b-form-input
-                id="input-2"
-                v-model="form.recruiter_field"
-                required
-                placeholder="Masukkan nama bidang perusahaan ex: Financial"
-              ></b-form-input>
-            </b-form-group>
-            <b-form-group id="input-group-2" label="Kota" label-for="input-2">
-              <b-form-input
-                id="input-2"
-                v-model="form.recruiter_location"
-                required
-                placeholder="Masukkan kota"
-              ></b-form-input>
-            </b-form-group>
-            <b-form-group id="input-group-2" label="Deskripsi:" label-for="textarea">
-              <b-form-textarea
-                id="textarea"
-                v-model="form.recruiter_about"
-                placeholder="Jelaskan lebih detail"
-                rows="3"
-                max-rows="6"
-              ></b-form-textarea>
-            </b-form-group>
-            <!-- <b-form-group id="input-group-1" label="Email" label-for="input-1">
-              <b-form-input
-                id="input-1"
-                v-model="form.recruiter_email"
-                type="email"
-                required
-                placeholder="Masukkan email"
-              ></b-form-input>
-            </b-form-group>-->
-            <b-form-group id="input-group-2" label="Instagram" label-for="input-2">
-              <b-form-input
-                id="input-2"
-                v-model="form.recruiter_instagram"
-                required
-                placeholder="Masukkan nama instagram"
-              ></b-form-input>
-            </b-form-group>
-            <b-form-group id="input-group-2" label="Nomor Telepon" label-for="input-2">
-              <b-form-input
-                id="input-2"
-                v-model="form.recruiter_phone"
-                required
-                placeholder="Masukkan no telepon"
-              ></b-form-input>
-            </b-form-group>
-            <b-form-group id="input-group-2" label="LinkedIn" label-for="input-2">
-              <b-form-input
-                id="input-2"
-                v-model="form.recruiter_linkedin"
-                required
-                placeholder="Masukkan LinkedIn"
-              ></b-form-input>
-            </b-form-group>
-            <b-button block class="mt-4 btn-save" type="submit">Simpan</b-button>
-          </b-form>
-        </div>
-      </div>
-    </div>
-    <Footer style="position: relative; z-index:0" />
+      </b-row>
+    </b-container>
+    <Footer style="position: relative; z-index: 0" />
   </div>
 </template>
-
 <script>
 import Header from '../components/HeaderLogin'
 import Footer from '../components/Footer'
@@ -143,7 +170,10 @@ export default {
     Header,
     Footer
   },
-  created() {},
+  created() {
+    this.setFormData()
+    this.getRecruiterById(this.recruiter.recruiter_id)
+  },
   computed: {
     ...mapGetters(['recruiter'])
   },
@@ -152,6 +182,16 @@ export default {
       this.form.recruiter_profile_image = event.target.files[0]
     },
     ...mapActions(['getRecruiterById', 'patchRecruiter']),
+    setFormData() {
+      this.form.recruiter_company = this.recruiter.recruiter_company
+      this.form.recruiter_field = this.recruiter.recruiter_field
+      this.form.recruiter_location = this.recruiter.recruiter_location
+      this.form.recruiter_profile_image = this.recruiter.recruiter_profile_image
+      this.form.recruiter_about = this.recruiter.recruiter_about
+      this.form.recruiter_instagram = this.recruiter.recruiter_instagram
+      this.form.recruiter_phone = this.recruiter.recruiter_phone
+      this.form.recruiter_linkedin = this.recruiter.recruiter_linkedin
+    },
     onUpdate() {
       const data = new FormData()
       data.append('recruiter_company', this.form.recruiter_company)
@@ -174,43 +214,36 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 .name-box {
-  padding: 0 30px;
+  padding: 0 20px;
   position: relative;
   top: 20px;
 }
-.btn-hire {
-  background-color: #fbb017;
-  border-color: #fbb017;
-}
-.btn-hire:hover {
-  background-color: #fbb017;
-  border-color: #fbb017;
-  color: #111;
-}
+
 .btn-save {
   background-color: #5e50a1;
   border-color: #5e50a1;
   color: white;
   margin: 0 auto;
-  width: 357px;
-  height: 50px;
+  height: 45px;
 }
+
 .btn-save:hover {
   background-color: #fbb017;
   border-color: #fbb017;
   color: #111;
 }
+
 .btn-cancel {
-  background-color: white;
+  background-color: #5e50a1;
   border-color: #5e50a1;
-  color: #5e50a1;
+  color: WHITE;
   margin: 0 20px;
   width: 357px;
   height: 50px;
 }
+
 .btn-cancel:hover {
   background-color: #fbb017;
   border-color: #fbb017;
@@ -236,7 +269,7 @@ export default {
 }
 
 .profile-info {
-  width: 400px;
+  /*width: 400px;*/
   height: 480px;
   border-radius: 8px;
   background-color: white;
@@ -252,14 +285,14 @@ export default {
 }
 
 .hire-info {
-  width: 700px;
   height: 1000px;
   border-radius: 8px;
   position: relative;
   z-index: 1;
   background-color: white;
-  padding: 10px;
+  padding: 15px;
 }
+
 /* Skills */
 .skills {
   margin: 20px 0;
@@ -277,27 +310,5 @@ export default {
   padding: 3px 15px;
   color: #fbb017;
   margin: 0 5px 5px 0px;
-}
-
-@media (max-width: 700px) {
-  .page-container {
-    grid-template-columns: 1fr;
-  }
-
-  .profile-info {
-    width: 375px;
-  }
-
-  .hire-info {
-    margin-top: 50px;
-    width: 375px;
-    margin-bottom: -20px;
-  }
-
-  .btn-save,
-  .btn-cancel {
-    width: 335px;
-    height: 40px;
-  }
 }
 </style>
