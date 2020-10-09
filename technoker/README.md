@@ -1,4 +1,4 @@
-<h1 align='center'>Vue JS - Tecnoker</h1>
+<h1 align='center'>Vue JS - Technoker</h1>
   <p align="center">
     <a href="#">View Demo</a>
     ·
