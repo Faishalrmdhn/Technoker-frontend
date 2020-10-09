@@ -35,10 +35,11 @@
                     type="text"
                     id="input-2"
                     v-model="formUser.user_name"
+                    placeholder="Enter your name"
                     required
-                    placeholder="Enter name"
                   ></b-form-input>
                 </b-form-group>
+
                 <b-form-group id="input-group-1" label="Job Desk" label-for="input-1">
                   <b-form-input
                     id="input-1"
@@ -257,7 +258,6 @@
                     drop-placeholder="Drop file here..."
                   ></b-form-file>
                 </b-form-group>
-
                 <b-button
                   variant="outline-warning"
                   block
@@ -381,7 +381,8 @@ export default {
           })
         })
         .catch((err) => {
-          this.$bvToast.toast(err, {
+          console.log(err)
+          this.$bvToast.toast(err.data.msg, {
             title: 'Status :',
             autoHideDelay: 1000,
             appendToast: true

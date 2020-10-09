@@ -14,9 +14,13 @@
       </b-col>
       <b-col sm="6" class="right">
         <b-alert :show="alert" class="m-3" variant="danger">
+<<<<<<< HEAD
+          {{ isMsg }}
+=======
           {{
           isMsg
           }}
+>>>>>>> 7d7de540cb4f40a351d5ae1f4255e282069c4e9a
         </b-alert>
         <b-row class="content-right" align-v="center">
           <b-col>
