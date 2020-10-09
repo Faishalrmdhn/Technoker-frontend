@@ -11,14 +11,17 @@ export default {
   },
   actions: {
     getRecruiterById(context, payload) {
-      axios
-        .get(`http://127.0.0.1:4000/recruiter/${payload}`)
-        .then(response => {
-          context.commit('setRecruiterById', response)
-        })
-        .catch(error => {
-          console.log(error)
-        })
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`http://127.0.0.1:4000/recruiter/${payload}`)
+          .then(response => {
+            context.commit('setRecruiterById', response)
+            resolve(response)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
     },
     patchRecruiter(context, payload) {
       return new Promise((resolve, reject) => {

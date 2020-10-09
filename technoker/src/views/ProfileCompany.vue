@@ -8,22 +8,8 @@
           <div class="white text-center mx-auto" style="padding-bottom: -100px">
             <div class="mx-auto pb-3" style="position: relative; top: -110px; width: 50%">
               <b-avatar size="11rem" class="my-3">
-                <b-img
-                  center
-                  v-if="recruiter.recruiter_profile_image !== null"
-                  fluid
-                  :src="port + recruiter.recruiter_profile_image"
-                  alt="Image 1"
-                  class="mt-4"
-                ></b-img>
-                <img
-                  center
-                  class="user-img mt-4"
-                  v-if="recruiter.recruiter_profile_image === null"
-                  fluid
-                  src="../assets/img/default.png"
-                  alt="Image Default"
-                />
+                <b-img center v-if="recruiter.recruiter_profile_image !== null" fluid :src="port + recruiter.recruiter_profile_image" alt="Image 1" class="mt-4"></b-img>
+                <img center class="user-img mt-4" v-if="recruiter.recruiter_profile_image === null" fluid src="../assets/img/default.png" alt="Image Default" />
               </b-avatar>
               <div>
                 <h3 class="my-1">{{recruiter.recruiter_company}}</h3>
@@ -31,33 +17,31 @@
                 <p class="mt-3 text-muted">{{recruiter.recruiter_location}}</p>
                 <b-card-text class="mt-2 text-muted">{{recruiter.recruiter_about}}</b-card-text>
               </div>
-              <b-button
-                class="py-2 my-3 btn-hire-edit"
-                style="width: 50%; background-color: #5e50a1"
-                @click="editDataCompany()"
-              >Edit</b-button>
+              <b-button class="py-2 my-3 btn-hire-edit" style="width: 50%; background-color: #5e50a1" @click="editDataCompany()">Edit</b-button>
               <br />
               <router-link to="home">
-                <b-button
-                  class="py-2 btn-hire-edit"
-                  style="width: 50%; background-color: #5e50a1"
-                >Back</b-button>
+                <b-button class="py-2 btn-hire-edit" style="width: 50%; background-color: #5e50a1">Back</b-button>
               </router-link>
-
-              <div
-                class="text-muted text-left mt-3 mx-auto"
-                style="width: 40%; margin-bottom: -100px"
-              >
-                <p>Email : {{recruiter.recruiter_email}}</p>
-                <p>Instagram : {{recruiter.recruiter_instagram}}</p>
-                <p>LinkedIn : {{recruiter.recruiter_linkedin}}</p>
+              <div class="text-muted text-left mt-3 mx-auto" style="width: 40%; margin-bottom: -100px">
+                <p>
+                  <span>
+                    <img src="../assets/img/mail.png" alt />
+                  </span> {{recruiter.recruiter_email}}
+                </p>
+                <p>
+                  <span>
+                    <img src="../assets/img/instagram.png" alt />
+                  </span>
+                  {{recruiter.recruiter_instagram}}
+                </p>
+                <p>
+                  <span>
+                    <img src="../assets/img/github.png" alt />
+                  </span>{{recruiter.recruiter_linkedin}}
+                </p>
               </div>
             </div>
-            <b-button
-              class="py-2 my-4 btn-hire-edit"
-              style="width: 10%; background-color: #5e50a1"
-              @click="logout"
-            >Logout</b-button>
+            <b-button class="py-2 my-4 btn-hire-edit" style="width: 10%; background-color: #5e50a1" @click="logout">Logout</b-button>
           </div>
         </b-container>
       </b-jumbotron>
@@ -65,7 +49,6 @@
     <Footer class="mt-0" />
   </div>
 </template>
-
 <script>
 import HeaderLogin from '@/components/HeaderLogin.vue'
 import Footer from '@/components/Footer.vue'
@@ -110,8 +93,8 @@ export default {
     }
   }
 }
-</script>
 
+</script>
 <style scoped>
 .purple {
   height: 200px;
@@ -119,6 +102,7 @@ export default {
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
 }
+
 .white {
   background-color: #ffff;
   border-bottom-right-radius: 8px;
@@ -133,7 +117,9 @@ export default {
   border-radius: 50%;
   cursor: pointer;
 }
+
 .user-img:hover {
   cursor: pointer;
 }
+
 </style>
