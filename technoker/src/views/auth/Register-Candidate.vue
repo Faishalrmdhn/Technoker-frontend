@@ -13,9 +13,9 @@
         </b-row>
       </b-col>
       <b-col sm="6" class="right">
-        <b-alert :show="alert" class="m-3" variant="danger">
+        <!-- <b-alert :show="alert" class="m-3" variant="danger">
           {{ isMsg }}
-        </b-alert>
+        </b-alert> -->
         <b-row class="content-right" align-v="center">
           <b-col>
             <div class="text-left p-3">
@@ -23,7 +23,7 @@
                 <strong>Halo, Technokerian!</strong>
               </h3>
               <p>Get Your Job More Easier &#38; Quicker!</p>
-              <b-form @submit.prevent="onSubmit" style="color: grey">
+              <b-form @submit.prevent="onSubmit('danger')" style="color: grey">
                 <b-form-group label="Nama">
                   <b-input
                     type="text"
@@ -110,66 +110,67 @@ export default {
   },
   methods: {
     ...mapActions(['registerUser']),
-    onSubmit() {
-      console.log(this.form.user_password)
-      console.log(this.form.user_confirm_password)
+    onSubmit(variant = null) {
       console.log(this.form)
-      if (this.form.user_email === '') {
-        this.alert = true
-        this.isMsg = "Email can't be empty"
-        setTimeout(() => {
-          this.alert = false
-        }, 2000)
-      } else if (this.form.user_password === '') {
-        this.alert = true
-        this.isMsg = "Password can't be empty"
-        setTimeout(() => {
-          this.alert = false
-        }, 2000)
-      } else if (
-        this.form.user_password.length < 8 ||
-        this.form.user_password.length > 16
-      ) {
-        this.alert = true
-        this.isMsg = 'Password must be 8-16 characters'
-        setTimeout(() => {
-          this.alert = false
-        }, 2000)
-      } else if (this.form.user_password !== this.form.user_confirm_password) {
-        this.alert = true
-        this.isMsg = 'Password do not match'
-        setTimeout(() => {
-          this.alert = false
-        }, 2000)
-      } else if (this.form.user_name === '') {
-        this.alert = true
-        this.isMsg = "Name can't be empty"
-        setTimeout(() => {
-          this.alert = false
-        }, 2000)
-      } else if (this.form.user_phone.length > 15) {
-        this.alert = true
-        this.isMsg = 'Phone number cannot be more than 15 digits'
-        setTimeout(() => {
-          this.alert = false
-        }, 2000)
-      } else {
-        this.registerUser(this.form)
-          .then((result) => {
-            console.log(result)
+      // if (this.form.user_email === '') {
+      //   this.alert = true
+      //   this.isMsg = "Email can't be empty"
+      //   setTimeout(() => {
+      //     this.alert = false
+      //   }, 2000)
+      // } else if (this.form.user_password === '') {
+      //   this.alert = true
+      //   this.isMsg = "Password can't be empty"
+      //   setTimeout(() => {
+      //     this.alert = false
+      //   }, 2000)
+      // } else if (
+      //   this.form.user_password.length < 8 ||
+      //   this.form.user_password.length > 16
+      // ) {
+      //   this.alert = true
+      //   this.isMsg = 'Password must be 8-16 characters'
+      //   setTimeout(() => {
+      //     this.alert = false
+      //   }, 2000)
+      // } else if (this.form.user_password !== this.form.user_confirm_password) {
+      //   this.alert = true
+      //   this.isMsg = 'Password do not match'
+      //   setTimeout(() => {
+      //     this.alert = false
+      //   }, 2000)
+      // } else if (this.form.user_name === '') {
+      //   this.alert = true
+      //   this.isMsg = "Name can't be empty"
+      //   setTimeout(() => {
+      //     this.alert = false
+      //   }, 2000)
+      // } else if (this.form.user_phone.length > 15) {
+      //   this.alert = true
+      //   this.isMsg = 'Phone number cannot be more than 15 digits'
+      //   setTimeout(() => {
+      //     this.alert = false
+      //   }, 2000)
+      // } else {
+      this.registerUser(this.form)
+        .then((response) => {
+          this.$bvToast.toast(response.data.msg, {
+            title: 'Success',
+            variant: 'success',
+            solid: true
+          })
+          setTimeout(() => {
             this.$router.push('/login')
+          }, 2000)
+        })
+        .catch((error) => {
+          console.log(error.data.msg)
+          this.$bvToast.toast(error.data.msg, {
+            title: 'Warning',
+            variant: variant,
+            solid: true
           })
-          .catch((error) => {
-            console.log(error.data.msg)
-            if (error.data.msg === 'Email has been registered') {
-              this.alert = true
-              this.isMsg = error.data.msg
-              setTimeout(() => {
-                this.alert = false
-              }, 2000)
-            }
-          })
-      }
+        })
     }
   }
 }

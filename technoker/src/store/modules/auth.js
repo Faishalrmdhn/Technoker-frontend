@@ -80,7 +80,8 @@ export default {
         axios
           .post(`${context.state.urlAPI}recruiter/register`, payload)
           .then(response => {
-            resolve(response)
+            console.log(response.data)
+            resolve(response.data)
           })
           .catch(error => {
             reject(error)

@@ -13,9 +13,6 @@
         </b-row>
       </b-col>
       <b-col sm="6" class="right">
-        <b-alert :show="alert" class="m-3" variant="danger">
-          {{ isMsg }}
-        </b-alert>
         <b-row class="content-right" align-v="center">
           <b-col>
             <div class="text-left p-3">
@@ -23,7 +20,7 @@
                 <strong>Halo, Technokerian!</strong>
               </h3>
               <p>Get Your Job More Easier &#38; Quicker!</p>
-              <b-form @submit.prevent="onSubmit" style="color: grey">
+              <b-form @submit.prevent="onSubmit('danger')" style="color: grey">
                 <b-form-group label="Nama">
                   <b-input
                     type="text"
@@ -124,45 +121,49 @@ export default {
   computed: {},
   methods: {
     ...mapActions(['registerRecruiter']),
-    onSubmit() {
-      if (
-        this.form.recruiter_name === '' ||
-        this.form.recruiter_name === undefined ||
-        this.form.recruiter_email === '' ||
-        this.form.recruiter_email === undefined ||
-        this.form.recruiter_company === '' ||
-        this.form.recruiter_company === undefined ||
-        this.form.recruiter_position === '' ||
-        this.form.recruiter_position === undefined ||
-        this.form.recruiter_phone === '' ||
-        this.form.recruiter_phone === undefined ||
-        this.form.recruiter_password === '' ||
-        this.form.recruiter_password === undefined ||
-        this.form.recruiter_password_confirmation === '' ||
-        this.form.recruiter_password_confirmation === undefined
-      ) {
-        this.alert = true
-        this.isMsg = "The data you've entered is not complete!"
-        setTimeout(() => {
-          this.alert = false
-        }, 2000)
-      } else {
-        this.registerRecruiter(this.form)
-          .then((result) => {
-            console.log(result)
+    onSubmit(variant = null) {
+      // if (
+      //   this.form.recruiter_name === '' ||
+      //   this.form.recruiter_name === undefined ||
+      //   this.form.recruiter_email === '' ||
+      //   this.form.recruiter_email === undefined ||
+      //   this.form.recruiter_company === '' ||
+      //   this.form.recruiter_company === undefined ||
+      //   this.form.recruiter_position === '' ||
+      //   this.form.recruiter_position === undefined ||
+      //   this.form.recruiter_phone === '' ||
+      //   this.form.recruiter_phone === undefined ||
+      //   this.form.recruiter_password === '' ||
+      //   this.form.recruiter_password === undefined ||
+      //   this.form.recruiter_password_confirmation === '' ||
+      //   this.form.recruiter_password_confirmation === undefined
+      // ) {
+      //   this.alert = true
+      //   this.isMsg = "The data you've entered is not complete!"
+      //   setTimeout(() => {
+      //     this.alert = false
+      //   }, 2000)
+      // } else {
+      this.registerRecruiter(this.form)
+        .then((response) => {
+          this.$bvToast.toast(response.data.msg, {
+            title: 'Success',
+            variant: 'success',
+            solid: true
+          })
+          setTimeout(() => {
             this.$router.push('/login')
+          }, 2000)
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$bvToast.toast(error.data.msg, {
+            title: 'Warning',
+            variant: variant,
+            solid: true
           })
-          .catch((error) => {
-            console.log(error.data.msg)
-            if (error.data.msg === 'Email has been registered') {
-              this.alert = true
-              this.isMsg = error.data.msg
-              setTimeout(() => {
-                this.alert = false
-              }, 2000)
-            }
-          })
-      }
+        })
+      // }
     }
   }
 }
