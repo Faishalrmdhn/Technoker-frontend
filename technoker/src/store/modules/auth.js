@@ -76,6 +76,7 @@ export default {
       })
     },
     registerRecruiter(context, payload) {
+      console.log(payload)
       return new Promise((resolve, reject) => {
         axios
           .post(`${context.state.urlAPI}recruiter/register`, payload)

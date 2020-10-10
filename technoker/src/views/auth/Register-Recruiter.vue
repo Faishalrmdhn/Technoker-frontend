@@ -122,6 +122,7 @@ export default {
   methods: {
     ...mapActions(['registerRecruiter']),
     onSubmit(variant = null) {
+      console.log(this.form)
       // if (
       //   this.form.recruiter_name === '' ||
       //   this.form.recruiter_name === undefined ||
@@ -146,7 +147,8 @@ export default {
       // } else {
       this.registerRecruiter(this.form)
         .then((response) => {
-          this.$bvToast.toast(response.data.msg, {
+          console.log(response)
+          this.$bvToast.toast(response.msg, {
             title: 'Success',
             variant: 'success',
             solid: true
@@ -156,8 +158,8 @@ export default {
           }, 2000)
         })
         .catch((error) => {
-          console.log(error)
-          this.$bvToast.toast(error.data.msg, {
+          console.log(error.response)
+          this.$bvToast.toast(error.response.data.msg, {
             title: 'Warning',
             variant: variant,
             solid: true

@@ -112,49 +112,10 @@ export default {
     ...mapActions(['registerUser']),
     onSubmit(variant = null) {
       console.log(this.form)
-      // if (this.form.user_email === '') {
-      //   this.alert = true
-      //   this.isMsg = "Email can't be empty"
-      //   setTimeout(() => {
-      //     this.alert = false
-      //   }, 2000)
-      // } else if (this.form.user_password === '') {
-      //   this.alert = true
-      //   this.isMsg = "Password can't be empty"
-      //   setTimeout(() => {
-      //     this.alert = false
-      //   }, 2000)
-      // } else if (
-      //   this.form.user_password.length < 8 ||
-      //   this.form.user_password.length > 16
-      // ) {
-      //   this.alert = true
-      //   this.isMsg = 'Password must be 8-16 characters'
-      //   setTimeout(() => {
-      //     this.alert = false
-      //   }, 2000)
-      // } else if (this.form.user_password !== this.form.user_confirm_password) {
-      //   this.alert = true
-      //   this.isMsg = 'Password do not match'
-      //   setTimeout(() => {
-      //     this.alert = false
-      //   }, 2000)
-      // } else if (this.form.user_name === '') {
-      //   this.alert = true
-      //   this.isMsg = "Name can't be empty"
-      //   setTimeout(() => {
-      //     this.alert = false
-      //   }, 2000)
-      // } else if (this.form.user_phone.length > 15) {
-      //   this.alert = true
-      //   this.isMsg = 'Phone number cannot be more than 15 digits'
-      //   setTimeout(() => {
-      //     this.alert = false
-      //   }, 2000)
-      // } else {
       this.registerUser(this.form)
         .then((response) => {
-          this.$bvToast.toast(response.data.msg, {
+          console.log(response)
+          this.$bvToast.toast(response.msg, {
             title: 'Success',
             variant: 'success',
             solid: true
@@ -164,8 +125,8 @@ export default {
           }, 2000)
         })
         .catch((error) => {
-          console.log(error.data.msg)
-          this.$bvToast.toast(error.data.msg, {
+          console.log(error.msg)
+          this.$bvToast.toast(error.msg, {
             title: 'Warning',
             variant: variant,
             solid: true
