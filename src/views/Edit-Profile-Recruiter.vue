@@ -179,13 +179,6 @@ export default {
     ...mapActions(['getRecruiterById', 'patchRecruiter']),
     setFormData() {
       this.form.recruiter_company = this.recruiter.recruiter_company
-      this.form.recruiter_field = this.recruiter.recruiter_field
-      this.form.recruiter_location = this.recruiter.recruiter_location
-      this.form.recruiter_profile_image = this.recruiter.recruiter_profile_image
-      this.form.recruiter_about = this.recruiter.recruiter_about
-      this.form.recruiter_instagram = this.recruiter.recruiter_instagram
-      this.form.recruiter_phone = this.recruiter.recruiter_phone
-      this.form.recruiter_linkedin = this.recruiter.recruiter_linkedin
     },
     onUpdate() {
       const data = new FormData()

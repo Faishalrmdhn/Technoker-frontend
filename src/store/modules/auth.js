@@ -35,13 +35,13 @@ export default {
         axios
           .post(`${context.state.urlAPI}user/login`, payload)
           .then(response => {
-            // console.log(response)
+            console.log(response)
             context.commit('setUser', response.data.data)
             localStorage.setItem('token', response.data.data.token)
             resolve(response.data)
           })
           .catch(error => {
-            console.log(error.response)
+            console.log(error)
             reject(error.response)
           })
       })
@@ -93,12 +93,12 @@ export default {
     interceptorRequest(context) {
       console.log('interceptor works!')
       axios.interceptors.request.use(
-        function(config) {
+        function (config) {
           config.headers.authorization = `Bearer ${context.state.token}`
           // Do something before request is sent
           return config
         },
-        function(error) {
+        function (error) {
           return Promise.reject(error)
         }
       )
@@ -110,10 +110,10 @@ export default {
     },
     interceptorResponse(context) {
       axios.interceptors.response.use(
-        function(response) {
+        function (response) {
           return response
         },
-        function(error) {
+        function (error) {
           if (error.response.status === 403) {
             if (
               error.response.data.msg === 'invalid token' ||
