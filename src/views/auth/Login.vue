@@ -230,7 +230,7 @@ export default {
 <style scoped>
 .logo {
   position: relative;
-  top: -160px;
+  top: -265px;
   left: -200px;
   z-index: 2;
 }
