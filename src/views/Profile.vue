@@ -206,10 +206,10 @@ export default {
     },
     getLogout() {
       this.logout()
+    },
+    getPorto() {
+      console.log(this.getUserById)
     }
-    // getPorto() {
-    //   console.log(this.getUserById)
-    // }
   },
   computed: {
     ...mapGetters({

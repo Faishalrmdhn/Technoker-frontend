@@ -237,14 +237,14 @@
                   <b-form-checkbox
                     id="checkbox-1"
                     name="checkbox-1"
-                    v-model="portofolio_type"
+                    v-model="formPortfolio.portofolio_type"
                     value="1"
                     unchecked-value="null"
                   >Aplikasi Mobile</b-form-checkbox>
                   <b-form-checkbox
                     id="checkbox-2"
                     name="checkbox-2"
-                    v-model="portofolio_type"
+                    v-model="formPortfolio.portofolio_type"
                     value="2"
                     unchecked-value="null"
                   >Aplikasi Web</b-form-checkbox>
@@ -308,9 +308,9 @@ export default {
       formPortfolio: {
         portofolio_image: {},
         portofolio_name: '',
+        portofolio_type: '',
         portofolio_repository: ''
       },
-      portofolio_type: '',
       show: true,
       skill: '',
       port: `${process.env.VUE_APP_URL}profile/`,
@@ -423,12 +423,13 @@ export default {
       const data = new FormData()
       data.append('portofolio_name', this.formPortfolio.portofolio_name)
       data.append('portofolio_image', this.formPortfolio.portofolio_image)
-      data.append('portofolio_type', this.portofolio_type)
+      data.append('portofolio_type', this.formPortfolio.portofolio_type)
       data.append(
         'portofolio_repository',
         this.formPortfolio.portofolio_repository
       )
       data.append('user_id', this.userId.user_id)
+      console.log(this.formPortfolio)
       this.postPortfolio(data)
         .then((res) => {
           this.getUserById(this.userId.user_id)

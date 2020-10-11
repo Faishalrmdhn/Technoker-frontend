@@ -4,7 +4,7 @@
     <b-jumbotron class="mb-0">
       <b-container>
         <b-row>
-          <b-col cols="4" class="chat-room">
+          <b-col cols lg="4" sm="12" class="chat-room">
             <b-card style="height: 400px">
               <p>Chat</p>
               <hr />
@@ -45,7 +45,7 @@
               </div>
             </b-card>
           </b-col>
-          <b-col cols="8">
+          <b-col cols lg="8" sm="12">
             <b-card style="height: 600px; position: relative">
               <div>
                 <div class="room mb-2">
@@ -245,5 +245,11 @@ h5 {
   margin-left: 4px;
   font-size: 17px;
   margin-top: 5px;
+}
+
+@media (max-width: 600px) {
+  .chat-room {
+    height: 450px;
+  }
 }
 </style>
