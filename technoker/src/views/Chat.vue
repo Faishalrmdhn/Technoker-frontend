@@ -19,11 +19,25 @@
                 <p class="text-center" style="font-size: 15px">No New Inbox</p>
               </div>
               <div style="overflowy: scroll; height: 85%">
-                <div v-for="(value, index) in room" :key="index">
+                <div
+                  @click="getDataRoom(value)"
+                  v-for="(value, index) in room"
+                  :key="index"
+                >
                   <div class="room mb-2">
-                    <div class="img" @click="getDataRoom(value)" style="cursor: pointer">
-                      <img v-if="value.image === null" class="img" src="../assets/img/default.png" alt="" />
-                      <img v-if="value.image !== null" class="img" :src="port + value.image" alt="" />
+                    <div class="img" style="cursor: pointer">
+                      <img
+                        v-if="value.image === null"
+                        class="img"
+                        src="../assets/img/default.png"
+                        alt=""
+                      />
+                      <img
+                        v-if="value.image !== null"
+                        class="img"
+                        :src="port + value.image"
+                        alt=""
+                      />
                     </div>
                     <h5 style="cursor: pointer">{{ value.room_name }}</h5>
                   </div>
@@ -56,7 +70,7 @@
                 <div v-for="(value, index) in msg" :key="index">
                   <div class="chat-r">
                     <div class="img" v-if="value.sender_img === null">
-                      <img src="../assets/img/default.png" alt="" />
+                      <img class="img" src="../assets/img/default.png" alt="" />
                     </div>
                     <div class="img" v-if="value.sender_img !== null">
                       <img class="img" :src="port + value.sender_img" alt="" />
