@@ -131,7 +131,6 @@ export default {
   },
   created() {
     this.getIdUser()
-    console.log(this.room)
   },
   methods: {
     ...mapActions([
@@ -141,7 +140,6 @@ export default {
       'postMessage'
     ]),
     getIdUser() {
-      // console.log(this.dataLogin)
       if (this.dataLogin.role === 1) {
         this.userId = this.dataLogin.recruiter_id
         this.getRecruiterRoom(this.userId)
@@ -152,7 +150,6 @@ export default {
     },
     getDataRoom(data) {
       this.getRoomById(data.room_id)
-      console.log(data)
       this.receiverImg = data.image
       this.receiverName = data.room_name
     },

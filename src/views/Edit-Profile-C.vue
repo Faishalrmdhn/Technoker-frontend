@@ -341,6 +341,7 @@ export default {
       }
       this.postSkill(setData)
         .then((res) => {
+          this.getUserById(this.userId.user_id)
           this.$bvToast.toast(res, {
             title: 'Status :',
             autoHideDelay: 500,
@@ -403,6 +404,7 @@ export default {
       }
       this.postExperience(setData)
         .then((res) => {
+          this.getUserById(this.userId.user_id)
           this.$bvToast.toast(res, {
             title: 'Status :',
             autoHideDelay: 500,
@@ -429,6 +431,7 @@ export default {
       data.append('user_id', this.userId.user_id)
       this.postPortfolio(data)
         .then((res) => {
+          this.getUserById(this.userId.user_id)
           this.$bvToast.toast(res, {
             title: 'Status :',
             autoHideDelay: 1000,

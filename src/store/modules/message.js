@@ -13,6 +13,7 @@ export default {
     },
     getMessages(state, payload) {
       state.messages = payload[0].messages
+      console.log(state.messages)
     }
   },
   actions: {
@@ -25,10 +26,17 @@ export default {
       })
     },
     getRoomById(context, payload) {
+      console.log(payload)
       return new Promise((resolve, reject) => {
-        axios.get(`${context.state.urlAPI}chat/${payload}`).then(res => {
-          context.commit('getMessages', res.data.data)
-        })
+        axios
+          .get(`${context.state.urlAPI}chat/${payload}`)
+          .then(res => {
+            context.commit('getMessages', res.data.data)
+            resolve(res.data.data)
+          })
+          .catch(err => {
+            reject(err.response)
+          })
       })
     },
     getWorkerRoom(context, payload) {
