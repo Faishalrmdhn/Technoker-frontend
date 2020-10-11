@@ -4,7 +4,7 @@
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
           <b-col>
-            <img class="logo" src="../../assets/img/logo-footer.png" alt />
+            <img class="logo" src="../../assets/technoker_auth.png" alt />
             <h2>
               Temukan developer berbakat &#38; terbaik di berbagai bidang
               keahlian
@@ -140,9 +140,8 @@ export default {
 <style scoped>
 .logo {
   position: relative;
-  width: 86px;
-  top: -230px;
-  left: -240px;
+  top: -160px;
+  left: -200px;
   z-index: 2;
 }
 .registerC {
