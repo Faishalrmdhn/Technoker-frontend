@@ -1,18 +1,16 @@
 <template>
-  <b-container class="nav-grid py-4">
+  <b-container class="nav-grid py-3">
     <div>
-      <img
-        src="../assets/img/technoker.png"
-        style="width: 100px; height: 40px"
-        alt
-      />
+      <img src="../assets/technoker1.png" alt />
     </div>
-    <div class="button-login-register text-right">
+    <div class="button-login-register text-right align-self-center">
       <router-link to="/login">
         <b-button class="login-btn mx-4">Login</b-button>
       </router-link>
-
-      <b-button class="register-btn" @click="$bvModal.show('modalRegister')"
+      <b-button
+        class="register-btn"
+        style="width: 100px; height: 40px"
+        @click="$bvModal.show('modalRegister')"
         >Register</b-button
       >
       <b-modal id="modalRegister" hide-footer hide-header>
@@ -51,16 +49,6 @@
   </b-container>
 </template>
 
-<script>
-export default {
-  data() {
-    return {}
-  },
-  methods: {},
-  computed: {}
-}
-</script>
-
 <style scoped>
 .nav-grid {
   display: flex;
@@ -80,14 +68,9 @@ export default {
 
 .register-btn {
   background-color: #5e50a1;
-  border-radius: 4px;
 }
 
-.login-btn:hover {
-  background-color: #fbb017;
-  border-color: #fbb017;
-}
-
+.login-btn:hover,
 .register-btn:hover {
   background-color: #fbb017;
   border-color: #fbb017;

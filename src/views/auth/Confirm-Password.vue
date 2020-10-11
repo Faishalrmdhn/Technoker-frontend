@@ -1,10 +1,10 @@
 <template>
-  <div style="width:100%">
+  <div style="width: 100%">
     <b-row class="confirmPass" align-h="center">
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
           <b-col>
-            <img class="logo" src="../../assets/img/logo-footer.png" alt />
+            <img class="logo" src="../../assets/technoker_auth.png" alt />
             <h2>
               Temukan developer berbakat &#38; terbaik di berbagai bidang
               keahlian
@@ -20,11 +20,17 @@
                 <strong>Reset Password</strong>
               </h3>
               <p>You need to change your password to activate your account</p>
-              <b-form style="color:grey;" @submit.prevent="onSubmit">
+              <b-form style="color: grey" @submit.prevent="onSubmit">
                 <b-form-group label="Key (from the email we have sent to you)">
-                  <b-input type="number" v-model="form.user_key" placeholder="Masukkan key" />
+                  <b-input
+                    type="number"
+                    v-model="form.user_key"
+                    placeholder="Masukkan key"
+                  />
                 </b-form-group>
-                <b-alert :show="alert" class="m-3" variant="danger">{{ isMsg }}</b-alert>
+                <b-alert :show="alert" class="m-3" variant="danger">{{
+                  isMsg
+                }}</b-alert>
                 <b-form-group label="Kata Sandi">
                   <b-input
                     type="password"
@@ -42,12 +48,13 @@
                 <b-row>
                   <b-col>
                     <b-button
-                      style="color:white"
+                      style="color: white"
                       block
                       variant="warning"
                       type="submit"
                       class="my-3"
-                    >Reset password</b-button>
+                      >Reset password</b-button
+                    >
                   </b-col>
                 </b-row>
               </b-form>
@@ -167,9 +174,8 @@ export default {
 <style scoped>
 .logo {
   position: relative;
-  width: 86px;
-  top: -230px;
-  left: -240px;
+  top: -160px;
+  left: -200px;
   z-index: 2;
 }
 

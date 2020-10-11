@@ -214,7 +214,6 @@ export default {
   position: relative;
   top: 20px;
 }
-
 .btn-save {
   background-color: #5e50a1;
   border-color: #5e50a1;
@@ -222,13 +221,11 @@ export default {
   margin: 0 auto;
   height: 45px;
 }
-
 .btn-save:hover {
   background-color: #fbb017;
   border-color: #fbb017;
   color: #111;
 }
-
 .btn-cancel {
   background-color: #5e50a1;
   border-color: #5e50a1;
@@ -237,22 +234,18 @@ export default {
   width: 357px;
   height: 50px;
 }
-
 .btn-cancel:hover {
   background-color: #fbb017;
   border-color: #fbb017;
   color: #111;
 }
-
 /* ------------------------- */
-
 .page-container {
   display: grid;
   margin: 70px auto;
   width: 85%;
   grid-template-columns: 1fr 1fr;
 }
-
 .magenta {
   width: 100%;
   position: absolute;
@@ -261,7 +254,6 @@ export default {
   height: 250px;
   background-color: #5e50a1;
 }
-
 .profile-info {
   /*width: 400px;*/
   height: 480px;
@@ -270,14 +262,12 @@ export default {
   position: relative;
   z-index: 1;
 }
-
 .image {
   width: 150px;
   height: 150px;
   border-radius: 50%;
   margin: 30px auto;
 }
-
 .hire-info {
   height: 1000px;
   border-radius: 8px;
@@ -286,7 +276,6 @@ export default {
   background-color: white;
   padding: 15px;
 }
-
 /* Skills */
 .skills {
   margin: 20px 0;
@@ -295,7 +284,6 @@ export default {
   gap: 5px;
   width: 300px;
 }
-
 .skill {
   background: rgba(251, 176, 23, 0.6);
   border: 1px solid #fbb017;

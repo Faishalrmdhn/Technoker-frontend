@@ -1,28 +1,28 @@
 <template>
   <div style="background-color: #5e50a1">
-    <b-col cols="12">
-      <b-container class="footer">
-        <div class="pt-5">
-          <img
-            src="../assets/img/technoker.png"
-            style="width: 100px; height: 70px"
-            alt
-          />
+    <b-container class="footer py-3">
+      <div>
+        <img
+          src="../assets/technoker_auth.png"
+          alt="technoker"
+          style="width: 230px; height: 80px"
+        />
+      </div>
+      <p class="foot-text my-3">
+        Technoker adalah salah satu JobPortal yang berperan sebagai fasilitator
+        pencocokan dan komunikasi lapangan kerja atau projek antara Pekerja dan
+        Perusahaan (Perekrut)
+      </p>
+      <br />
+      <hr />
+      <div class="btm-text">
+        <p>2020 Technoker. All right reserved</p>
+        <div class="phone-email">
+          <p class="mx-5">Phone: 09282272622</p>
+          <p>Email: technoker@gmail.com</p>
         </div>
-        <p class="foot-text mt-4">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt aut
-          dignissimos velit! Tempora, possimus minus.
-        </p>
-        <hr class="mt-5" />
-        <div class="btm-text pb-5">
-          <p>2020 Technoker. All right reserved</p>
-          <div class="phone-email">
-            <p>Phone</p>
-            <p>Email</p>
-          </div>
-        </div>
-      </b-container>
-    </b-col>
+      </div>
+    </b-container>
   </div>
 </template>
 
@@ -38,12 +38,6 @@ export default {
 </script>
 
 <style scoped>
-b-col {
-  background-color: #5e50a1 !important;
-}
-.footer {
-  text-align: left;
-}
 .foot-text {
   width: 381px;
   height: 84px;
@@ -65,7 +59,6 @@ hr {
 
 .phone-email {
   display: flex;
-  width: 140px;
   justify-content: space-between;
 }
 </style>

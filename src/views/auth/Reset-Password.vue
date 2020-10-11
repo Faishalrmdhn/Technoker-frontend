@@ -1,10 +1,10 @@
 <template>
-  <div style="width:100%">
+  <div style="width: 100%">
     <b-row class="resetPass" align-h="center">
       <b-col sm="6" class="left">
         <b-row align-v="center" class="content-left">
           <b-col>
-            <img class="logo" src="../../assets/img/logo-footer.png" alt />
+            <img class="logo" src="../../assets/technoker_auth.png" alt />
             <h2>
               Temukan developer berbakat &#38; terbaik di berbagai bidang
               keahlian
@@ -26,7 +26,7 @@
                 Enter your user account's verified email address and we will
                 send you a password reset link.
               </p>
-              <b-form @submit.prevent="onSubmit" style="color:grey;">
+              <b-form @submit.prevent="onSubmit" style="color: grey">
                 <b-form-group label="Email">
                   <b-input
                     type="email"
@@ -38,7 +38,7 @@
                 <b-row>
                   <b-col>
                     <b-button
-                      style="color:white;"
+                      style="color: white"
                       block
                       variant="warning"
                       type="submit"
@@ -76,7 +76,7 @@ export default {
     ...mapActions(['forgotPasswordUser', 'forgotPasswordRecruiter']),
     onSubmit() {
       this.forgotPasswordUser(this.form)
-        .then(result => {
+        .then((result) => {
           this.$bvToast.toast('Key telah dikirim ke alamat email anda', {
             title: 'Status :',
             autoHideDelay: 2000,
@@ -87,14 +87,14 @@ export default {
           }, 2000)
           console.log(result)
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error)
           if (error) {
             const newForm = {
               recruiter_email: this.form.user_email
             }
             this.forgotPasswordRecruiter(newForm)
-              .then(result => {
+              .then((result) => {
                 this.$bvToast.toast('Key telah dikirim ke alamat email anda', {
                   title: 'Status :',
                   autoHideDelay: 2000,
@@ -105,7 +105,7 @@ export default {
                 }, 2000)
                 console.log(result)
               })
-              .catch(error => {
+              .catch((error) => {
                 console.log(error)
                 this.alert = true
                 this.isMsg = error.data.msg
@@ -123,9 +123,8 @@ export default {
 <style scoped>
 .logo {
   position: relative;
-  width: 86px;
-  top: -230px;
-  left: -240px;
+  top: -160px;
+  left: -200px;
   z-index: 2;
 }
 .resetPass {
