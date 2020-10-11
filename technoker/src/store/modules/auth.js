@@ -61,6 +61,7 @@ export default {
       })
     },
     registerUser(context, payload) {
+      console.log(payload)
       return new Promise((resolve, reject) => {
         axios
           .post(`${context.state.urlAPI}user/register`, payload)
@@ -69,16 +70,19 @@ export default {
             resolve(response.data)
           })
           .catch(error => {
+            console.log(error)
             reject(error.response)
           })
       })
     },
     registerRecruiter(context, payload) {
+      console.log(payload)
       return new Promise((resolve, reject) => {
         axios
           .post(`${context.state.urlAPI}recruiter/register`, payload)
           .then(response => {
-            resolve(response)
+            console.log(response.data)
+            resolve(response.data)
           })
           .catch(error => {
             reject(error)
