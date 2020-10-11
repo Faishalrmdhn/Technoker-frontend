@@ -4,44 +4,85 @@
     <div style="background-color: #e5e5e5">
       <b-jumbotron class="mb-0">
         <b-container>
-          <div class="purple" style="position: relative;"></div>
+          <div class="purple" style="position: relative">
+            <!-- <h5
+              style="position: absolute; bottom: 0; right: 0"
+              class="mr-3 text-white"
+            >
+              Ubah Latar
+            </h5> -->
+          </div>
           <div class="white text-center mx-auto" style="padding-bottom: -100px">
-            <div class="mx-auto pb-3" style="position: relative; top: -110px; width: 50%">
-              <b-avatar size="11rem" class="my-3">
-                <b-img center v-if="recruiter.recruiter_profile_image !== null" fluid :src="port + recruiter.recruiter_profile_image" alt="Image 1" class="mt-4"></b-img>
-                <img center class="user-img mt-4" v-if="recruiter.recruiter_profile_image === null" fluid src="../assets/img/default.png" alt="Image Default" />
+            <div
+              class="mx-auto pb-3"
+              style="position: relative; top: -117px; width: 60%"
+            >
+              <b-avatar size="12rem" class="my-3">
+                <b-img
+                  center
+                  v-if="recruiter.recruiter_profile_image !== null"
+                  fluid
+                  :src="port + recruiter.recruiter_profile_image"
+                  alt="Image 1"
+                  class="image"
+                ></b-img>
+                <img
+                  center
+                  class="user-img"
+                  v-if="recruiter.recruiter_profile_image === null"
+                  fluid
+                  src="../assets/img/default.png"
+                  alt="Image Default"
+                />
               </b-avatar>
               <div>
-                <h3 class="my-1">{{recruiter.recruiter_company}}</h3>
-                <p>{{recruiter.recruiter_field}}</p>
-                <p class="mt-3 text-muted">{{recruiter.recruiter_location}}</p>
-                <b-card-text class="mt-2 text-muted">{{recruiter.recruiter_about}}</b-card-text>
+                <h3 class="my-1">{{ recruiter.recruiter_company }}</h3>
+                <p>{{ recruiter.recruiter_field }}</p>
+                <p class="mt-3 text-muted">
+                  <b-icon icon="geo-alt" variant="secondary"></b-icon>
+                  {{ recruiter.recruiter_location }}
+                </p>
+                <b-card-text class="mt-2 text-muted">{{
+                  recruiter.recruiter_about
+                }}</b-card-text>
               </div>
-              <b-button class="py-2 my-3 btn-hire-edit" style="width: 50%; background-color: #5e50a1" @click="editDataCompany()">Edit</b-button>
+              <b-button
+                class="py-2 my-4 btn-hire-edit"
+                style="width: 30%; background-color: #5e50a1"
+                @click="editDataCompany"
+              >
+                Edit Profile
+              </b-button>
               <br />
-              <router-link to="home">
-                <b-button class="py-2 btn-hire-edit" style="width: 50%; background-color: #5e50a1">Back</b-button>
-              </router-link>
-              <div class="text-muted text-left mt-3 mx-auto" style="width: 40%; margin-bottom: -100px">
-                <p>
-                  <span>
-                    <img src="../assets/img/mail.png" alt />
-                  </span> {{recruiter.recruiter_email}}
-                </p>
-                <p v-if="recruiter.recruiter_instagram">
-                  <span >
-                    <img src="../assets/img/instagram.png" alt />
-                  </span>
-                  {{recruiter.recruiter_instagram}}
-                </p>
-                <p v-if="recruiter.recruiter_linkedin">
-                  <span>
-                    <img src="../assets/img/github.png" alt />
-                  </span>{{recruiter.recruiter_linkedin}}
-                </p>
+
+              <div
+                class="text-center mx-auto"
+                style="width: 200px; margin-bottom: -100px"
+              >
+                <div>
+                  <b-row class="text-left">
+                    <b-col cols="2" class="mb-3">
+                      <img src="../assets/email.png" alt="" />
+                    </b-col>
+                    <b-col cols="10">{{ recruiter.recruiter_email }}</b-col>
+                    <b-col cols="2" class="mb-3">
+                      <img src="../assets/ig.png" alt="" />
+                    </b-col>
+                    <b-col cols="10">{{ recruiter.recruiter_instagram }}</b-col>
+
+                    <b-col cols="2" class="mb-3">
+                      <img src="../assets/phone.png" alt="" />
+                    </b-col>
+                    <b-col cols="10">{{ recruiter.recruiter_phone }}</b-col>
+
+                    <b-col cols="2" class="mb-3">
+                      <img src="../assets/in.png" alt="" />
+                    </b-col>
+                    <b-col cols="10">{{ recruiter.recruiter_linkedin }}</b-col>
+                  </b-row>
+                </div>
               </div>
             </div>
-            <b-button class="py-2 my-4 btn-hire-edit" style="width: 10%; background-color: #5e50a1" @click="logout">Logout</b-button>
           </div>
         </b-container>
       </b-jumbotron>
@@ -69,15 +110,14 @@ export default {
     this.getRecruiterById(this.recruiter.recruiter_id)
   },
   computed: {
-    ...mapGetters(['recruiter', 'getUser'])
+    ...mapGetters({ user: 'getUser', recruiter: 'recruiter' })
   },
   methods: {
-    ...mapActions(['getRecruiterById']),
-    ...mapActions({ handleLogout: 'logout' }),
+    ...mapActions(['getRecruiterById', 'logout']),
     editDataCompany() {
       this.$router.push('/edit-profile-r')
     },
-    logout() {
+    isLogout() {
       this.$bvModal
         .msgBoxConfirm('logout account?', {
           cancelVariant: 'danger',
@@ -88,12 +128,14 @@ export default {
         })
         .then((value) => {
           this.isLogout = value
-          this.isLogout ? this.handleLogout() : console.log(value)
+          this.isLogout ? this.logout() : console.log(value)
         })
+    },
+    toHome() {
+      this.$router.push('/')
     }
   }
 }
-
 </script>
 <style scoped>
 .purple {
@@ -111,7 +153,6 @@ export default {
 
 .user-img {
   width: 100%;
-
   position: relative;
   top: -11px;
   border-radius: 50%;
@@ -121,5 +162,4 @@ export default {
 .user-img:hover {
   cursor: pointer;
 }
-
 </style>
