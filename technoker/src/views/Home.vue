@@ -324,13 +324,13 @@ export default {
   left: 41px;
 }
 @media (max-width: 700px) {
-  .footer-nav {
+  /* .footer-nav {
     display: grid;
-  }
+  } */
 
-  .header-mobile {
+  /* .header-mobile {
     display: block;
-  }
+  } */
   .btn-profile {
     display: none;
   }

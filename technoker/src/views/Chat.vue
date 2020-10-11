@@ -21,11 +21,11 @@
               <div style="overflowy: scroll; height: 85%">
                 <div v-for="(value, index) in room" :key="index">
                   <div class="room mb-2">
-                    <div class="img" @click="getDataRoom(value)">
-                      <!-- {{ value.image }} -->
-                      <img class="img" :src="port + value.image" alt="" />
+                    <div class="img" @click="getDataRoom(value)" style="cursor: pointer">
+                      <img v-if="value.image === null" class="img" src="../assets/img/default.png" alt="" />
+                      <img v-if="value.image !== null" class="img" :src="port + value.image" alt="" />
                     </div>
-                    <h5>{{ value.room_name }}</h5>
+                    <h5 style="cursor: pointer">{{ value.room_name }}</h5>
                   </div>
                 </div>
               </div>

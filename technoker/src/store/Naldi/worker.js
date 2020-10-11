@@ -60,19 +60,21 @@ export default {
             context.commit('setUserById', res)
           })
           .catch(err => {
-            console.log(err)
+            reject(err)
           })
       })
     },
     searchUser(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`${context.state.urlAPI}user/search?name=${context.state.search}`)
+          .get(
+            `${context.state.urlAPI}user/search?name=${context.state.search}`
+          )
           .then(res => {
             context.commit('setAllUser', res)
           })
           .catch(err => {
-            console.log(err)
+            reject(err)
           })
       })
     },
@@ -123,6 +125,7 @@ export default {
             resolve(res.data.msg)
           })
           .catch(err => {
+            console.log(err.response)
             reject(err.response)
           })
       })

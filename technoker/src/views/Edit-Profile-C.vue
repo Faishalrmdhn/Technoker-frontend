@@ -324,7 +324,6 @@ export default {
     this.userId = {
       user_id: this.user.user_id
     }
-    this.setForm()
   },
   methods: {
     ...mapActions([
@@ -332,8 +331,7 @@ export default {
       'postPortfolio',
       'patchUser',
       'getUserById',
-      'postExperience',
-      'getUserById'
+      'postExperience'
     ]),
     getSkill() {
       const setData = {
@@ -360,6 +358,7 @@ export default {
       this.formPortfolio.portofolio_image = event.target.files[0]
     },
     setForm() {
+      console.log(this.user)
       this.formUser.user_name = this.user.user_name
       this.formUser.user_job_desk = this.user.user_job_desk
       this.formUser.user_location = this.user.user_location
@@ -385,6 +384,7 @@ export default {
       }
       this.patchUser(setData)
         .then((res) => {
+          this.getUserById(this.userId.user_id)
           this.$bvToast.toast(res, {
             title: 'Status :',
             autoHideDelay: 1000,
@@ -392,7 +392,6 @@ export default {
           })
         })
         .catch((err) => {
-          console.log(err)
           this.$bvToast.toast(err.data.msg, {
             title: 'Status :',
             autoHideDelay: 1000,
