@@ -13,9 +13,6 @@
         </b-row>
       </b-col>
       <b-col sm="6" class="right">
-        <b-alert :show="alert" class="m-3" variant="danger">
-          {{ isMsg }}
-        </b-alert>
         <b-row class="content-right" align-v="center">
           <b-col>
             <div class="text-left p-3">
@@ -23,8 +20,10 @@
                 <strong>Halo, Technokerian!</strong>
               </h3>
               <p>Get Your Job More Easier &#38; Quicker!</p>
-
-              <b-form @submit.prevent="onSubmit" @reset.prevent="onReset">
+              <b-alert :show="alert" align="center" class="mt-3" variant="danger">
+                {{ isMsg }}
+              </b-alert>
+              <b-form @submit.prevent="$bvModal.show('modalLogin')" @reset.prevent="onReset">
                 <b-form-group label="Email">
                   <b-form-input
                     type="email"
@@ -52,14 +51,52 @@
                     <b-button
                       block
                       variant="warning"
-                      type="submit"
                       class="my-3"
+                      type="submit"
                       style="color: white"
-                      >Masuk</b-button
+                      @click="$bvModal.show('modalLogin')"
+                      :disabled="isLoading"
+                      >
+                        <div v-if="isLoading">
+                          <b-spinner
+                            small
+                            variant="light"
+                          ></b-spinner>
+                        </div>
+                        <div v-else>Masuk</div>
+                      </b-button
                     >
                   </b-col>
                 </b-row>
               </b-form>
+              <b-modal id="modalLogin" centered hide-footer hide-header>
+                <template>
+                  <strong>LOGIN AS:</strong>
+                </template>
+                <div class="d-block text-center">
+                  <b-row>
+                    <b-col @click="$bvModal.hide('modalLogin')">
+                      <b-button
+                        variant="info"
+                        class="mt-3"
+                        block
+                        @click="onSubmitCandidate()"
+                        >CANDIDATE</b-button
+                      >
+                    </b-col>
+                    <b-col @click="$bvModal.hide('modalLogin')">
+                      <b-button
+                        variant="warning"
+                        style="color: white"
+                        class="mt-3"
+                        block
+                        @click="onSubmitRecruiter()"
+                        >RECRUITER</b-button
+                      >
+                    </b-col>
+                  </b-row>
+                </div>
+              </b-modal>
               <b-row class="text-center">
                 <b-col>
                   Anda belum punya akun?
@@ -115,7 +152,8 @@ export default {
         user_password: ''
       },
       alert: false,
-      isMsg: ''
+      isMsg: '',
+      isLoading: false
     }
   },
   computed: {
@@ -129,7 +167,34 @@ export default {
       'getRecruiterById'
     ]),
     ...mapMutations(['setUser']),
-    onSubmit() {
+    onSubmitRecruiter() {
+      this.isLoading = true
+      this.alert = false
+      const newForm = {
+        recruiter_email: this.form.user_email,
+        recruiter_password: this.form.user_password
+      }
+      this.loginRecruiter(newForm)
+        .then((result) => {
+          this.$bvToast.toast('Anda berhasil login', {
+            title: 'Status :',
+            autoHideDelay: 500,
+            appendToast: true
+          })
+          setTimeout(() => {
+            this.$router.push('/home')
+          }, 1500)
+          this.getRecruiterById(result.data.recruiter_id)
+        })
+        .catch((error) => {
+          this.alert = true
+          this.isLoading = false
+          this.isMsg = error.data.msg
+        })
+    },
+    onSubmitCandidate() {
+      this.isLoading = true
+      this.alert = false
       this.loginUser(this.form)
         .then((result) => {
           this.$bvToast.toast('Anda berhasil login', {
@@ -143,31 +208,9 @@ export default {
           this.getUserById(result.data.user_id)
         })
         .catch((error) => {
-          if (error) {
-            const newForm = {
-              recruiter_email: this.form.user_email,
-              recruiter_password: this.form.user_password
-            }
-            this.loginRecruiter(newForm)
-              .then((result) => {
-                this.$bvToast.toast('Anda berhasil login', {
-                  title: 'Status :',
-                  autoHideDelay: 1500,
-                  appendToast: true
-                })
-                setTimeout(() => {
-                  this.$router.push('/home')
-                }, 2000)
-                this.getRecruiterById(result.data.recruiter_id)
-              })
-              .catch((error) => {
-                this.alert = true
-                this.isMsg = error.data.msg
-                setTimeout(() => {
-                  this.alert = false
-                }, 2000)
-              })
-          }
+          this.alert = true
+          this.isLoading = false
+          this.isMsg = error.data.msg
         })
     },
     registerCandidatePage() {

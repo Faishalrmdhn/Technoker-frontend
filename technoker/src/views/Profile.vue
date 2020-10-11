@@ -77,13 +77,13 @@
                   </span>
                   {{ data.user_email }}
                 </p>
-                <p v-if="data.user_instagram !== null">
+                <p v-if="data.user_instagram">
                   <span>
                     <img src="../assets/img/instagram.png" alt />
                   </span>
                   {{ data.user_instagram }}
                 </p>
-                <p v-if="data.user_github !== null">
+                <p v-if="data.user_github">
                   <span>
                     <img src="../assets/img/github.png" alt />
                   </span>
@@ -181,7 +181,7 @@ export default {
     this.showButton()
   },
   updated() {
-    this.getUserById()
+    // this.getUserById()
   },
   methods: {
     ...mapActions(['getUserById', 'logout']),
