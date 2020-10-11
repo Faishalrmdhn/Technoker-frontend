@@ -38,7 +38,7 @@
               <div>
                 <h3 class="my-1">{{ recruiter.recruiter_company }}</h3>
                 <p>{{ recruiter.recruiter_field }}</p>
-                <p class="mt-3 text-muted">
+                <p v-if="recruiter.recruiter_location" class="mt-3 text-muted">
                   <b-icon icon="geo-alt" variant="secondary"></b-icon>
                   {{ recruiter.recruiter_location }}
                 </p>
@@ -66,7 +66,7 @@
                     </b-col>
                     <b-col cols="10">{{ recruiter.recruiter_email }}</b-col>
                     <b-col cols="2" class="mb-3">
-                      <img src="../assets/ig.png" alt="" />
+                      <img v-if="recruiter.recruiter_instagram" src="../assets/ig.png" alt="" />
                     </b-col>
                     <b-col cols="10">{{ recruiter.recruiter_instagram }}</b-col>
 
@@ -76,7 +76,7 @@
                     <b-col cols="10">{{ recruiter.recruiter_phone }}</b-col>
 
                     <b-col cols="2" class="mb-3">
-                      <img src="../assets/in.png" alt="" />
+                      <img v-if="recruiter.recruiter_linkedin" src="../assets/in.png" alt="" />
                     </b-col>
                     <b-col cols="10">{{ recruiter.recruiter_linkedin }}</b-col>
                   </b-row>

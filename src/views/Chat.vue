@@ -4,7 +4,7 @@
     <b-jumbotron class="mb-0">
       <b-container>
         <b-row>
-          <b-col cols="4" class="chat-room">
+          <b-col cols lg="4" sm="12" class="chat-room">
             <b-card style="height: 400px">
               <p>Chat</p>
               <hr />
@@ -45,7 +45,7 @@
               </div>
             </b-card>
           </b-col>
-          <b-col cols="8">
+          <b-col cols lg="8" sm="12">
             <b-card style="height: 600px; position: relative">
               <div>
                 <div class="room mb-2">
@@ -131,7 +131,6 @@ export default {
   },
   created() {
     this.getIdUser()
-    console.log(this.room)
   },
   methods: {
     ...mapActions([
@@ -141,7 +140,6 @@ export default {
       'postMessage'
     ]),
     getIdUser() {
-      // console.log(this.dataLogin)
       if (this.dataLogin.role === 1) {
         this.userId = this.dataLogin.recruiter_id
         this.getRecruiterRoom(this.userId)
@@ -152,7 +150,6 @@ export default {
     },
     getDataRoom(data) {
       this.getRoomById(data.room_id)
-      console.log(data)
       this.receiverImg = data.image
       this.receiverName = data.room_name
     },
@@ -248,5 +245,11 @@ h5 {
   margin-left: 4px;
   font-size: 17px;
   margin-top: 5px;
+}
+
+@media (max-width: 600px) {
+  .chat-room {
+    height: 450px;
+  }
 }
 </style>

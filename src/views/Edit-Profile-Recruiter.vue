@@ -230,8 +230,8 @@ export default {
   background-color: #5e50a1;
   border-color: #5e50a1;
   color: WHITE;
-  margin: 0 20px;
-  width: 357px;
+  margin: 0 auto;
+  width: 340px;
   height: 50px;
 }
 .btn-cancel:hover {
