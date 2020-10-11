@@ -5,13 +5,18 @@
       <b-jumbotron class="mb-0 bg-white py-5">
         <b-row class="align-items-center">
           <b-col cols="12" xl="6">
-            <h1 class="title-banner m-0">Talenta Terbaik Negeri Untuk Perubahan Revolusi 4.0</h1>
+            <h1 class="title-banner m-0">
+              Talenta Terbaik Negeri Untuk Perubahan Revolusi 4.0
+            </h1>
             <p class="my-4">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro
-              delectus inventore, necessitatibus cupiditate odit doloremque.
+              Technoker merupakan suatu aplikasi penghubung antara pekerja dan
+              perekrut maupun sebaliknya dalam bidang IT (Information &
+              Technology). Aplikasi ini hadir sebagai jawaban atas kurangnya SDM
+              berlatar belakang IT di Indonesia. Hadirnya aplikasi ini
+              diharapkan akan membantu peningkatan SDM IT di Indonesia.
             </p>
             <router-link to="/login">
-              <b-button class="py-3">Mulai Dari Sekarang</b-button>
+              <b-button class="py-2">Mulai</b-button>
             </router-link>
           </b-col>
           <b-col cols="12" xl="6" class="text-center">
@@ -25,24 +30,47 @@
             <img src="@/assets/img2.png" class="landing-img" />
           </b-col>
           <b-col cols="12" xl="6">
-            <h2 class="mb-3">Kenapa Harus Mencari Tallent di Peworld ?</h2>
+            <h2 class="mb-3">Kenapa Harus Mencari Tallent di Technoker ?</h2>
             <b-row>
               <b-col cols="1">
-                <b-icon icon="check-circle-fill" class="h4 my-3 check1"></b-icon>
+                <b-icon
+                  icon="check-circle-fill"
+                  class="h4 my-3 check1"
+                ></b-icon>
               </b-col>
-              <b-col cols="11" class="align-self-center">Lorem ipsum dolor sit amet.</b-col>
+              <b-col cols="11" class="align-self-center"
+                >JobPortal khusus untuk Pekerja atau Perekrut dalam Bidang
+                IT</b-col
+              >
               <b-col cols="1">
-                <b-icon icon="check-circle-fill" class="h4 my-3 check1"></b-icon>
+                <b-icon
+                  icon="check-circle-fill"
+                  class="h4 my-3 check1"
+                ></b-icon>
               </b-col>
-              <b-col cols="11" class="align-self-center">Lorem ipsum dolor sit amet.</b-col>
+              <b-col cols="11" class="align-self-center"
+                >Website yang mudah digunakan</b-col
+              >
               <b-col cols="1">
-                <b-icon icon="check-circle-fill" class="h4 my-3 check1"></b-icon>
+                <b-icon
+                  icon="check-circle-fill"
+                  class="h4 my-3 check1"
+                ></b-icon>
               </b-col>
-              <b-col cols="11" class="align-self-center">Lorem ipsum dolor sit amet.</b-col>
+              <b-col cols="11" class="align-self-center"
+                >Pekerja yang terdaftar adalah Pekerja yang sudah teruji
+                kualitasnya</b-col
+              >
               <b-col cols="1">
-                <b-icon icon="check-circle-fill" class="h4 my-3 check1"></b-icon>
+                <b-icon
+                  icon="check-circle-fill"
+                  class="h4 my-3 check1"
+                ></b-icon>
               </b-col>
-              <b-col cols="11" class="align-self-center">Lorem ipsum dolor sit amet.</b-col>
+              <b-col cols="11" class="align-self-center"
+                >Perusahaan (perekrut) dari Perusahaan yang sudah Top
+                International</b-col
+              >
             </b-row>
           </b-col>
         </b-row>
@@ -52,42 +80,68 @@
           <b-col cols="12" xl="6" class="pl-5 pr-0">
             <h2 class="mb-3">Skill Tallent</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Quibusdam, porro consequatur nulla unde sit quasi?
+              Bahasa bahasa yang dikuasai oleh Pekerja yang terdaftar di
+              Technoker
             </p>
             <b-row>
               <b-col cols="1">
-                <b-icon icon="check-circle-fill" class="h4 my-3 check2"></b-icon>
+                <b-icon
+                  icon="check-circle-fill"
+                  class="h4 my-3 check2"
+                ></b-icon>
               </b-col>
               <b-col cols="5" class="align-self-center">Java</b-col>
               <b-col cols="1">
-                <b-icon icon="check-circle-fill" class="h4 my-3 check2"></b-icon>
+                <b-icon
+                  icon="check-circle-fill"
+                  class="h4 my-3 check2"
+                ></b-icon>
               </b-col>
               <b-col cols="5" class="align-self-center">Golang</b-col>
               <b-col cols="1">
-                <b-icon icon="check-circle-fill" class="h4 my-3 check2"></b-icon>
+                <b-icon
+                  icon="check-circle-fill"
+                  class="h4 my-3 check2"
+                ></b-icon>
               </b-col>
               <b-col cols="5" class="align-self-center">Kotlin</b-col>
               <b-col cols="1">
-                <b-icon icon="check-circle-fill" class="h4 my-3 check2"></b-icon>
+                <b-icon
+                  icon="check-circle-fill"
+                  class="h4 my-3 check2"
+                ></b-icon>
               </b-col>
               <b-col cols="5" class="align-self-center">C++</b-col>
               <b-col cols="1">
-                <b-icon icon="check-circle-fill" class="h4 my-3 check2"></b-icon>
+                <b-icon
+                  icon="check-circle-fill"
+                  class="h4 my-3 check2"
+                ></b-icon>
               </b-col>
               <b-col cols="5" class="align-self-center">PHP</b-col>
               <b-col cols="1">
-                <b-icon icon="check-circle-fill" class="h4 my-3 check2"></b-icon>
+                <b-icon
+                  icon="check-circle-fill"
+                  class="h4 my-3 check2"
+                ></b-icon>
               </b-col>
               <b-col cols="5" class="align-self-center">Ruby</b-col>
               <b-col cols="1">
-                <b-icon icon="check-circle-fill" class="h4 my-3 check2"></b-icon>
+                <b-icon
+                  icon="check-circle-fill"
+                  class="h4 my-3 check2"
+                ></b-icon>
               </b-col>
               <b-col cols="5" class="align-self-center">Javascript</b-col>
               <b-col cols="1">
-                <b-icon icon="check-circle-fill" class="h4 my-3 check2"></b-icon>
+                <b-icon
+                  icon="check-circle-fill"
+                  class="h4 my-3 check2"
+                ></b-icon>
               </b-col>
-              <b-col cols="5" class="align-self-center">10+ Bahasa lainnya</b-col>
+              <b-col cols="5" class="align-self-center"
+                >10+ Bahasa lainnya</b-col
+              >
             </b-row>
           </b-col>
           <b-col cols="12" xl="6" class="text-center">
@@ -99,7 +153,7 @@
     <b-jumbotron class="gray">
       <b-container>
         <div cols="12" class="text-center mb-4">
-          <h2>Their Opinion About Peworld</h2>
+          <h2>Their Opinion About Technoker</h2>
         </div>
         <!-- CAROUSEL -->
         <b-carousel
@@ -116,44 +170,69 @@
           <b-carousel-slide img-blank>
             <b-row class="text-dark">
               <b-col cols="12" xl="4" class="text-center my-2">
-                <b-card class="landing-card mx-auto" style="max-width: 19rem;">
+                <b-card class="landing-card mx-auto" style="max-width: 19rem">
                   <b-avatar size="6rem" class="mb-1 opinion-people">
-                    <img src="@/assets/opinion1.jpg" style="width: 5.5rem" class="mt-4" />
+                    <img
+                      src="@/assets/img/default.png"
+                      style="width: 7.5rem"
+                      class="mt-4"
+                    />
                   </b-avatar>
-                  <h4 class="mb-0">Harry Styles</h4>
-                  <small class="text-muted">Web Developer</small>
-                  <b-card-text
-                    class="mt-2 px-4"
-                  >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
+                  <h4 class="mb-0">Muhammad Nur Hidayat</h4>
+                  <small class="text-muted">Backend Developer</small>
+                  <b-card-text class="mt-2 px-4"
+                    >Selama ini kami sangat puas dengan pelayanan serta kandidat
+                    yang telah melamar. Kami selalu mendapat respon kandidat
+                    yang baik dari database yang Technoker miliki.</b-card-text
+                  >
                 </b-card>
               </b-col>
               <b-col cols="12" xl="4" class="text-center my-2">
-                <b-card class="landing-card border-light mx-auto" style="max-width: 19rem;">
+                <b-card
+                  class="landing-card border-light mx-auto"
+                  style="max-width: 19rem"
+                >
                   <b-avatar size="6rem" class="mb-1 opinion-people">
-                    <img src="@/assets/opinion2.jpg" style="width: 5.5rem" class="mt-4" />
+                    <img
+                      src="@/assets/img/default.png"
+                      style="width: 7.5rem"
+                      class="mt-4"
+                    />
                   </b-avatar>
-                  <b-card-title class="mb-0">Harry Styles</b-card-title>
-                  <small class="text-muted">Web Developer</small>
-                  <b-card-text
-                    class="mt-2 px-4"
-                  >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
+                  <b-card-title class="mb-0">Muhammad Rinaldi</b-card-title>
+                  <small class="text-muted">Fullstack Developer</small>
+                  <b-card-text class="mt-2 px-4"
+                    >Kami tim recruitmen sangat terbantu dengan adanya Website
+                    seperti Technoker ini. Skill skill dan portofolio juga
+                    ditampilkan sehingga memudahkan kita untuk
+                    merekrut.</b-card-text
+                  >
                 </b-card>
               </b-col>
               <b-col cols="12" xl="4" class="text-center my-2">
-                <b-card class="landing-card border-light mx-auto" style="max-width: 19rem;">
+                <b-card
+                  class="landing-card border-light mx-auto"
+                  style="max-width: 19rem"
+                >
                   <b-avatar size="6rem" class="mb-1 opinion-people">
-                    <img src="@/assets/opinion3.jpg" style="width: 5.5rem" class="mt-4" />
+                    <img
+                      src="@/assets/img/default.png"
+                      style="width: 7.5rem"
+                      class="mt-4"
+                    />
                   </b-avatar>
-                  <b-card-title class="mb-0">Harry Styles</b-card-title>
-                  <small class="text-muted">Web Developer</small>
-                  <b-card-text
-                    class="mt-2 px-4"
-                  >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ea nisi magni accusamus. Saepe sequi, culpa suscipit aut nam doloremque doloribus? Soluta laboriosam vitae odit!</b-card-text>
+                  <b-card-title class="mb-0">Muhammad Faishal</b-card-title>
+                  <small class="text-muted">Frontend Developer</small>
+                  <b-card-text class="mt-2 px-4"
+                    >Menurut kami Technoker cukup baik, sangat kooperatif dan
+                    cukup cepat dalam memberikan respon. selain itu Technoker
+                    juga dapat mengikuti permintaan client yang
+                    customized.</b-card-text
+                  >
                 </b-card>
               </b-col>
             </b-row>
           </b-carousel-slide>
-          <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
         </b-carousel>
       </b-container>
     </b-jumbotron>
@@ -161,12 +240,14 @@
       <b-jumbotron class="card-bottom my-5 px-5">
         <div>
           <h2 class="text-white m-0">
-            Lorem ipsum
-            <br />dolor sit amet.
+            <strong>Technoker</strong>
+            <br />Easier and Quicker
           </h2>
         </div>
         <div class="align-self-center">
-          <b-button href="#" class="bg-white py-2 px-3" style="color: #5E50A1">Mulai Dari Sekarang</b-button>
+          <b-button href="#" class="bg-white py-2 px-3" style="color: #5e50a1"
+            >Mulai</b-button
+          >
         </div>
       </b-jumbotron>
     </b-container>
@@ -176,12 +257,15 @@
 
 <script>
 import HeaderRegister from '@/components/HeaderRegister'
+// import HeaderLogin from '@/components/HeaderLogin'
 import Footer from '@/components/Footer'
+// import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Landing',
   components: {
     HeaderRegister,
+    // HeaderLogin,
     Footer
   },
   data() {
@@ -190,7 +274,14 @@ export default {
       sliding: null
     }
   },
+  // created() {
+  //   th
+  // },
+  // computed: {
+  //   ...mapGetters({ user: 'getUser' })
+  // },
   methods: {
+    // ...mapActions(['getRecruiterById']),
     onSlideStart(slide) {
       this.sliding = true
     },
