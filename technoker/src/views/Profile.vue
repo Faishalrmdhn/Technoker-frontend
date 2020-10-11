@@ -22,7 +22,7 @@
               <div class="text-left">
                 <b-card-title class="my-1">{{ data.user_name }}</b-card-title>
                 <small>{{ data.user_job_desk }}</small>
-                <p class="mt-3 text-muted">
+                <p class="mt-3 text-muted" v-if=" data.user_location">
                   <span>
                     <img src="../assets/img/location.png" alt />
                   </span>

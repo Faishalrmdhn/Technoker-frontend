@@ -28,13 +28,13 @@
                     <img src="../assets/img/mail.png" alt />
                   </span> {{recruiter.recruiter_email}}
                 </p>
-                <p>
-                  <span>
+                <p v-if="recruiter.recruiter_instagram">
+                  <span >
                     <img src="../assets/img/instagram.png" alt />
                   </span>
                   {{recruiter.recruiter_instagram}}
                 </p>
-                <p>
+                <p v-if="recruiter.recruiter_linkedin">
                   <span>
                     <img src="../assets/img/github.png" alt />
                   </span>{{recruiter.recruiter_linkedin}}

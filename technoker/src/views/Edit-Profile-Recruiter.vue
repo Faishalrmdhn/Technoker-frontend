@@ -30,7 +30,7 @@
           <div class="name-box mb-5">
             <h4>{{ recruiter.recruiter_company }}</h4>
             <p>{{ recruiter.recruiter_field }}</p>
-            <p>
+            <p v-if="recruiter.recruiter_location">
               <img src="../assets/img/location.png" alt="" />
               {{ recruiter.recruiter_location }}
             </p>

@@ -14,7 +14,7 @@
         <div style="padding:0 30px" class="mt-5">
           <h4>{{ user.user_name }}</h4>
           <h6>{{ user.user_job_desk }}</h6>
-          <p style="color:grey;">
+          <p style="color:grey;" v-if="user.user_location">
             <span>
               <img src="../assets/img/location.png" alt />
             </span>
@@ -324,6 +324,7 @@ export default {
     this.userId = {
       user_id: this.user.user_id
     }
+    this.setForm()
   },
   methods: {
     ...mapActions([
@@ -357,6 +358,16 @@ export default {
     },
     handleFile(event) {
       this.formPortfolio.portofolio_image = event.target.files[0]
+    },
+    setForm() {
+      this.formUser.user_name = this.user.user_name
+      this.formUser.user_job_desk = this.user.user_job_desk
+      this.formUser.user_location = this.user.user_location
+      this.formUser.user_image = this.user.user_image
+      this.formUser.user_about = this.user.user_about
+      this.formUser.user_workplace = this.user.user_workplace
+      this.formUser.user_instagram = this.user.user_instagram
+      this.formUser.user_github = this.user.user_github
     },
     getEditUser() {
       const data = new FormData()
