@@ -12,15 +12,15 @@
           <img v-if="user.user_image === null" class="image" src="../assets/img/default.png" alt />
         </div>
         <div style="padding:0 30px" class="mt-5">
-          <h4>{{ user.user_name }}</h4>
-          <h6>{{ user.user_job_desk }}</h6>
+          <h4 v-if="user.user_name">{{ user.user_name }}</h4>
+          <h6 v-if="user.user_job_desk">{{ user.user_job_desk }}</h6>
           <p style="color:grey;" v-if="user.user_location">
             <span>
               <img src="../assets/img/location.png" alt />
             </span>
             {{ user.user_location }}
           </p>
-          <p style="color:grey;">{{ user.user_job_type }}</p>
+          <p style="color:grey;" v-if="user.user_job_type">{{ user.user_job_type }}</p>
         </div>
         <button class="btn1" @click="getEditUser" block>Simpan</button>
         <button class="btn2" block @click="back">Kembali</button>
@@ -386,7 +386,7 @@ export default {
           })
         })
         .catch((err) => {
-          this.$bvToast.toast(err.data.msg, {
+          this.$bvToast.toast(err, {
             title: 'Status :',
             autoHideDelay: 1000,
             appendToast: true

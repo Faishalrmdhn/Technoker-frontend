@@ -195,8 +195,21 @@ export default {
         FormData: data
       }
       this.patchRecruiter(setData)
-        .then((result) => this.$router.push('/profile-company'))
-        .catch((error) => console.log(error))
+        .then((result) => {
+          this.$bvToast.toast('Edit profile berhasil', {
+            title: 'Status :',
+            autoHideDelay: 500,
+            appendToast: true
+          })
+          this.$router.push('/profile-company')
+        })
+        .catch((error) => {
+          this.$bvToast.toast(error, {
+            title: 'Status :',
+            autoHideDelay: 500,
+            appendToast: true
+          })
+        })
     }
   }
 }
