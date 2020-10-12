@@ -221,7 +221,7 @@
                       ></b-form-input>
                     </b-form-group>
                   </b-col>
-                  <!-- =================== -->
+
                   <b-col>
                     <b-form-group
                       id="input-group-2"
@@ -431,6 +431,9 @@ export default {
     },
     setForm() {
       this.formUser.user_name = this.user.user_name
+      this.formUser.user_location = this.user.user_location
+      this.formUser.user_github =
+        this.user.user_github === null ? '' : this.user.user_github
     },
     getEditUser() {
       const data = new FormData()
@@ -442,6 +445,7 @@ export default {
       data.append('user_workplace', this.formUser.user_workplace)
       data.append('user_instagram', this.formUser.user_instagram)
       data.append('user_github', this.formUser.user_github)
+      console.log(this.formUser)
       const setData = {
         user_id: this.userId.user_id,
         FormData: data
@@ -525,7 +529,7 @@ export default {
     },
     back() {
       this.$router.push('/profile')
-      this.getUserById()
+      this.getUserById(this.userId.user_id)
     }
   }
 }
