@@ -1,26 +1,41 @@
 <template>
-  <div style="width:100%; background-color: #E5E5E5; position:relative;">
+  <div style="width: 100%; background-color: #e5e5e5; position: relative">
     <Header
       class="py-4"
-      style="background-color: white; box-shadow: 0px 10px 50px rgba(132, 132, 132, 0.25); position:relative; z-index:5555;"
+      style="
+        background-color: white;
+        box-shadow: 0px 10px 50px rgba(132, 132, 132, 0.25);
+        position: relative;
+        z-index: 5555;
+      "
     />
     <div class="magenta"></div>
     <div class="page-container">
       <div class="profile-info">
         <div class="image">
-          <img v-if="user.user_image !== null" class="image" :src="port + user.user_image" alt />
-          <img v-if="user.user_image === null" class="image" src="../assets/img/default.png" alt />
+          <img
+            v-if="user.user_image !== null"
+            class="image"
+            :src="port + user.user_image"
+            alt
+          />
+          <img
+            v-if="user.user_image === null"
+            class="image"
+            src="../assets/img/default.png"
+            alt
+          />
         </div>
-        <div style="padding:0 30px" class="mt-5">
+        <div style="padding: 0 30px" class="mt-5">
           <h4>{{ user.user_name }}</h4>
           <h6>{{ user.user_job_desk }}</h6>
-          <p style="color:grey;" v-if="user.user_location">
+          <p style="color: grey" v-if="user.user_location">
             <span>
               <img src="../assets/img/location.png" alt />
             </span>
             {{ user.user_location }}
           </p>
-          <p style="color:grey;">{{ user.user_job_type }}</p>
+          <p style="color: grey">{{ user.user_job_type }}</p>
         </div>
         <button class="btn1" @click="getEditUser" block>Simpan</button>
         <button class="btn2" block @click="back">Kembali</button>
@@ -29,8 +44,12 @@
         <div>
           <b-card header="Data Diri">
             <b-card-text>
-              <b-form v-if="show" style="color:grey;">
-                <b-form-group id="input-group-2" label="Nama Lengkap" label-for="input-2">
+              <b-form v-if="show" style="color: grey">
+                <b-form-group
+                  id="input-group-2"
+                  label="Nama Lengkap"
+                  label-for="input-2"
+                >
                   <b-form-input
                     type="text"
                     id="input-2"
@@ -40,7 +59,11 @@
                   ></b-form-input>
                 </b-form-group>
 
-                <b-form-group id="input-group-1" label="Job Desk" label-for="input-1">
+                <b-form-group
+                  id="input-group-1"
+                  label="Job Desk"
+                  label-for="input-1"
+                >
                   <b-form-input
                     id="input-1"
                     type="text"
@@ -49,7 +72,11 @@
                     placeholder="Masukkan Job desk"
                   ></b-form-input>
                 </b-form-group>
-                <b-form-group id="input-group-2" label="Domisili" label-for="input-2">
+                <b-form-group
+                  id="input-group-2"
+                  label="Domisili"
+                  label-for="input-2"
+                >
                   <b-form-input
                     type="text"
                     v-model="formUser.user_location"
@@ -93,7 +120,11 @@
                     placeholder="Github"
                   ></b-form-input>
                 </b-form-group>
-                <b-form-group id="input-group-2" label="Deskripsi Singkat" label-for="textarea">
+                <b-form-group
+                  id="input-group-2"
+                  label="Deskripsi Singkat"
+                  label-for="textarea"
+                >
                   <b-form-textarea
                     id="textarea"
                     placeholder="Jelaskan lebih detail"
@@ -109,19 +140,26 @@
         <!-- ==========================SKILL========================== -->
         <div class="mt-3">
           <b-card header="Skill">
-            <b-form v-if="show" style="color:grey;">
+            <b-form v-if="show" style="color: grey">
               <b-row align-h="between">
                 <b-col sm="9">
-                  <b-input type="text" id="input-2" v-model="skill" required placeholder="java" />
+                  <b-input
+                    type="text"
+                    id="input-2"
+                    v-model="skill"
+                    required
+                    placeholder="java"
+                  />
                 </b-col>
                 <b-col sm="3">
                   <b-button
                     block
                     variant="warning"
-                    style="color:white"
+                    style="color: white"
                     class="btn-save-skill"
                     @click="getSkill"
-                  >Simpan</b-button>
+                    >Simpan</b-button
+                  >
                 </b-col>
               </b-row>
             </b-form>
@@ -132,8 +170,12 @@
         <div class="mt-3">
           <b-card header="Pengalaman Kerja">
             <b-card-text>
-              <b-form v-if="show" style="color:grey;">
-                <b-form-group id="input-group-2" label="Posisi" label-for="input-2">
+              <b-form v-if="show" style="color: grey">
+                <b-form-group
+                  id="input-group-2"
+                  label="Posisi"
+                  label-for="input-2"
+                >
                   <b-form-input
                     type="text"
                     id="input-2"
@@ -144,7 +186,11 @@
                 </b-form-group>
                 <b-row>
                   <b-col>
-                    <b-form-group id="input-group-1" label="Nama Perusahaan" label-for="input-1">
+                    <b-form-group
+                      id="input-group-1"
+                      label="Nama Perusahaan"
+                      label-for="input-1"
+                    >
                       <b-form-input
                         id="input-1"
                         type="text"
@@ -156,7 +202,7 @@
                   </b-col>
                 </b-row>
               </b-form>
-              <b-form v-if="show" style="color:grey;">
+              <b-form v-if="show" style="color: grey">
                 <b-row>
                   <b-col>
                     <b-form-group
@@ -191,7 +237,11 @@
                   </b-col>
                 </b-row>
 
-                <b-form-group id="input-group-2" label="Deskripsi Singkat" label-for="textarea">
+                <b-form-group
+                  id="input-group-2"
+                  label="Deskripsi Singkat"
+                  label-for="textarea"
+                >
                   <b-form-textarea
                     id="textarea"
                     placeholder="Deskripsikan pekerjaan anda"
@@ -205,7 +255,8 @@
                   variant="outline-warning"
                   class="mt-5 btn-hire"
                   @click="addExperience"
-                >Tambah pengalaman kerja</b-button>
+                  >Tambah pengalaman kerja</b-button
+                >
               </b-form>
             </b-card-text>
           </b-card>
@@ -214,8 +265,16 @@
         <div class="mt-3">
           <b-card header="Portofolio">
             <b-card-text>
-              <b-form v-on:submit.prevent="getPortfolio" v-if="show" style="color:grey;">
-                <b-form-group id="input-group-2" label="Nama Aplikasi" label-for="input-2">
+              <b-form
+                v-on:submit.prevent="getPortfolio"
+                v-if="show"
+                style="color: grey"
+              >
+                <b-form-group
+                  id="input-group-2"
+                  label="Nama Aplikasi"
+                  label-for="input-2"
+                >
                   <b-form-input
                     type="text"
                     id="input-2"
@@ -224,7 +283,11 @@
                     placeholder="Masukkan nama aplikasi"
                   ></b-form-input>
                 </b-form-group>
-                <b-form-group id="input-group-1" label="Link Repository" label-for="input-1">
+                <b-form-group
+                  id="input-group-1"
+                  label="Link Repository"
+                  label-for="input-1"
+                >
                   <b-form-input
                     id="input-1"
                     v-model="formPortfolio.portofolio_repository"
@@ -240,14 +303,16 @@
                     v-model="formPortfolio.portofolio_type"
                     value="1"
                     unchecked-value="null"
-                  >Aplikasi Mobile</b-form-checkbox>
+                    >Aplikasi Mobile</b-form-checkbox
+                  >
                   <b-form-checkbox
                     id="checkbox-2"
                     name="checkbox-2"
                     v-model="formPortfolio.portofolio_type"
                     value="2"
                     unchecked-value="null"
-                  >Aplikasi Web</b-form-checkbox>
+                    >Aplikasi Web</b-form-checkbox
+                  >
                 </b-form-group>
                 <!-- IMAGE -->
                 <b-form-group label="Upload Gambar">
@@ -263,7 +328,8 @@
                   block
                   class="mt-5 btn-hire"
                   @click="getPortfolio"
-                >Tambah Portofolio</b-button>
+                  >Tambah Portofolio</b-button
+                >
               </b-form>
             </b-card-text>
           </b-card>
@@ -344,14 +410,16 @@ export default {
           this.getUserById(this.userId.user_id)
           this.$bvToast.toast(res, {
             title: 'Status :',
-            autoHideDelay: 500,
+            autoHideDelay: 1500,
+            variant: 'success',
             appendToast: true
           })
         })
         .catch((err) => {
           this.$bvToast.toast(err, {
             title: 'Status :',
-            autoHideDelay: 500,
+            autoHideDelay: 1500,
+            variant: 'danger',
             appendToast: true
           })
         })
@@ -381,14 +449,16 @@ export default {
           this.getUserById(this.userId.user_id)
           this.$bvToast.toast(res, {
             title: 'Status :',
-            autoHideDelay: 1000,
+            autoHideDelay: 1500,
+            variant: 'success',
             appendToast: true
           })
         })
         .catch((err) => {
           this.$bvToast.toast(err.data.msg, {
             title: 'Status :',
-            autoHideDelay: 1000,
+            autoHideDelay: 1500,
+            variant: 'danger',
             appendToast: true
           })
         })
@@ -407,14 +477,16 @@ export default {
           this.getUserById(this.userId.user_id)
           this.$bvToast.toast(res, {
             title: 'Status :',
-            autoHideDelay: 500,
-            appendToast: true
+            autoHideDelay: 1500,
+            appendToast: true,
+            variant: 'success'
           })
         })
         .catch((err) => {
           this.$bvToast.toast(err, {
             title: 'Status :',
-            autoHideDelay: 500,
+            autoHideDelay: 1500,
+            variant: 'danger',
             appendToast: true
           })
         })
@@ -435,15 +507,17 @@ export default {
           this.getUserById(this.userId.user_id)
           this.$bvToast.toast(res, {
             title: 'Status :',
-            autoHideDelay: 1000,
+            autoHideDelay: 1500,
+            variant: 'success',
             appendToast: true
           })
         })
         .catch((err) => {
           this.$bvToast.toast(err, {
             title: 'Status :',
-            autoHideDelay: 1000,
-            appendToast: true
+            autoHideDelay: 1500,
+            appendToast: true,
+            variant: 'danger'
           })
         })
     },
