@@ -30,7 +30,7 @@ export default {
     setUserById(state, payload) {
       state.user = payload.data.data[0]
       state.portfolio = payload.data.data[0].portofolio
-      console.log(state.portfolio)
+
       state.experience = payload.data.data[0].experience
       state.skills = payload.data.data[0].skills
     },
@@ -92,7 +92,6 @@ export default {
       })
     },
     postPortfolio(context, payload) {
-      console.log(payload)
       return new Promise((resolve, reject) => {
         axios
           .post(`${context.state.urlAPI}portofolio`, payload)
@@ -127,7 +126,6 @@ export default {
             resolve(res.data.msg)
           })
           .catch(err => {
-            console.log(err.response)
             reject(err.response.data.msg)
           })
       })
