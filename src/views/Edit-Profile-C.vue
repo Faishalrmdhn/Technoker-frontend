@@ -26,27 +26,18 @@
             alt
           />
         </div>
-<<<<<<< HEAD
         <div style="padding: 0 30px" class="mt-5">
-          <h4>{{ user.user_name }}</h4>
-          <h6>{{ user.user_job_desk }}</h6>
-          <p style="color: grey" v-if="user.user_location">
-=======
-        <div style="padding:0 30px" class="mt-5">
           <h4 v-if="user.user_name">{{ user.user_name }}</h4>
           <h6 v-if="user.user_job_desk">{{ user.user_job_desk }}</h6>
-          <p style="color:grey;" v-if="user.user_location">
->>>>>>> 192e33dd11404da40c2d052ffe4fef0f574ea047
+          <p style="color: grey" v-if="user.user_location">
             <span>
               <img src="../assets/img/location.png" alt />
             </span>
             {{ user.user_location }}
           </p>
-<<<<<<< HEAD
-          <p style="color: grey">{{ user.user_job_type }}</p>
-=======
-          <p style="color:grey;" v-if="user.user_job_type">{{ user.user_job_type }}</p>
->>>>>>> 192e33dd11404da40c2d052ffe4fef0f574ea047
+          <p style="color: grey" v-if="user.user_job_type">
+            {{ user.user_job_type }}
+          </p>
         </div>
         <button class="btn1" @click="getEditUser" block>Simpan</button>
         <button class="btn2" block @click="back">Kembali</button>
