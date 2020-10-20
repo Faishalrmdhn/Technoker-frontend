@@ -22,7 +22,7 @@
               <div class="text-left">
                 <b-card-title class="my-1">{{ data.user_name }}</b-card-title>
                 <small>{{ data.user_job_desk }}</small>
-                <p class="mt-3 text-muted" v-if=" data.user_location">
+                <p class="mt-3 text-muted" v-if="data.user_location">
                   <span>
                     <img src="../assets/img/location.png" alt />
                   </span>
@@ -77,18 +77,23 @@
                   </span>
                   {{ data.user_email }}
                 </p>
-                <p v-if="data.user_instagram">
-                  <span>
-                    <img src="../assets/img/instagram.png" alt />
-                  </span>
-                  {{ data.user_instagram }}
-                </p>
-                <p v-if="data.user_github">
-                  <span>
-                    <img src="../assets/img/github.png" alt />
-                  </span>
-                  {{ data.user_github }}
-                </p>
+                <a :href="data.user_instagram" target="_blank">
+                  <p v-if="data.user_instagram">
+                    <span>
+                      <img src="../assets/img/instagram.png" alt />
+                    </span>
+                    {{ data.user_instagram }}
+                  </p>
+                </a>
+
+                <a :href="data.user_github" target="_blank"
+                  ><p href style="cursor: pointer" v-if="data.user_github">
+                    <span>
+                      <img src="../assets/img/github.png" alt />
+                    </span>
+                    {{ data.user_github }}
+                  </p></a
+                >
               </div>
             </b-card>
           </b-col>
