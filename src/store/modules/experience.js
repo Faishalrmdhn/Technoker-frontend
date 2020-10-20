@@ -4,7 +4,7 @@ export default {
   state: {},
   computations: {},
   actions: {
-    deletePortofolio(context, payload) {
+    deleteExperience(context, payload) {
       return new Promise((resolve, reject) => {
         axios
           .delete(`${process.env.VUE_APP_URL}experience/${payload}`)

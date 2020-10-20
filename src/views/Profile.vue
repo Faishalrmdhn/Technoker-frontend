@@ -117,12 +117,18 @@
                       cols="6"
                       v-for="(value, index) in portfolio"
                       :key="index"
+                      class="portofolio-img"
                     >
-                      <b-img
-                        fluid
-                        :src="portfolioImg + value.portofolio_image"
-                        alt="Image 1"
-                      ></b-img>
+                      <span class="float-right trash-icon trash-porto" @click="delete_portofolio(value)">
+                        <b-icon-trash></b-icon-trash>
+                      </span>
+                      <a :href="value.portofolio_repository" target="_blank">
+                        <b-img
+                          fluid
+                          :src="portfolioImg + value.portofolio_image"
+                          alt="Image 1"
+                        ></b-img>
+                      </a>
                       <p class="text-center" style="font-size: 15px">
                         {{ value.portofolio_name }}
                       </p>
@@ -148,7 +154,7 @@
                         {{ value.experience_date_in }} -
                         {{ value.experience_date_out }}
                       </small>
-                      <span class="float-right trash-icon" @click="delete_portofolio(value)">
+                      <span class="float-right trash-icon" @click="delete_experience(value)">
                         <b-icon-trash></b-icon-trash>
                       </span>
                       <br />
@@ -190,11 +196,9 @@ export default {
   created() {
     this.showButton()
   },
-  updated() {
-    // this.getUserById()
-  },
+  updated() {},
   methods: {
-    ...mapActions(['getUserById', 'logout', 'deletePortofolio']),
+    ...mapActions(['getUserById', 'logout', 'deleteExperience', 'deletePortofolio']),
     ...mapMutations(['setUserById']),
     editPage() {
       this.$router.push('/edit-profile-c')
@@ -220,7 +224,7 @@ export default {
     getPorto() {
       console.log(this.getUserById)
     },
-    delete_portofolio(e) {
+    delete_experience(e) {
       this.$bvModal
         .msgBoxConfirm(`Ae sure want to delete ${e.experience_position} in ${e.experience_company}?`, {
           cancelVariant: 'danger',
@@ -231,7 +235,28 @@ export default {
         })
         .then((value) => {
           if (value) {
-            this.deletePortofolio(e.experience_id)
+            this.deleteExperience(e.experience_id)
+              .then(response => {
+                this.makeToast(response.msg, 'success')
+                this.getUserById(this.data.user_id)
+              }).catch(error => {
+                this.makeToast(error.data.msg, 'danger')
+              })
+          }
+        })
+    },
+    delete_portofolio(e) {
+      this.$bvModal
+        .msgBoxConfirm(`Ae sure want to delete ${e.portofolio_name}?`, {
+          cancelVariant: 'danger',
+          okVariant: 'success',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true
+        })
+        .then((value) => {
+          if (value) {
+            this.deletePortofolio(e.portofolio_id)
               .then(response => {
                 this.makeToast(response.msg, 'success')
                 this.getUserById(this.data.user_id)
@@ -272,10 +297,15 @@ export default {
   border-color: #fbb017;
 }
 
-.portofolio {
-  display: flex;
-  justify-content: space-between;
+.portofolio-img img {
+  transition: .3s all;
+  cursor: pointer;
 }
+
+.portofolio-img img:hover {
+  margin-top: 5px
+}
+
 .skills-grid {
   margin: 20px 0;
   display: grid;
@@ -301,6 +331,14 @@ export default {
   text-align: center;
   transition: .4s all;
   cursor: pointer;
+  border-radius: 20px;
+}
+
+.trash-icon.trash-porto {
+  position: relative;
+  top: 22px;
+  color: dimgray;
+  background: #fff;
 }
 
 .trash-icon:hover {
