@@ -148,6 +148,9 @@
                         {{ value.experience_date_in }} -
                         {{ value.experience_date_out }}
                       </small>
+                      <span class="float-right trash-icon" @click="delete_portofolio(value)">
+                        <b-icon-trash></b-icon-trash>
+                      </span>
                       <br />
                       <br />
                       <p>{{ value.experience_desc }}</p>
@@ -167,6 +170,7 @@
 
 <script>
 import HeaderLogin from '@/components/HeaderLogin.vue'
+import mixins from '@/mixins/global_mixins'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
@@ -174,6 +178,7 @@ export default {
   components: {
     HeaderLogin
   },
+  mixins: [mixins],
   data() {
     return {
       showBtnEdit: false,
@@ -189,7 +194,7 @@ export default {
     // this.getUserById()
   },
   methods: {
-    ...mapActions(['getUserById', 'logout']),
+    ...mapActions(['getUserById', 'logout', 'deletePortofolio']),
     ...mapMutations(['setUserById']),
     editPage() {
       this.$router.push('/edit-profile-c')
@@ -214,6 +219,27 @@ export default {
     },
     getPorto() {
       console.log(this.getUserById)
+    },
+    delete_portofolio(e) {
+      this.$bvModal
+        .msgBoxConfirm(`Ae sure want to delete ${e.experience_position} in ${e.experience_company}?`, {
+          cancelVariant: 'danger',
+          okVariant: 'success',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true
+        })
+        .then((value) => {
+          if (value) {
+            this.deletePortofolio(e.experience_id)
+              .then(response => {
+                this.makeToast(response.msg, 'success')
+                this.getUserById(this.data.user_id)
+              }).catch(error => {
+                this.makeToast(error.data.msg, 'danger')
+              })
+          }
+        })
     }
   },
   computed: {
@@ -267,5 +293,19 @@ export default {
   color: #ffff;
   margin: 0 5px 5px 0px;
   font-size: 12px;
+}
+
+.trash-icon {
+  float: right;
+  width: 32px;
+  text-align: center;
+  transition: .4s all;
+  cursor: pointer;
+}
+
+.trash-icon:hover {
+  border: 1px solid salmon;
+  color: salmon;
+  border-radius: 20px;
 }
 </style>
